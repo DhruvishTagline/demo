@@ -1,14 +1,11 @@
 
-import React, { useEffect, useState } from 'react'
+
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { initiateAnsIndex, initiateExam } from '../../../redux-toolkit/slices/teacher';
-
-
-import { handlePrevVisitedPage } from '../../../redux-toolkit/slices/user';
 import { getItemLocal } from '../../../utils/localStorageFunction';
-import { useCreateExam } from '../../../hooks/useCreateExam';
 import ShowExam from '../../../shared/ShowExam';
-
+import { useCreateExam } from '../../../hooks/useCreateExam';
 
 const CreateExam = () => {
 
@@ -32,9 +29,11 @@ const CreateExam = () => {
 
 useEffect(() => {
   const createExamData = getItemLocal('createExam');
-  
-  const ansIndex = getItemLocal('ansIndex');
+  console.log("createExamData",createExamData);
+  // const ansIndex = getItemLocal('ansIndex');
+  console.log("1 useEffect")
   if(!createExamData){
+    console.log("t");
     dispatch(initiateExam(initiateConfig));
     dispatch(initiateAnsIndex([]))
   }else{
@@ -43,43 +42,15 @@ useEffect(() => {
       dispatch(initiateAnsIndex(ansIndex))
     }
   }
-  dispatch(handlePrevVisitedPage(1))
 
 },[]);
 
-useEffect(() => {
-  const handleStorageChange = () => {
-    const createExamData = getItemLocal('createExam');
-    const ansIndex = getItemLocal('ansIndex');
-
-    if (!createExamData) {
-      dispatch(initiateExam(initiateConfig));
-      dispatch(initiateAnsIndex([]));
-      setCurrQuestion(0);
-    } else {
-      dispatch(initiateExam(createExamData));
-      if(ansIndex !== null){
-        dispatch(initiateAnsIndex(ansIndex));
-      }
-    }
-  };
-
-  
-  window.addEventListener('storage', handleStorageChange);
-
-  return () => {
-
-
-    window.removeEventListener('storage', handleStorageChange);
-  };
-}, []); 
 
 
   return (
-    
     <div className='flex items-center flex-col mt-[10px]'>
 
-      <p className='text-center text-2xl mb-1'>Create Exam</p>
+      <p className='text-center '>Create Exam</p>
 
       <ShowExam 
       createExamFields={createExamFields} 
@@ -88,8 +59,7 @@ useEffect(() => {
       currQuestion={currQuestion}
       validateExamData={validateExamData}
       validate={validate}
-      Options={Options}
-      />
+      Options={Options}/>
 
       <div className='pt-2'>
             <button 
@@ -111,7 +81,6 @@ useEffect(() => {
 }
 
 export default CreateExam
-
 
 
 

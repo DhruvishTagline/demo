@@ -1,3 +1,4 @@
+
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
@@ -21,8 +22,9 @@ const initialState = {
         ],
         notes:['test notes']
     },
+    questions:[],
+    edited:false,
     ansIndex:[],
-    
 }
 
 export const teacherSlice = createSlice({
@@ -35,12 +37,7 @@ export const teacherSlice = createSlice({
 
         loadVerifiedStudentData:(state,action) => {
             state.verifiedStudentData = action.payload;
-        },
-
-        handleError:(state,action) => {
-            state.error = action.payload;
-        },
-        
+        },    
         loadViewExamData:(state,action) => {
             state.viewExam = action.payload;
         },
@@ -48,23 +45,17 @@ export const teacherSlice = createSlice({
             state.currStudentDetail = action.payload;
         },
 
-        handleSubject:(state,action) => { 
-            const {value} = action.payload;
-            state.error = {};
-            state.createExam.subjectName = value; 
+        handleError:(state,action) => {
+            state.error = action.payload;
         },
-        handleQuestion:(state,action) => {
-            console.log("handle question called");
-            const {name,value,qIndex} = action.payload;
-            console.log("name-value",name,value,qIndex);
-            state.error = {};
-            state.createExam.questions[qIndex][name] = value
-        },
+        
         handleAns:(state,action) => {
+            state.edited = true
             const {queIndex,ans} = action.payload;
-            console.log("ans",ans);
+            console.log("ans",ans)
             state.error = {};
             state.createExam.questions[queIndex].answer = ans;
+            localStorage.setItem('createExam',JSON.stringify(state.createExam))
         },
         handleOptions:(state,action) => {
             state.edited = true
@@ -74,18 +65,41 @@ export const teacherSlice = createSlice({
                 state.createExam.questions[queIndex].answer = value;
             }
             state.createExam.questions[queIndex].options[opIndex] = value;
+            localStorage.setItem('createExam',JSON.stringify(state.createExam))
         },
+        handleQuestion:(state,action) => {
+            state.edited = true
+            const {name,value,queIndex} = action.payload;
+            state.error = {};
+            state.createExam.questions[queIndex][name] = value
+            localStorage.setItem('createExam',JSON.stringify(state.createExam))
+        },
+        handleSubject:(state,action) => {
+            state.edited = true
+            const {name,value} = action.payload;
+            state.error = {};
+            state.createExam[name] = value
+            localStorage.setItem('createExam',JSON.stringify(state.createExam))
+        },
+        handleAnsIndexes:(state,action) => {
+            state.ansIndex[action.payload.currQuestion] = action.payload.ansIndex;
+            localStorage.setItem('ansIndex',JSON.stringify(state.ansIndex))
+        },
+
         initiateExam:(state,action) => {
             state.error = {};
             state['createExam'] = action.payload;
         },
-        initiateQuestions:(state,action) => {
-            state.questions = [];
-        },
         initiateAnsIndex:(state,action) => {
             state.ansIndex = action.payload
         },
-             
+        initiateQuestions:(state,action) => {
+            state.questions = [];
+        },
+
+        addNewQuestion:(state,action) => {
+            state.createExam.questions.push(action.payload);
+        },
     }
 })
 
@@ -95,15 +109,26 @@ export const
         loadVerifiedStudentData,
         handleError,
         loadViewExamData,
-        loadCurrStudentDetail,  
-        handleSubject, 
-        handleQuestion, 
-        handleAns,
-        handleOptions,
+        loadCurrStudentDetail,   
+        initiateAnsIndex,
         initiateExam,
+        addNewQuestion,
+        handleAns,
+        handleQuestion,
+        handleSubject,
         initiateQuestions,
-        initiateAnsIndex
+        handleOptions,
+        handleAnsIndexes,
+
+
+        
 
     } = teacherSlice.actions;
 
 export default teacherSlice.reducer;
+
+
+
+
+
+

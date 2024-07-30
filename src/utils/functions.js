@@ -7,3 +7,7 @@ export const capitalizeFirstChar=(mySentence)=>{
 }
 
 export const objectKeys = (list) => Object.keys(list);
+
+export const hasDuplicates = (array) =>{
+    return (new Set(array)).size !== array.length;
+}
