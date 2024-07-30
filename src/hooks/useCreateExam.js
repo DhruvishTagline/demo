@@ -88,7 +88,7 @@ export const useCreateExam =()=>{
           name:'question',
           label:`Question ${currQuestion+1}`,
           data:examData?.questions?.[currQuestion],
-          updateData:handleQuestion(currQuestion),
+          updateData:handleQuestion,
           currQuestion:currQuestion,
           error:error
         },

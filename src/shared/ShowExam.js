@@ -16,8 +16,7 @@ const ShowExam = ({createExamFields,error,setCurrQuestion,currQuestion,validateE
                     return <InputField fieldData={field} key={i} />
 
                     return <InputField fieldData={field} key={i}/>
-                }
-            )
+                })
             }
             </div>
         </>

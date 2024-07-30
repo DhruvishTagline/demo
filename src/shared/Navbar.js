@@ -28,7 +28,7 @@ const Navbar = ({ navItems }) => {
 
   return (
     <div className='w-full h-full bg-opacity-90 fixed' onClick={() => dispatch(handleMenu())}>
-      <div className="w-60 h-full overflow-y-auto bg-white dark:bg-gray-900 flex flex-col shadow-lg" onClick={(e) => e.stopPropagation()}>
+      <div className="w-60 h-full overflow-y-auto mt-3 bg-white dark:bg-gray-900 flex flex-col shadow-lg" onClick={(e) => e.stopPropagation()}>
 
         <ul className="space-y-3 font-medium mt-6">
           {

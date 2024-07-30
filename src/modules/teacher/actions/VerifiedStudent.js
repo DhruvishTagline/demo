@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchData } from '../../../redux-toolkit/slices/api';
-import { getCurrUserData, token} from '../../../Current User/currentUser';
+import { token } from '../../../Current User/currentUser';
 import Pagination from '../../../shared/Pagination';
 import {  loadVerifiedStudentData } from '../../../redux-toolkit/slices/teacher';
 import { useNavigate } from 'react-router';
