@@ -12,8 +12,11 @@ import ViewExam from "../modules/teacher/actions/ViewExam";
 import ViewStudentDetail from "../modules/teacher/actions/ViewStudentDetail";
 import Login from "../modules/user/Login";
 import SignUp from "../modules/user/SignUp";
-import { ALL_STUDENT, CREATE_EXAM, EDIT_EXAM, HOME_PAGE, LOGIN_PAGE, SIGNUP_PAGE, STUDENT, STUDENT_DETAIL, TEACHER, TEACHER_DASHBOARD, VERIFIED_STUDENT, VIEW_EXAM } from "../utils/constant";
+import { ALL_STUDENT, CREATE_EXAM, EDIT_EXAM, FORGET_PASSWORD, HOME_PAGE, LOGIN_PAGE, NEW_PASSWORD, RESET_PASSWORD, SIGNUP_PAGE, STUDENT, STUDENT_DETAIL, TEACHER, TEACHER_DASHBOARD, VERIFIED_STUDENT, VIEW_EXAM } from "../utils/constant";
 import Auth from "../HOC/Auth";
+import ResetPassword from "../shared/ResetPassword";
+import ForgotPassword from "../shared/ForgotPassword";
+import NewPassword from "../shared/NewPassword";
 
 export const routes = [
   {
@@ -32,6 +35,14 @@ export const routes = [
       {
         path: SIGNUP_PAGE,
         element: <SignUp />
+      },
+      {
+        path: FORGET_PASSWORD,
+        element: <ForgotPassword/>
+      },
+      {
+        path: NEW_PASSWORD,
+        element:<NewPassword/>
       },
       {
         element: <Auth role={["teacher"]} />,
@@ -67,7 +78,12 @@ export const routes = [
               {
                 path: EDIT_EXAM,
                 element: <EditExam />
+              },
+              {
+                path: RESET_PASSWORD,
+                element: <ResetPassword/>
               }
+
             ]
           }
         ]

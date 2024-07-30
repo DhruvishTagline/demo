@@ -15,9 +15,3 @@ export const cleatItemLocal = () => {
     localStorage.clear()
 }
 
-/*
-IsGetItem
-IsSetItem
-IsRemoveItem
-IsClearItem
-*/

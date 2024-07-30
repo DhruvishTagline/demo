@@ -9,22 +9,17 @@ import { validateField } from '../Validation/validation';
 
 
 
-const ShowExam = ({createExamFields,error,setCurrQuestion,currQuestion,validateExamData,totalQue,validate}) => {
+const ShowExam = ({createExamFields,error,setCurrQuestion,currQuestion,validateExamData,validate}) => {
 
-    const location = useLocation(); 
-    const totalQuestion = totalQue || 14;
-    
+    console.log("validate",validate);
+    const totalQuestion =  14;
     const examData = useSelector(state => state.teacher.createExam);
-    
     const optionArr = examData?.questions?.[currQuestion]?.options;
-   
     const dispatch = useDispatch();
     
-   
-    
     const handlePrevQuestion = () => {
-          dispatch(handleError({}));
-          setCurrQuestion(currQuestion -1)
+        dispatch(handleError({}));
+        setCurrQuestion(currQuestion -1)
     }
 
     const handleNextQuestion = () => {
@@ -33,9 +28,7 @@ const ShowExam = ({createExamFields,error,setCurrQuestion,currQuestion,validateE
         if(Object.keys(error).length !== 0){
           dispatch(handleError(error));
           return;
-        }
-        
-
+        } 
         if(hasDuplicates(optionArr)){
           console.log("called")
           const error = {};
@@ -45,40 +38,37 @@ const ShowExam = ({createExamFields,error,setCurrQuestion,currQuestion,validateE
         }
 
         if(currQuestion !== totalQuestion){
-          console.log("ttt")
-          const question = {
-              question:'',
-              answer:' ',
-              options:[
-                '',
-                '',
-                '',
-                ''
-              ]
-          }
-          if(examData.questions.length !== 15 ){
-            dispatch(addNewQuestion(question));
-          }
-          else{
-            console.log("condition false")
-          }
-            
-          setCurrQuestion(currQuestion+1);
+           
+            const question = {
+                question:'',
+                answer:' ',
+                options:[
+                    '',
+                    '',
+                    '',
+                    ''
+                ]
+            }
+            if(examData.questions.length !== 15 ){
+                dispatch(addNewQuestion(question));
+            }
+            else{
+                console.log("condition false")
+            }               
+            setCurrQuestion(currQuestion+1);
         }
     }
 
   return (
     <div>
-        <div>
+      <div>
         {
           createExamFields.map((field,i) => <InputField fieldData={field} key={i}/>)
         }
       </div>
-
       {
         error?.answer !== undefined ? <span className='text-red-500 text-sm'>{error.answer}</span> : ''
       }
-
       {
         error?.sameOption !== undefined ? <span className='text-red-500 text-sm'>{error.sameOption}</span> : ''
       }

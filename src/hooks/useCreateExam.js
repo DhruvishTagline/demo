@@ -279,7 +279,7 @@ export const useCreateExam = () => {
         removeItemLocal('ansIndex')
         removeItemLocal('createExam')
         setCurrQuestion(0);
-      }
+    }
 
     return {
         createExamFields,

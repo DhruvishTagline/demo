@@ -1,5 +1,6 @@
 
 import { createSlice } from "@reduxjs/toolkit";
+import { setItemLocal } from "../../utils/localStorageFunction";
 
 const initialState = {
     allStudentData:[],
@@ -34,7 +35,6 @@ export const teacherSlice = createSlice({
         loadAllStudentData:(state,action) => {
             state.allStudentData = action.payload;
         },
-
         loadVerifiedStudentData:(state,action) => {
             state.verifiedStudentData = action.payload;
         },    
@@ -57,33 +57,34 @@ export const teacherSlice = createSlice({
             state.createExam.questions[queIndex].answer = ans;
             localStorage.setItem('createExam',JSON.stringify(state.createExam))
         },
+
         handleOptions:(state,action) => {
             state.edited = true
             const {queIndex,opIndex,value} = action.payload;
             state.error = {};
-            if(state.createExam.questions[queIndex].options[opIndex] === state.createExam.questions[queIndex].answer && state.ansIndex[queIndex] === opIndex){
-                state.createExam.questions[queIndex].answer = value;
-            }
+            
             state.createExam.questions[queIndex].options[opIndex] = value;
-            localStorage.setItem('createExam',JSON.stringify(state.createExam))
+            setItemLocal('createExam',JSON.stringify(state.createExam))
         },
         handleQuestion:(state,action) => {
             state.edited = true
             const {name,value,queIndex} = action.payload;
             state.error = {};
+            console.log("handleQuestion");
             state.createExam.questions[queIndex][name] = value
-            localStorage.setItem('createExam',JSON.stringify(state.createExam))
+            setItemLocal('createExam',JSON.stringify(state.createExam))
         },
         handleSubject:(state,action) => {
+            console.log("handleSbject",action.payload);
             state.edited = true
             const {name,value} = action.payload;
             state.error = {};
-            state.createExam[name] = value
-            localStorage.setItem('createExam',JSON.stringify(state.createExam))
+            state.createExam[name] = value;
+            setItemLocal('createExam',JSON.stringify(state.createExam))
         },
         handleAnsIndexes:(state,action) => {
             state.ansIndex[action.payload.currQuestion] = action.payload.ansIndex;
-            localStorage.setItem('ansIndex',JSON.stringify(state.ansIndex))
+            setItemLocal('ansIndex',JSON.stringify(state.ansIndex))
         },
 
         initiateExam:(state,action) => {
@@ -96,7 +97,6 @@ export const teacherSlice = createSlice({
         initiateQuestions:(state,action) => {
             state.questions = [];
         },
-
         addNewQuestion:(state,action) => {
             state.createExam.questions.push(action.payload);
         },
@@ -119,9 +119,6 @@ export const
         initiateQuestions,
         handleOptions,
         handleAnsIndexes,
-
-
-        
 
     } = teacherSlice.actions;
 

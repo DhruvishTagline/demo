@@ -29,11 +29,9 @@ const CreateExam = () => {
 
 useEffect(() => {
   const createExamData = getItemLocal('createExam');
-  console.log("createExamData",createExamData);
-  // const ansIndex = getItemLocal('ansIndex');
-  console.log("1 useEffect")
+
   if(!createExamData){
-    console.log("t");
+    
     dispatch(initiateExam(initiateConfig));
     dispatch(initiateAnsIndex([]))
   }else{
@@ -42,10 +40,7 @@ useEffect(() => {
       dispatch(initiateAnsIndex(ansIndex))
     }
   }
-
 },[]);
-
-
 
   return (
     <div className='flex items-center flex-col mt-[10px]'>

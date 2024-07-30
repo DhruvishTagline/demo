@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { handlePrevVisitedPage } from '../redux-toolkit/slices/user';
 import BasicTable from './Tabel';
 
-const Pagination = ({ data, viewPath, btn, searchKey, searchVal, lastVisitedPage }) => {
+const Pagination = ({ data, viewPath, lastVisitedPage }) => {
   const dispatch = useDispatch();
   const [currPage, setCurrPage] = useState(lastVisitedPage || 1);
 

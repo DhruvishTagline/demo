@@ -23,7 +23,7 @@ const AllStudent = () => {
         url: 'dashboard/Teachers',
         headers: { "access-token": getCurrUserData().token }
       }
-      const res = await dispatch(fetchData(config))
+      const res = await dispatch(fetchData(config));
       if (res?.payload?.statusCode === 401) {
         removeItemLocal('userData');
         setItemLocal('login', false);
@@ -32,13 +32,11 @@ const AllStudent = () => {
       }
       dispatch(loadAllStudentData(res?.payload?.data));
     }
-    if (allStudentData.length === 0) {
+    if(allStudentData.length === 0) {
       dispatch(handlePrevVisitedPage(1));
       fetchAllStudentData();
     }
   }, []);
-
-  const keys = ['name', 'email', 'status'];
 
   return (
     <div className='flex items-center flex-col mt-4'>
@@ -51,12 +49,10 @@ const AllStudent = () => {
               <Pagination
                 data={allStudentData}
                 recodesPerPage={10}
-                keys={keys}
                 viewPath={`/teacher/view-student-detail`}
-                searchKey={['name', 'email', 'status']}
                 lastVisitedPage={lastVisitedPage}
-              />
-            </div>
+              />              
+            </div> 
         }
       </div>
     </div>
