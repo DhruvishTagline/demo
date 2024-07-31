@@ -50,13 +50,27 @@ export const userSlice = createSlice({
                 role:'student',
             };
         },
+        initiateForgetPassword:(state,action) => {
+            state.forgetPassword = action.payload
+        },
        
         handlePrevVisitedPage:(state,action) => {
             state.prevVisitedPage = action.payload
         },
         handleMenu:(state,action) => {
             state.menu = !(state.menu)
-        }
+        },
+        handleForgetPassword:(state,action) => {
+            const {name,value} = action.payload;
+            state.error = {};
+            state.forgetPassword[name] = value;
+        },
+        handleNewPassword:(state,action) => {
+            const {name,value} = action.payload;
+            state.error = {};
+            state.newPassword[name] = value;
+        },
+        
     }
 })
 
@@ -72,7 +86,6 @@ export const
         handleLogin,
         initiateLoginData,
         initiateSignupData,
-       
         handlePrevVisitedPage,
         initiateForgetPassword,
         handleMenu

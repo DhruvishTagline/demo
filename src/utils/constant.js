@@ -25,7 +25,8 @@ export const VIEW_EXAM = '/teacher/view-exam'
     
 export const EDIT_EXAM = '/teacher/edit-exam'
 
-export const STUDENT = '/student'
-
 export const RESET_PASSWORD= '/teacher/reset-password'
 
+export const STUDENT = '/student'
+
+export const STUDENT_DASHBOARD = '/student/dashboard'

@@ -1,49 +1,106 @@
 import React, { useEffect, useState } from 'react'
 
 import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import { Navigate, useNavigate } from 'react-router';
+import { handleError, handleForgetPassword, initiateForgetPassword } from '../redux-toolkit/slices/user';
+import { getCurrUserData } from '../Current User/currentUser';
+import { validateField } from '../Validation/validation';
+import { fetchData } from '../redux-toolkit/slices/api';
+import { LOGIN_PAGE } from '../utils/constant';
+import InputField from './InputField'
 
 const ForgotPassword = () => {
 
-    const [email,setEmail] =useState("");
-    const handleChange=(e)=>{
-        console.log("handlechange",e.target.value);
-        setEmail(e.target.value)
-    }
-    const postEmail =async()=>{ 
-        const res = await axios.post('https://examination.onrender.com/users/ForgotPassword',
-            {
-                email:email
-            }
-        );
-        console.log("res",res);
-    }  
-
+    const dispatch=useDispatch();
+    const navigate=useNavigate();
     useEffect(()=>{
-         
-       
+
+      dispatch(handleError);
+      return ()=>{
+        dispatch(initiateForgetPassword({}))
+      }
     },[])
 
+    const forgetPassword =useSelector(state =>state.user.forgetPassword)
+    const error= useSelector(state => state.user.error);
+    const login = JSON.parse(localStorage.getItem('login'));
+    const role = getCurrUserData().role;
+    const fieldData = {
+      type:'email',
+      id:'email',
+      name:'email',
+      label:'Email',
+      data:forgetPassword,
+      updateData:handleForgetPassword,
+      error:error
 
-    // const feildData= {
-    //     type:'email',
-    //     id:'email',
-    //     name:'email',
-    //     label:`Enter Email`,
-    //     data:email,
-    //     updateData:handleChange
-    //   }
+    }
+
+    const validate={
+      email:[
+        {
+          required:true,
+          message:'Please Enter Email'
+        },
+        {
+          pattern:/^[a-zA-Z0-9]+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/,
+          message:'enter Valid email.'
+        }
+      ]
+    }
+
+    const sendMail = async()=>{
+      try{
+        const error=validateField(forgetPassword,validate)
+        if(Object.keys(error).length !== 0){
+          dispatch(handleError(error));
+          return;
+        }
+        const config={
+          method:'post',
+          url:'users/ForgotPassword',
+          data:forgetPassword
+        }
+        const res =await dispatch(fetchData(config));
+        if(res.payload.statusCode === 500){
+          console.log('Email not Found please sign in');
+          return;
+        }
+        if(res.payload.statusCode === 400){
+          console.log('Please check email')
+        }
+        navigate(LOGIN_PAGE);
+        dispatch(initiateForgetPassword({}));
+        console.log('Mail Sent Sucessfully on your Email')
+      }
+      catch(error){
+        console.log("error",error);
+      }
+    }
+    if(login){
+      return <Navigate to={`/${role}/dashboard`}/>
+    }
+
+
+
+
   return (
     <>
-        <div style={{marginTop:'5rem'}}></div>
-        <label>Email :</label>
-        <input type='text' value={email} name="email" onChange={handleChange} style={{border:'solid black 1px'}}/>
-        <button
-          onClick={postEmail}
-          style={{width:'9rem'}}
-          className="w-full bg-blue-600 text-white py-2 mt-4 rounded-lg hover:bg-blue-700 transition-colors duration-200"
-        >
-          Send Email
-        </button>
+         {
+            !login && 
+            <div className='flex items-center flex-col mt-[70px]'>
+                <p className='text-center mb-4 text-4xl'>Forget Password</p>
+                <InputField fieldData={fieldData}/>
+                <button 
+                onClick={sendMail}
+                
+                className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-2 `}
+                >
+                    Submit
+                </button>
+            </div>
+        }
     </>
   )
 }
