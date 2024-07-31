@@ -85,7 +85,6 @@ export const routes = [
                 path: RESET_PASSWORD,
                 element: <ResetPassword/>
               }
-
             ]
           }
         ]
