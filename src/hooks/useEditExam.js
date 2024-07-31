@@ -31,7 +31,7 @@ const useEditExam = (id) => {
         {
           required:true,
           message:'Please Enter Subject'
-        },
+        }
         
       ],
       question:[
@@ -149,7 +149,7 @@ const useEditExam = (id) => {
           const res = await dispatch(fetchData(config));
           dispatch(initiateQuestions());
           dispatch(handleEdited());
-          console.log("Exam Edited sucess");
+          console.log("Exam Edited success");
           navigate(VIEW_EXAM)
 
         }catch(error){

@@ -3,7 +3,8 @@ import { useDispatch } from 'react-redux';
 import { handlePrevVisitedPage } from '../redux-toolkit/slices/user';
 import BasicTable from './Tabel';
 
-const Pagination = ({ data, viewPath, lastVisitedPage }) => {
+const Pagination = ({ data, viewPath, lastVisitedPage ,btn}) => {
+  console.log("btn",btn);
   const dispatch = useDispatch();
   const [currPage, setCurrPage] = useState(lastVisitedPage || 1);
 
@@ -64,7 +65,7 @@ const Pagination = ({ data, viewPath, lastVisitedPage }) => {
 
   return (
     <div className="bg-white shadow-md rounded-lg p-6">
-      <BasicTable data={currentItems} path={viewPath} />
+      <BasicTable data={currentItems} path={viewPath} btn={btn}/>
       <div className='flex justify-between items-center mt-4'>
         <span className='text-gray-700'>{currPage} page of {totalPage} </span>
         {

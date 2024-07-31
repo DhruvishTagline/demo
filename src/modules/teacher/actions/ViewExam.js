@@ -20,8 +20,6 @@ const ViewExam = () => {
     deleteBtn:'delete',
   }
 
-
-
   useEffect(() => {
     const fetchViewExamData = async() => {
       try{

@@ -4,7 +4,8 @@ import { capitalizeFirstChar, objectKeys } from '../utils/functions';
 import { NavLink } from 'react-router-dom';
 
 export default function BasicTable(props) {
-  const { data: list2, path } = props;
+  const { data: list2, path ,btn} = props;
+  console.log("btn",btn);
   const keyss = Object.keys(list2[0] || {});
   
 
@@ -45,6 +46,15 @@ export default function BasicTable(props) {
                       </NavLink>
                     </td>
                 }
+                {
+                  btn && <td className="text-center py-3 px-4 border-b text-blue-500">
+                    <NavLink to={`/teacher/edit-exam?id=${row._id}`} replace style={{marginRight:'10px'}}>View</NavLink>
+                    <button style={{marginRight:'10px'}}>Delete</button>
+                    
+                  </td>
+                }
+                
+                
               </tr>
             ))
           }

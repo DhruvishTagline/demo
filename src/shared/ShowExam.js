@@ -9,7 +9,8 @@ import { validateField } from '../Validation/validation';
 
 
 
-const ShowExam = ({createExamFields,error,setCurrQuestion,currQuestion,validateExamData,validate}) => {
+const ShowExam = ({createExamFields,error,setCurrQuestion,currQuestion,validateExamData,validate,fetchedExamData}) => {
+  console.log("fetchExamData------",fetchedExamData);
 
     console.log("validate",validate);
     const totalQuestion =  14;
@@ -63,7 +64,7 @@ const ShowExam = ({createExamFields,error,setCurrQuestion,currQuestion,validateE
     <div>
       <div>
         {
-          createExamFields.map((field,i) => <InputField fieldData={field} key={i}/>)
+          createExamFields.map((field,i) => <InputField fieldData={field} fetchedExamData={fetchedExamData} key={i}/>)
         }
       </div>
       {

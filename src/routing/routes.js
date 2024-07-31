@@ -81,10 +81,7 @@ export const routes = [
                 path:EDIT_EXAM,
                 element:<EditExam />
               },
-              {
-                path: EDIT_EXAM,
-                element: <EditExam />
-              },
+              
               {
                 path: RESET_PASSWORD,
                 element: <ResetPassword/>

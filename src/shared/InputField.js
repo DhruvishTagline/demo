@@ -7,7 +7,8 @@ import RadioBtn from './RadioBtn';
 
 
 
-const InputField = ({fieldData}) => {
+const InputField = ({fieldData,fetchedExamData}) => {
+  console.log("fetchedExamData",fetchedExamData);
 
     const dispatch = useDispatch();
    
@@ -23,7 +24,7 @@ const InputField = ({fieldData}) => {
         type={fieldData?.type}
         id={fieldData?.id}
         name={fieldData?.name}
-        value={fieldData?.data?.[fieldData.name]}
+        value={fieldData?.data?.[fieldData.name]}  //value={fetchedExamData}
         disabled={fieldData?.disable}
         variant="outlined"
         placeholder={fieldData?.label}

@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import useEditExam from '../../../hooks/useEditExam';
+// import useEditExam from '../../../hooks/useEditExam';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCurrUserData } from '../../../Current User/currentUser';
 import { fetchData } from '../../../redux-toolkit/slices/api';
@@ -8,29 +8,59 @@ import { removeItemLocal, setItemLocal } from '../../../utils/localStorageFuncti
 import { VIEW_EXAM } from '../../../utils/constant';
 import { handleEdited, initiateAnsIndex, initiateExam, initiateQuestions } from '../../../redux-toolkit/slices/teacher';
 import ShowExam from '../../../shared/ShowExam';
+import useEditExam from '../../../hooks/useEditExam';
 
 
 
 const EditExam = () => {
+  const dispatch = useDispatch();
+
+  // const examData= useSelector(state=>state.teacher.createExam);
+  // console.log("examDataaaaaa",examData);
 
   const [searchParams,setSearchParams]=useSearchParams();
   const id = searchParams.get('id');
+  console.log("id",id);
+  
 
+  const [fetchedExamData,setFetchedExamData]=useState([]);
+    
+  const getExamDetails=async()=>{
+    console.log("getExamDetails called");
+    const config ={
+      method:'get',
+      url:'dashboard/Teachers/examDetail',
+     
+      headers:{"access-token":getCurrUserData().token},
+      params:{id}
+    }
+
+    console.log("getExamDetails called");
+    const res =await dispatch(fetchData(config));
+    console.log("getExamDetails called");
+    console.log("ressssssss",res.payload.data);
+    setFetchedExamData(res.payload.data);
+    console.log("fetchExamData",fetchedExamData);
+  }
+  getExamDetails();
+  
   const {
     createExamFields,
     currQuestion,
     validateExamData,
     validate,
     edited,
-    examData,
+    // examData,
     setCurrQuestion,
     handleEditExam,
     handleDeleteExam,
     handleCancel
   } = useEditExam(id);
 
+  console.log("examData",examData);
+
   
-  const dispatch= useDispatch();
+ 
   const error = useSelector(state=>state.teacher.error);
   const status = useSelector(state => state.api.status);
   const navigate=useNavigate();
@@ -103,6 +133,8 @@ const EditExam = () => {
   },[]);
 
   return (
+    <>
+    <h1>EditExam</h1>
     <div className='flex flex-col items-center mt-[70px] overflow-hidden'>
       {
         status === 'loading' ?
@@ -116,6 +148,7 @@ const EditExam = () => {
               currQuestion={currQuestion}
               validateExamData={validateExamData}
               validate={validate}
+              fetchedExamData={fetchedExamData}
               />
 
               <div>
@@ -136,6 +169,7 @@ const EditExam = () => {
             </>
       }
     </div>
+    </>
   )
 }
 
