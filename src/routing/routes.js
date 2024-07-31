@@ -78,6 +78,10 @@ export const routes = [
                 element: <ViewExam />
               },
               {
+                path:EDIT_EXAM,
+                element:<EditExam />
+              },
+              {
                 path: EDIT_EXAM,
                 element: <EditExam />
               },

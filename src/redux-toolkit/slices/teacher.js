@@ -100,6 +100,9 @@ export const teacherSlice = createSlice({
         addNewQuestion:(state,action) => {
             state.createExam.questions.push(action.payload);
         },
+        handleEdited:(state,action) => {
+            state.edited = false;
+        },
     }
 })
 
@@ -119,6 +122,7 @@ export const
         initiateQuestions,
         handleOptions,
         handleAnsIndexes,
+        handleEdited
 
     } = teacherSlice.actions;
 
