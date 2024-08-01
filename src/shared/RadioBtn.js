@@ -8,6 +8,7 @@ const RadioBtn = ({fieldData}) => {
     const dispatch = useDispatch()
 
     const eData=useSelector(state=>state.teacher.createExam);
+    console.log('eData :>> ', eData);
 
      const ansIndex= eData.questions.reduce((acc,curr)=>{
         const ansIndex =curr.options.findIndex(option=>option===curr.answer);

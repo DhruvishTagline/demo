@@ -62,13 +62,7 @@ const EditExam = () => {
 
 
   
-  const error = useSelector(state=>state.teacher.error);
-  const status = useSelector(state => state.api.status);
-  const navigate=useNavigate();
 
-  const editData={};
-
-  
 
   return (
     <>
@@ -86,7 +80,6 @@ const EditExam = () => {
               eData={eData} 
               subjectName={subjectName}         
               />
-
               <div>
                 <button 
                 disabled={!edited}

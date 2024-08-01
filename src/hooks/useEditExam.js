@@ -222,7 +222,6 @@ const useEditExam = (id) => {
             dispatch(handleError(error));
             return;
           }
-
           if(Object.keys(sameOptionError).length !== 0)
           {
             return;
@@ -241,7 +240,6 @@ const useEditExam = (id) => {
           dispatch(handleEdited());
         
           navigate(VIEW_EXAM)
-
         }catch(error){
           console.log("error",error);
         }
@@ -249,7 +247,7 @@ const useEditExam = (id) => {
 
       const handleDeleteExam=()=>{
         try{
-          const bool =window.confirm('are you sure you want tot delete exam ?');
+          const bool =window.confirm('are you sure you want to delete exam ?');
           if(bool == false){
             return
           }
@@ -261,9 +259,7 @@ const useEditExam = (id) => {
               params:{id}
             }
             const res =await dispatch(fetchData(config));
-          
             navigate(VIEW_EXAM);
-
           }
           deleteExam();
         }
@@ -271,6 +267,13 @@ const useEditExam = (id) => {
           console.log("error",error);
         }
       }
+
+
+
+
+
+
+
 
       const handleCancel=()=>{
         const initiateConfig ={

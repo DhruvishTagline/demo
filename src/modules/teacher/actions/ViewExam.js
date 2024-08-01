@@ -17,7 +17,7 @@ const ViewExam = () => {
   const viewExam = useSelector(state => state.teacher.viewExam);
   const btn = {
     editBtn:'/teacher/edit-exam',
-    deleteBtn:'delete',
+   
   }
 
   useEffect(() => {

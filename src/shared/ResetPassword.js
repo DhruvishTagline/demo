@@ -122,10 +122,7 @@ const ResetPassword = () => {
                 console.log("Old Password and New Password are same")
                 return;
             }
-            // if(res.payload.statusCode !== 200){
-            //     console.log('Please check old password');
-            //     return;
-            // }
+            
             console.log('Password Reset Successfully');
             dispatch(initiateResetPassword());
             navigate(`/${role}/dashboard`);
@@ -146,13 +143,10 @@ const ResetPassword = () => {
 
   return (
     <div className='flex items-center flex-col mt-[70px]'>
-
         <p className='text-center mb-4 text-4xl'>Reset Password</p>
-
         {
             ResetPasswordFields.map((field,i) => <InputField fieldData={field} key={i}/>)
         }
-
         <div>
             <button 
             onClick={handleReset}
