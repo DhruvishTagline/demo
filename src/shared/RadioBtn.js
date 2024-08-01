@@ -7,7 +7,15 @@ const RadioBtn = ({fieldData}) => {
 
     const dispatch = useDispatch()
 
-    const ansIndex = useSelector(state => state.teacher.ansIndex)
+    const eData=useSelector(state=>state.teacher.createExam);
+
+     const ansIndex= eData.questions.reduce((acc,curr)=>{
+        const ansIndex =curr.options.findIndex(option=>option===curr.answer);
+        acc.push(ansIndex);
+        return acc;
+    },[])
+    console.log(ansIndex);
+    
 
   return (
     <div>

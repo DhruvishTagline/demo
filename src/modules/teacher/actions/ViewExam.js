@@ -59,7 +59,13 @@ const ViewExam = () => {
                   <div className='spinner mt-[20px] mx-auto'></div> :
                     <div>
                       <p className='text-center text-4xl mb-4'>View Exams</p>
-                      <Pagination data={viewExam} recodesPerPage={10} keys={keys} btn={btn}/>
+                      <Pagination 
+                        data={viewExam} 
+                        recodesPerPage={10} 
+                        keys={keys} 
+                        btn={btn}
+                        viewPath={`/teacher/view-exam`}
+                      />
                     </div>
             }
         </div>

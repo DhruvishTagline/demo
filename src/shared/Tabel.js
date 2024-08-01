@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 
 export default function BasicTable(props) {
   const { data: list2, path ,btn} = props;
-  console.log("btn",btn);
+  console.log("path",path);
   const keyss = Object.keys(list2[0] || {});
   
 
@@ -39,7 +39,7 @@ export default function BasicTable(props) {
                   })
                 }
                 {
-                  path === undefined ? '' :
+                  path !== '/teacher/view-student-detail' ? '' :
                     <td className="text-center py-3 px-4 border-b text-blue-500">
                       <NavLink to={`${path}?id=${row._id}`}>
                         View
@@ -49,12 +49,9 @@ export default function BasicTable(props) {
                 {
                   btn && <td className="text-center py-3 px-4 border-b text-blue-500">
                     <NavLink to={`/teacher/edit-exam?id=${row._id}`} replace style={{marginRight:'10px'}}>View</NavLink>
-                    <button style={{marginRight:'10px'}}>Delete</button>
-                    
+                    <button style={{marginRight:'10px'}}>Delete</button>    
                   </td>
-                }
-                
-                
+                }           
               </tr>
             ))
           }

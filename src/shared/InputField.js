@@ -7,13 +7,15 @@ import RadioBtn from './RadioBtn';
 
 
 
-const InputField = ({fieldData,fetchedExamData}) => {
-  console.log("fetchedExamData",fetchedExamData);
+const InputField = ({fieldData,ansIndex}) => {
+  
+
 
     const dispatch = useDispatch();
    
     if(fieldData?.type === 'radio'){
-      return <RadioBtn fieldData={fieldData}/>
+      return <RadioBtn ansIndex={ansIndex} fieldData={fieldData}  
+      />
     }
     
   return (
@@ -24,7 +26,7 @@ const InputField = ({fieldData,fetchedExamData}) => {
         type={fieldData?.type}
         id={fieldData?.id}
         name={fieldData?.name}
-        value={fieldData?.data?.[fieldData.name]}  //value={fetchedExamData}
+        value={ fieldData?.data?.[fieldData.name]}  
         disabled={fieldData?.disable}
         variant="outlined"
         placeholder={fieldData?.label}

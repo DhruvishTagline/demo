@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router';
-import { handleAnsIndexes, handleEdited, handleError, handleQuestion, handleSubject, initiateExam, initiateQuestions, loadViewExamData } from '../redux-toolkit/slices/teacher';
+import { handleAns, handleAnsIndexes, handleEdited, handleError, handleOptions, handleQuestion, handleQuestions, handleSubject, initiateExam, initiateQuestions, loadViewExamData } from '../redux-toolkit/slices/teacher';
 import { validateField } from '../Validation/validation';
 import { getCurrUserData } from '../Current User/currentUser';
 import { fetchData } from '../redux-toolkit/slices/api';
@@ -20,88 +20,178 @@ const useEditExam = (id) => {
     const sameOptionError=useSelector(state=>state.teacher.error);
     const edited =useSelector(state=>state.teacher.edited);
 
-    const Options={
-      op1:examData?.questions?.[currQuestion]?.options[0],
-      op2:examData?.questions?.[currQuestion]?.options[1],
-      op3:examData?.questions?.[currQuestion]?.options[2],
-      op4:examData?.questions?.[currQuestion]?.options[3],
-    }
-    const validate = {
-      subjectName:[
-        {
-          required:true,
-          message:'Please Enter Subject'
-        }
-        
-      ],
-      question:[
-        {
-          required:true,
-          message:'Please Enter Question'
-        },
-        
-      ],
-      op1:[
-        {
-          required:true,
-          message:'Option Required please'
-        },
-        
-      ],
-      op2:[
-        {
-          required:true,
-          message:'Option Required please'
-        },
-        
-      ],
-      op3:[
-        {
-          required:true,
-          message:'Option Required please'
-        },
-        
-      ],
-      op4:[
-        {
-          required:true,
-          message:'Option Required please'
-        },
-        
-      ],
-      answer:[
-        {
-          required:true,
-          message:'Answer Required please'
-        }
-      ]
-    }
+    const eData=useSelector(state=>state.teacher.createExam)
+      const Options={
+        op1:examData?.questions?.[currQuestion]?.options[0],
+        op2:examData?.questions?.[currQuestion]?.options[1],
+        op3:examData?.questions?.[currQuestion]?.options[2],
+        op4:examData?.questions?.[currQuestion]?.options[3],
+      }
+
+      const validate = {
+        subjectName:[
+          {
+            required:true,
+            message:'Please Enter Subject'
+          }        
+        ],
+        question:[
+          {
+            required:true,
+            message:'Please Enter Question'
+          },       
+        ],
+        op1:[
+          {
+            required:true,
+            message:'Option Required please'
+          },       
+        ],
+        op2:[
+          {
+            required:true,
+            message:'Option Required please'
+          },       
+        ],
+        op3:[
+          {
+            required:true,
+            message:'Option Required please'
+          },       
+        ],
+        op4:[
+          {
+            required:true,
+            message:'Option Required please'
+          },       
+        ],
+        answer:[
+          {
+            required:true,
+            message:'Answer Required please'
+          }
+        ]
+      }
 
       const optionArr= examData?.questions?.[currQuestion]?.options;
-
-      const createExamFields=[
-        {
-          type:'text',
-          id:'subject',
-          name:'subjectName',
-          label:'Subject Name',
-          data:examData,
-          updateData:handleSubject,
-          error:error
-        },
-        {
-          type:'text',
-          id:'question',
-          name:'question',
-          label:`Question ${currQuestion+1}`,
-          data:examData.questions[currQuestion],
-          updateData:handleQuestion,
-          currQuestion:currQuestion
-        },
-        {
-
-        }
-      ]
+      console.log("examData",examData);
+       const createExamFields = [
+      {
+        type:'text',
+        id:'subject',
+        name:'subjectName',
+        label:'Subject Name',
+        data:examData?.subjectName,
+        updateData:handleSubject,
+        error:error
+      },
+      {
+        type:'text',
+        id:'question',
+        name:'question',
+        label:`Question ${currQuestion+1}`,
+        data:examData?.questions?.[currQuestion],
+        updateData:handleQuestion,
+        currQuestion:currQuestion,
+        error:error
+      },
+      {
+        type:'radio',
+        name:'ans',
+        id:'op1',
+        data:Options,
+        examData:examData,
+        updateData:handleAns,
+        currQuestion:currQuestion,
+        ans:examData?.questions?.[currQuestion]?.answer,
+        opIndex:0,
+        error:error
+      },
+      {
+        type:'text',
+        id:'op1',
+        name:'op1',
+        label:'Option 1',
+        data:Options,
+        optionArr:optionArr,
+        updateData:handleOptions,
+        currQuestion:currQuestion,
+        opIndex:0,
+        error:error
+      },
+      {
+        type:'radio',
+        name:'ans',
+        id:'op2',
+        data:Options,
+        examData:examData,
+        updateData:handleAns,
+        currQuestion:currQuestion,
+        ans:examData?.questions?.[currQuestion]?.answer,
+        opIndex:1,
+        error:error
+      },
+      {
+        type:'text',
+        id:'op2',
+        name:'op2',
+        label:'Option 2',
+        data:Options,
+        optionArr:optionArr,
+        updateData:handleOptions,
+        currQuestion:currQuestion,
+        opIndex:1,
+        error:error
+      },
+      {
+        type:'radio',
+        name:'ans',
+        id:'op3',
+        data:Options,
+        examData:examData,
+        updateData:handleAns,
+        currQuestion:currQuestion,
+        ans:examData?.questions?.[currQuestion]?.answer,
+        opIndex:2,
+        error:error
+      },
+      {
+        type:'text',
+        id:'op3',
+        name:'op3',
+        label:'Option 3',
+        data:Options,
+        optionArr:optionArr,
+        updateData:handleOptions,
+        currQuestion:currQuestion,
+        opIndex:2,
+        error:error
+      },
+      {
+        type:'radio',
+        name:'ans',
+        id:'op4',
+        data:Options,
+        examData:examData,
+        updateData:handleAns,
+        currQuestion:currQuestion,
+        ans:examData?.questions?.[currQuestion]?.answer,
+        opIndex:3,
+        error:error
+      },
+      {
+        type:'text',
+        id:'op4',
+        name:'op4',
+        label:'Option 4',
+        data:Options,
+        optionArr:optionArr,
+        updateData:handleOptions,
+        currQuestion:currQuestion,
+        opIndex:3,
+        error:error
+      }
+    ]
 
       const validateExamData = {
         subjectName:examData?.subjectName,
@@ -149,7 +239,7 @@ const useEditExam = (id) => {
           const res = await dispatch(fetchData(config));
           dispatch(initiateQuestions());
           dispatch(handleEdited());
-          console.log("Exam Edited success");
+        
           navigate(VIEW_EXAM)
 
         }catch(error){
@@ -171,7 +261,7 @@ const useEditExam = (id) => {
               params:{id}
             }
             const res =await dispatch(fetchData(config));
-            console.log("exam deleted sucessfully");
+          
             navigate(VIEW_EXAM);
 
           }
@@ -203,12 +293,14 @@ const useEditExam = (id) => {
         navigate(VIEW_EXAM);
       }
   return {
+
+      eData,
       createExamFields,
       currQuestion,
       edited,
-      validateExamData,
-      validate,
-      examData,
+      // validateExamData,
+      // validate,
+      // examData,
       setCurrQuestion,
       handleEditExam,
       handleDeleteExam,

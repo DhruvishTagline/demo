@@ -9,12 +9,25 @@ import { validateField } from '../Validation/validation';
 
 
 
-const ShowExam = ({createExamFields,error,setCurrQuestion,currQuestion,validateExamData,validate,fetchedExamData}) => {
-  console.log("fetchExamData------",fetchedExamData);
+const ShowExam = ({
+  createExamFields,
+  error,
+  setCurrQuestion,
+  currQuestion,
+  validateExamData,
+  validate,
+  eData
+}) => {
+    console.log(" SHOW EXAM eData ",eData);
+    
 
-    console.log("validate",validate);
+    
+  
+
+   
     const totalQuestion =  14;
     const examData = useSelector(state => state.teacher.createExam);
+   
     const optionArr = examData?.questions?.[currQuestion]?.options;
     const dispatch = useDispatch();
     
@@ -30,6 +43,7 @@ const ShowExam = ({createExamFields,error,setCurrQuestion,currQuestion,validateE
           dispatch(handleError(error));
           return;
         } 
+        
         if(hasDuplicates(optionArr)){
           console.log("called")
           const error = {};
@@ -64,7 +78,10 @@ const ShowExam = ({createExamFields,error,setCurrQuestion,currQuestion,validateE
     <div>
       <div>
         {
-          createExamFields.map((field,i) => <InputField fieldData={field} fetchedExamData={fetchedExamData} key={i}/>)
+          createExamFields.map((field,i) => {
+           
+            return <InputField fieldData={field}  key={i}/>
+          })
         }
       </div>
       {
