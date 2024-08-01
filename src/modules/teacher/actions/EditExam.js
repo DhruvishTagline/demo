@@ -19,6 +19,9 @@ const EditExam = () => {
 
   const [searchParams,setSearchParams]=useSearchParams();
   const id = searchParams.get('id');
+  const subjectName = searchParams.get('subjectName') ;
+
+ 
 
   useEffect(()=>{
     const getExamDetails=async()=>{
@@ -62,74 +65,10 @@ const EditExam = () => {
   const error = useSelector(state=>state.teacher.error);
   const status = useSelector(state => state.api.status);
   const navigate=useNavigate();
-  const subjectName = searchParams.get('subject');
+
   const editData={};
 
-  // useEffect(()=>{
-  //   try{
-  //     const fetchEditExamData=async()=>{
-  //       const config={
-  //         method:'get',
-  //         url:'dashboard/Teachers/examDetails',
-  //         headers:{'access-token':getCurrUserData().token},
-  //         params:{id}
-  //       }
-  //       const res = await dispatch(fetchData(config));
-  //       if(res?.payload?.statusCode === 401){ 
-  //         removeItemLocal('userData');
-  //         setItemLocal('login,false');
-  //         navigate('/login');
-  //         return;
-  //       }
-  //       if(res?.payload?.statusCode === 500){
-  //         navigate(VIEW_EXAM);
-  //         return
-  //       }
-
-  //       editData.subjectName = subjectName;
-  //       editData.notes =['test notes'];
-  //       editData.questions= res.payload?.data?.questions;
-  //       dispatch(initiateExam(editData));
-  //       console.log("editData",editData); 
-  //       const ansArr = editData.questions.reduce((acc,curr)=>{
-  //         const ansIndex =curr.options.findIndex(option=>option===curr.answer);
-  //         acc.push(ansIndex);
-  //         return acc;
-  //       },[])
-  //       dispatch(initiateAnsIndex(ansArr));
-  //       dispatch(handleEdited())
-  //       dispatch(initiateQuestions([]))
-  //     }
-  //     fetchEditExamData();
-  //   }catch(error){
-  //     console.log("error",error);
-  //   } 
-  //   return () => {
-  //     const initiateConfig = {
-  //       subjectName:'',
-  //       questions:[
-  //           {
-  //               question:'',
-  //               options:[
-  //                   '',
-  //                   '',
-  //                   '',
-  //                   ''
-  //               ]
-  //           }
-  //       ],
-  //       notes:['gffgdg']
-  //   }
-  //   dispatch(initiateExam(initiateConfig))
-  //   dispatch(initiateAnsIndex([]));
-  //   dispatch(initiateQuestions([]));
-  //   dispatch(handleEdited());
-  //   removeItemLocal('createExam');
-  //   removeItemLocal('ansIndex');
-  //   }
-
   
-  // },[]);
 
   return (
     <>
@@ -144,7 +83,8 @@ const EditExam = () => {
               currQuestion={currQuestion}
               validateExamData={validateExamData}
               validate={validate}   
-              eData={eData}          
+              eData={eData} 
+              subjectName={subjectName}         
               />
 
               <div>

@@ -39,6 +39,12 @@ export const userSlice = createSlice({
         handleLogin:(state,action) => {
             state.login = action.payload;
         },
+        handleResetPassword:(state,action) => {
+            const {name,value} = action.payload;
+            state.error = {};
+            state.resetPassword[name] = value;
+        },
+
         initiateLoginData:(state,action) => {
             state.loginData = {};
         },
@@ -52,6 +58,10 @@ export const userSlice = createSlice({
         },
         initiateForgetPassword:(state,action) => {
             state.forgetPassword = action.payload
+        },
+        initiateResetPassword:(state,action) => {
+            state.error = {};
+            state.resetPassword = action.payload;
         },
        
         handlePrevVisitedPage:(state,action) => {

@@ -30,6 +30,7 @@ export default function BasicTable(props) {
         <tbody>
           {
             list2?.map((row, index) => (
+              
               <tr key={index} className="hover:bg-gray-100">
                 <td className="text-center py-3 px-4 border-b">{index + 1}</td>
                 {
@@ -46,9 +47,10 @@ export default function BasicTable(props) {
                       </NavLink>
                     </td>
                 }
+                
                 {
                   btn && <td className="text-center py-3 px-4 border-b text-blue-500">
-                    <NavLink to={`/teacher/edit-exam?id=${row._id}`} replace style={{marginRight:'10px'}}>View</NavLink>
+                    <NavLink to={`/teacher/edit-exam?id=${row._id}&subjectName=${row.subjectName}`} replace style={{marginRight:'10px'}}>View</NavLink>
                     <button style={{marginRight:'10px'}}>Delete</button>    
                   </td>
                 }           

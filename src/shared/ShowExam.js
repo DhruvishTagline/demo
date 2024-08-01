@@ -16,15 +16,12 @@ const ShowExam = ({
   currQuestion,
   validateExamData,
   validate,
-  eData
+  eData,
+  subjectName
 }) => {
-    console.log(" SHOW EXAM eData ",eData);
-    
-
-    
+     
+    console.log(" subjectName ",subjectName);
   
-
-   
     const totalQuestion =  14;
     const examData = useSelector(state => state.teacher.createExam);
    
@@ -80,7 +77,7 @@ const ShowExam = ({
         {
           createExamFields.map((field,i) => {
            
-            return <InputField fieldData={field}  key={i}/>
+            return <InputField fieldData={field} subjectName={subjectName} key={i}/>
           })
         }
       </div>

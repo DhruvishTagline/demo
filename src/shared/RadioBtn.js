@@ -15,8 +15,7 @@ const RadioBtn = ({fieldData}) => {
         return acc;
     },[])
     console.log(ansIndex);
-    
-
+                                                                                                                                         
   return (
     <div>
         <input 
