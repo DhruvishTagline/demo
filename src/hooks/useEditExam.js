@@ -268,13 +268,6 @@ const useEditExam = (id) => {
         }
       }
 
-
-
-
-
-
-
-
       const handleCancel=()=>{
         const initiateConfig ={
           subjectName:'',

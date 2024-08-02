@@ -67,7 +67,7 @@ const EditExam = () => {
   return (
     <>
     <h1>EditExam</h1>
-    <div className='flex flex-col items-center mt-[70px] overflow-hidden'>
+    <div className='flex flex-col items-center mt-[10px] overflow-hidden'>
       {
             <>
             <p className='text-center mb-4 text-4xl'>Edit Exam</p>
