@@ -15,13 +15,9 @@ import useEditExam from '../../../hooks/useEditExam';
 const EditExam = () => {
   const dispatch = useDispatch();
 
-
-
   const [searchParams,setSearchParams]=useSearchParams();
   const id = searchParams.get('id');
   const subjectName = searchParams.get('subjectName') ;
-
- 
 
   useEffect(()=>{
     const getExamDetails=async()=>{
@@ -33,7 +29,7 @@ const EditExam = () => {
         params:{id}
       }
       const res =await dispatch(fetchData(config));
-
+      console.log("RR",res?.payload?.data?.questions);
       dispatch(handleQuestions(res?.payload?.data?.questions));
       console.log('res?.payload?.data?.questions[currQuestion].answer :>> ', res?.payload?.data?.questions[currQuestion].answer);
       dispatch(setAnsIndex(res?.payload?.data?.questions[currQuestion].answer,currQuestion))
@@ -41,9 +37,6 @@ const EditExam = () => {
     getExamDetails();
   },[])
 
-  
-
-  
   const {
     eData,
     createExamFields,
@@ -60,13 +53,9 @@ const EditExam = () => {
 
   console.log('eData :>> ', eData);
 
-
-  
-
-
   return (
     <>
-    <h1>EditExam</h1>
+   
     <div className='flex flex-col items-center mt-[10px] overflow-hidden'>
       {
             <>
@@ -80,6 +69,7 @@ const EditExam = () => {
               eData={eData} 
               subjectName={subjectName}         
               />
+
               <div>
                 <button 
                 disabled={!edited}

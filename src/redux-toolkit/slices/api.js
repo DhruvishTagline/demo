@@ -11,8 +11,7 @@ export const fetchData = createAsyncThunk('data/fetchData', async(config) => {
     
     try{
         let data = await axiosInstance(config);
-        console.log("data we got by fetchData",data)
-      
+       
         return data.data;
     }catch (e){
         throw new Error(e);

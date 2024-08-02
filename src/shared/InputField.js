@@ -25,8 +25,8 @@ const InputField = ({fieldData,ansIndex,subjectName}) => {
         type={fieldData?.type}
         id={fieldData?.id}
         name={fieldData?.name}
-        value= { fieldData?.name ==='subjectName' ? subjectName : fieldData?.data?.[fieldData.name]}  
-        disabled={fieldData?.disable}
+        value= { fieldData?.name ==='subjectName' ? subjectName : fieldData?.data?.[fieldData.name] }  
+        disabled={ fieldData?.disable}
         variant="outlined"
         placeholder={fieldData?.label}
         InputLabelProps={{ shrink: true }}
