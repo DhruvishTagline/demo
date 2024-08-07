@@ -50,9 +50,8 @@ export const teacherSlice = createSlice({
             state.error = action.payload;
         },
         handleAns:(state,action) => {
-            state.edited = true
+            state.edited = true;
             const {queIndex,ans} = action.payload;
-            console.log("ans",ans)
             state.error = {};
             state.createExam.questions[queIndex].answer = ans;
             localStorage.setItem('createExam',JSON.stringify(state.createExam))
@@ -61,7 +60,6 @@ export const teacherSlice = createSlice({
             state.edited = true
             const {queIndex,opIndex,value} = action.payload;
             state.error = {};
-            
             state.createExam.questions[queIndex].options[opIndex] = value;
             setItemLocal('createExam',JSON.stringify(state.createExam))
         },
@@ -69,7 +67,6 @@ export const teacherSlice = createSlice({
             state.edited = true
             const {name,value,queIndex} = action.payload;
             state.error = {};
-            console.log("handleQuestion");
             state.createExam.questions[queIndex][name] = value
             setItemLocal('createExam',JSON.stringify(state.createExam))
         },
@@ -81,16 +78,19 @@ export const teacherSlice = createSlice({
             setItemLocal('createExam',JSON.stringify(state.createExam))
         },
         handleSubject:(state,action) => {
-            console.log("handleSbject",action.payload);
-            state.edited = true
+            state.edited = true;
             const {name,value} = action.payload;
             state.error = {};
             state.createExam[name] = value;
             setItemLocal('createExam',JSON.stringify(state.createExam))
         },
         handleAnsIndexes:(state,action) => {
+            console.log('handleAnsIndex -- action :>> ', action);
             state.ansIndex[action.payload.currQuestion] = action.payload.ansIndex;
             setItemLocal('ansIndex',JSON.stringify(state.ansIndex))
+        },
+        handleEdited:(state,action) => {
+            state.edited = false;
         },
 
         initiateExam:(state,action) => {
@@ -103,16 +103,12 @@ export const teacherSlice = createSlice({
         initiateQuestions:(state,action) => {
             state.questions = [];
         },
+
         addNewQuestion:(state,action) => {
             state.createExam.questions.push(action.payload);
-        },
-        handleEdited:(state,action) => {
-            state.edited = false;
-        },
-
+        },       
         setAnsIndex:(state,action)=>{
             state.ansIndex=[];
-            console.log('action.payload :>> ', action.payload);
             state.ansIndex.splice()
         }
     }

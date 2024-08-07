@@ -34,20 +34,19 @@ const ShowExam = ({
     }
 
     const handleNextQuestion = () => {
-      
         const error = validateField(validateExamData,validate);
         if(Object.keys(error).length !== 0){
           dispatch(handleError(error));
           return;
         } 
         
-        if(hasDuplicates(optionArr)){
-          console.log("called")
-          const error = {};
-          error.repeatedOption = ' Options are repeated Check it once ';
-          dispatch(handleError(error));
-          return;
-        }
+        // if(hasDuplicates(optionArr)){
+        //   console.log("called")
+        //   const error = {};
+        //   error.repeatedOption = ' Options are repeated Check it once ';
+        //   dispatch(handleError(error));
+        //   return;
+        // }
 
         if(currQuestion !== totalQuestion){
            
@@ -70,13 +69,11 @@ const ShowExam = ({
             setCurrQuestion(currQuestion+1);
         }
     }
-
   return (
     <div>
       <div>
         {
           createExamFields.map((field,i) => {
-           
             return <InputField fieldData={field} subjectName={subjectName} key={i}/>
           })
         }

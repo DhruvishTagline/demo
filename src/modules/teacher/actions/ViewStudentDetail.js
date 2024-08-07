@@ -53,7 +53,7 @@ const ViewStudentDetail = () => {
 
   return (
     <div className='flex justify-center mt-[70px] text-black'>
-        <div className='overflow-hidden'>
+        <div className=''>
             {
                 status === 'loading' ? 
                     <div className='spinner mt-[20px]'></div> 

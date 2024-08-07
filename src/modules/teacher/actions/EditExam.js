@@ -4,12 +4,9 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCurrUserData } from '../../../Current User/currentUser';
 import { fetchData } from '../../../redux-toolkit/slices/api';
-import { removeItemLocal, setItemLocal } from '../../../utils/localStorageFunction';
-import { VIEW_EXAM } from '../../../utils/constant';
 import { handleEdited, handleQuestions, initiateAnsIndex, initiateExam, initiateQuestions, setAnsIndex } from '../../../redux-toolkit/slices/teacher';
 import ShowExam from '../../../shared/ShowExam';
 import useEditExam from '../../../hooks/useEditExam';
-
 
 
 const EditExam = () => {
@@ -55,8 +52,9 @@ const EditExam = () => {
 
   return (
     <>
+    
    
-    <div className='flex flex-col items-center mt-[10px] overflow-hidden'>
+    <div className='flex flex-col items-center mt-[10px] '>
       {
             <>
             <p className='text-center mb-4 text-4xl'>Edit Exam</p>

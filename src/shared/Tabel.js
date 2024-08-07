@@ -7,10 +7,9 @@ export default function BasicTable(props) {
   const { data: list2, path ,btn} = props;
   console.log("path",path);
   const keyss = Object.keys(list2[0] || {});
-  
 
   return (
-    <div className="overflow-x-auto w-full">
+    <div className=" w-full">
       <table className="min-w-full bg-white shadow-md rounded-lg">
         <thead>
           <tr className="w-full bg-gray-100">
@@ -35,7 +34,8 @@ export default function BasicTable(props) {
                 <td className="text-center py-3 px-4 border-b">{index + 1}</td>
                 {
                   keyss?.map((item, idx) => {
-                    if (item !== '_id' && item !== '__v')
+                    console.log('table - item :>> ', item);
+                    if (item !== '_id' && item !== '__v' && item != 'Result' )
                       return <td className="text-center py-3 px-4 border-b" key={idx}>{row[item]}</td>
                   })
                 }
@@ -47,7 +47,6 @@ export default function BasicTable(props) {
                       </NavLink>
                     </td>
                 }
-                
                 {
                   btn && <td className="text-center py-3 px-4 border-b text-blue-500">
                     <NavLink to={`/teacher/edit-exam?id=${row._id}&subjectName=${row.subjectName}`} replace style={{marginRight:'10px'}}>View</NavLink>

@@ -1,7 +1,6 @@
 import App from "../App";
 import ErrorPage from "../shared/ErrorPage";
 import Home from "../shared/Home";
-
 import Teacher from "../modules/teacher/Teacher";
 import AllStudent from "../modules/teacher/actions/AllStudent";
 import CreateExam from "../modules/teacher/actions/CreateExam";
@@ -12,12 +11,18 @@ import ViewExam from "../modules/teacher/actions/ViewExam";
 import ViewStudentDetail from "../modules/teacher/actions/ViewStudentDetail";
 import Login from "../modules/user/Login";
 import SignUp from "../modules/user/SignUp";
-import { ALL_STUDENT, CREATE_EXAM, EDIT_EXAM, FORGET_PASSWORD, HOME_PAGE, LOGIN_PAGE, NEW_PASSWORD, RESET_PASSWORD, SIGNUP_PAGE, STUDENT, STUDENT_DASHBOARD, STUDENT_DETAIL, TEACHER, TEACHER_DASHBOARD, VERIFIED_STUDENT, VIEW_EXAM } from "../utils/constant";
+import { ALL_EXAM, ALL_STUDENT, CREATE_EXAM, EDIT_EXAM, FORGET_PASSWORD, GIVE_EXAM, HOME_PAGE, LOGIN_PAGE, NEW_PASSWORD, RESET_PASSWORD, SHOW_RESULT, SIGNUP_PAGE, STUDENT, STUDENT_DASHBOARD, STUDENT_DETAIL, STUDENT_PROFILE, TEACHER, TEACHER_DASHBOARD, VERIFIED_STUDENT, VIEW_EXAM } from "../utils/constant";
 import Auth from "../HOC/Auth";
 import ResetPassword from "../shared/ResetPassword";
 import ForgotPassword from "../shared/ForgotPassword";
 import NewPassword from "../shared/NewPassword";
 import { Outlet } from "react-router";
+import Student from "../modules/student/Student";
+import StudentDashboard from "../modules/student/actions/StudentDashboard";
+import AllExam from "../modules/student/actions/AllExam";
+import GiveExam from "../modules/student/actions/GiveExam";
+import StudentProfile from "../modules/student/actions/StudentProfile";
+import ShowResult from "../modules/student/actions/ShowResult";
 
 
 export const routes = [
@@ -83,7 +88,7 @@ export const routes = [
               },
               
               {
-                path: RESET_PASSWORD,
+                path: 'reset-password',
                 element: <ResetPassword/>
               }
             ]
@@ -95,13 +100,32 @@ export const routes = [
         children:[
           {
             path:STUDENT,
-            element:<Outlet/>,
+            element:<Student />,
             children:[
               {
-                path:'dashboard',
-                element:<h1>Dashboard</h1>
+                path:STUDENT_DASHBOARD,
+                element:<StudentDashboard />
+              },
+              {
+                path:ALL_EXAM,
+                element:<AllExam />
+              },
+              {
+                path:GIVE_EXAM,
+                element:<GiveExam />
+              },
+              {
+                path:STUDENT_PROFILE,
+                element:<StudentProfile />
+              },
+              {
+                path:'reset-password',
+                element:<ResetPassword />
+              },
+              {
+                path:SHOW_RESULT,
+                element:<ShowResult />
               }
-              
             ]
           }
         ]

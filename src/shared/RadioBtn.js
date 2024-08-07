@@ -16,12 +16,7 @@ const RadioBtn = ({fieldData}) => {
         return acc;
     },[])
 
-        
-        // const ansIndex = Array.isArray(eData?.questions)
-        // ? eData.questions.map(curr => curr.options.findIndex(option => option === curr.answer))
-        // : [];
-
-    console.log(ansIndex);
+   
                                                                                                                                          
   return (
     <div>

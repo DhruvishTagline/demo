@@ -36,6 +36,7 @@ const AllStudent = () => {
       dispatch(handlePrevVisitedPage(1));
       fetchAllStudentData();
     }
+
   }, []);
 
   return (
@@ -60,3 +61,5 @@ const AllStudent = () => {
 }
 
 export default AllStudent
+
+
