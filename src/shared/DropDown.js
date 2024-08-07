@@ -14,7 +14,7 @@ const DropDown = ({ dropDownOptions, name, updateData }) => {
   return (
     <div className="w-full px-2.5 mt-5 gap-[10px]">
       <FormControl fullWidth>
-        <InputLabel id={`${name}-select-label`}>{name.charAt(0).toUpperCase() + name.slice(1)}</InputLabel>
+        <InputLabel id={`${name}-select-label`}>{name}</InputLabel>
         <Select
           labelId={`${name}-select-label`}
           id={name}
@@ -23,7 +23,7 @@ const DropDown = ({ dropDownOptions, name, updateData }) => {
           onChange={handleChange}
         >
           {dropDownOptions.map((option, i) => (
-            <MenuItem value={option} key={i}>{option}</MenuItem>
+            <MenuItem value={option} key={i}>{option.charAt(0).toUpperCase() + option.slice(1)}</MenuItem>
           ))}
         </Select>
       </FormControl>

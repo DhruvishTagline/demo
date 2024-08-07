@@ -15,9 +15,9 @@ const Login = () => {
     return () => {
       dispatch(initiateLoginData());
     };
-  }, [dispatch]);
+  }, []);
 
-  const { loginField, handleSubmit, disable } = useLoginData();
+  const { loginField, handleSubmit } = useLoginData();
   let status = useSelector((state) => state.api.status);
   const role = getCurrUserData().role;
   const Login = JSON.parse(localStorage.getItem('login'));

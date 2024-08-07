@@ -85,8 +85,7 @@ export const routes = [
               {
                 path:EDIT_EXAM,
                 element:<EditExam />
-              },
-              
+              },             
               {
                 path: 'reset-password',
                 element: <ResetPassword/>

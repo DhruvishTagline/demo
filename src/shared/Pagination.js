@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { handlePrevVisitedPage } from '../redux-toolkit/slices/user';
 import BasicTable from './Tabel';
 
-const Pagination = ({ data, viewPath, lastVisitedPage ,btn}) => {
+const Pagination = ({ data, viewPath, lastVisitedPage,btn ,studentBtn}) => {
   console.log("Pagination data",data);
   const dispatch = useDispatch();
   const [currPage, setCurrPage] = useState(lastVisitedPage || 1);
@@ -65,30 +65,37 @@ const Pagination = ({ data, viewPath, lastVisitedPage ,btn}) => {
 
   return (
     <div className="bg-white shadow-md rounded-lg p-6">
-      <BasicTable data={currentItems} path={viewPath} btn={btn}/>
-      <div className='flex justify-between items-center mt-4'>
-        <span className='text-gray-700'>{currPage} page of {totalPage} </span>
-        {
-          data.length > recordsPerPage &&
-          <ul className='flex items-center'>
-            <button 
-              disabled={currPage === 1}
-              onClick={handlePrevPage}
-              className={`bg-gray-300 hover:bg-gray-500 text-black font-bold py-2 px-4 rounded-lg mr-2 ${currPage === 1 && 'cursor-not-allowed'}`}
-            >
-              Prev
-            </button>
-            {renderPageNumbers}
-            <button 
-              disabled={currPage === totalPage}
-              onClick={handleNextPage}
-              className={`bg-gray-300 hover:bg-gray-500 text-black font-bold py-2 px-4 rounded-lg ml-2 ${currPage === totalPage && 'cursor-not-allowed'}`}
-            >
-              Next
-            </button>
-          </ul>
-        }
+
+    {
+      data.length === 0 ?
+      <div className='spinner mt-20 mx-auto'></div>:
+      <div>
+        <BasicTable data={currentItems} btn={btn} path={viewPath} studentBtn={studentBtn}/>
+        <div className='flex justify-between items-center mt-4'>
+          <span className='text-gray-700'>{currPage} page of {totalPage} </span>
+          {
+            data.length > recordsPerPage &&
+            <ul className='flex items-center'>
+              <button 
+                disabled={currPage === 1}
+                onClick={handlePrevPage}
+                className={`bg-gray-300 hover:bg-gray-500 text-black font-bold py-2 px-4 rounded-lg mr-2 ${currPage === 1 && 'cursor-not-allowed'}`}
+              >
+                Prev
+              </button>
+              {renderPageNumbers}
+              <button 
+                disabled={currPage === totalPage}
+                onClick={handleNextPage}
+                className={`bg-gray-300 hover:bg-gray-500 text-black font-bold py-2 px-4 rounded-lg ml-2 ${currPage === totalPage && 'cursor-not-allowed'}`}
+              >
+                Next
+              </button>
+            </ul>
+          }
+        </div>
       </div>
+      }
     </div>
   )
 }

@@ -15,6 +15,7 @@ const VerifiedStudent = () => {
     const navigate = useNavigate();
     const status = useSelector(state => state.api.status);
     const verifiedStudentData = useSelector(state => state.teacher.verifiedStudentData);
+   
     
     const lastVisitedPage = useSelector(state => state.user.prevVisitedPage);
 
@@ -48,7 +49,7 @@ const VerifiedStudent = () => {
                 </div> :
                 <div>
                     <p className='text-center text-4xl mb-4'>Verified Students</p>
-                    <Pagination data={verifiedStudentData} recodesPerPage={10} viewPath={`/teacher/view-student-detail`} searchKey={['name','email','status']}  lastVisitedPage={lastVisitedPage}/>
+                    <Pagination data={verifiedStudentData} recodesPerPage={10} viewPath={`/teacher/view-student-detail`} lastVisitedPage={lastVisitedPage}/>
                 </div>         
             }
         </div>

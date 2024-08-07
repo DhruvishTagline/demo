@@ -70,13 +70,12 @@ export const useLoginData = () => {
           const config = {
             method:'post',
             url:'users/Login',
-            data:loginData
+            data:loginData 
           }
           const res = await dispatch(fetchData(config))
           
           if(res.payload.statusCode === 500){
-            console.log(res.payload.message);
-            
+            console.log(res.payload.message);   // if email is not verified
             setDisable(false);
             return;
           }
@@ -88,7 +87,6 @@ export const useLoginData = () => {
           setItemLocal('userData',res.payload.data);
           setItemLocal('login',true)
           dispatch(handleLogin(true));
-
           dispatch(initiateLoginData());    //we have to store login data in redux or not?
         
       

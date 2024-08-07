@@ -14,12 +14,11 @@ const InputField = ({fieldData,ansIndex,subjectName}) => {
     const dispatch = useDispatch();
    
     if(fieldData?.type === 'radio'){
-      return <RadioBtn ansIndex={ansIndex} fieldData={fieldData}  />
+      return <RadioBtn ansIndex={ansIndex} fieldData={fieldData} />
     }
     
   return (
     <div className='flex flex-col gap-2 mt-[10px]'>
-        
       <TextField 
         label={fieldData?.label}
         type={fieldData?.type}

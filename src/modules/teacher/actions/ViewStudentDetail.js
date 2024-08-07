@@ -6,6 +6,7 @@ import { fetchData } from '../../../redux-toolkit/slices/api';
 import { loadCurrStudentDetail } from '../../../redux-toolkit/slices/teacher';
 import CurrStudentDetail from '../../../shared/CurrStudentDetail';
 import { ALL_STUDENT } from '../../../utils/constant';
+import { removeItemLocal, setItemLocal } from '../../../utils/localStorageFunction';
 
 const ViewStudentDetail = () => {
 
@@ -29,8 +30,8 @@ const ViewStudentDetail = () => {
                 }
                 const res = await dispatch(fetchData(config));
                 if(res?.payload?.statusCode === 401){
-                    localStorage.removeItem('userData');
-                    localStorage.setItem('login',false);
+                    removeItemLocal('userData');
+                    setItemLocal('login',false);
                     navigate('/login')
                     return;
                   }

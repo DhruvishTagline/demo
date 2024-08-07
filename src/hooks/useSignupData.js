@@ -101,7 +101,7 @@ export const useSignupData = () => {
             return;
           }
           setDisable(!disable);
-
+          console.log('handleSignup - signupData :>> ', signupData);  // student
           const config = {
             method:'post',
             url:'users/SignUp',

@@ -1,23 +1,20 @@
 
-import React, { memo, useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { handleAnsIndexes } from '../redux-toolkit/slices/teacher';
 
 const RadioBtn = ({fieldData}) => {
 
+    console.log('feildData :>> ', fieldData);
     const dispatch = useDispatch()
-
     const eData=useSelector(state=>state.teacher.createExam);
-    console.log('eData :>> ', eData);
-
-    const ansIndex= eData?.questions.reduce((acc,curr)=>{
-        const ansIndex =curr.options.findIndex(option=>option===curr.answer);
+    
+    const ansIndex= eData?.questions?.reduce((acc,curr)=>{
+        const ansIndex =curr.options.findIndex(option=>option === curr.answer);
         acc.push(ansIndex);
         return acc;
     },[])
-
-   
-                                                                                                                                         
+               
   return (
     <div>
         <input 
@@ -30,12 +27,13 @@ const RadioBtn = ({fieldData}) => {
                 currQuestion:fieldData.currQuestion,
                 ansIndex:fieldData.opIndex
             }))
+            
             let data = {
                 name:e?.target?.name,
                 value:e?.target?.value,
-                queIndex:fieldData.currQuestion,
-                opIndex:fieldData.opIndex,
-                ans:fieldData.data[fieldData.id],
+                queIndex:fieldData?.currQuestion,
+                opIndex:fieldData?.opIndex,
+                ans:fieldData?.data[fieldData.id],
                 ansIndex:fieldData.ansIndex
             }
             
@@ -47,8 +45,5 @@ const RadioBtn = ({fieldData}) => {
   )
 }
 
-export default memo(RadioBtn)
-
-
-
+export default RadioBtn
 

@@ -30,10 +30,12 @@ const ShowExam = ({
     
     const handlePrevQuestion = () => {
         dispatch(handleError({}));
+        console.log('prev',currQuestion);
         setCurrQuestion(currQuestion -1)
     }
 
     const handleNextQuestion = () => {
+      console.log('next');
         const error = validateField(validateExamData,validate);
         if(Object.keys(error).length !== 0){
           dispatch(handleError(error));
@@ -88,14 +90,14 @@ const ShowExam = ({
       <div className='mt-2 ml-[50px]'>
         
         <button 
-        onClick={ handlePrevQuestion}
+        onClick={ handlePrevQuestion }
         disabled={currQuestion === 0}
         className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ${currQuestion === 0 ? 'opacity-50 cursor-not-allowed' : ''}`}
         >Prev</button>
 
         <button 
         disabled={currQuestion === 14 }
-        onClick={ handleNextQuestion}
+        onClick={ handleNextQuestion }
         className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 ml-2 rounded focus:outline-none focus:shadow-outline ${currQuestion === 14 ? 'opacity-50 cursor-not-allowed' : ''}`}
         >Next</button>
 

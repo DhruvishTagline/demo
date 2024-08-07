@@ -11,9 +11,11 @@ import { initiateAnsIndex, initiateExam } from '../../../redux-toolkit/slices/te
 import ShowExam from '../../../shared/ShowExam';
 
 const GiveExam = () => {
+  console.log('Give=Exam');
   const [searchParams,setSearchParams] = useSearchParams();
   const id = searchParams.get('id');
-  const subject = searchParams.get('subject');
+  const subjectName = searchParams.get('subjectName');
+  console.log('subjectName ---------- :>> ', subjectName);
 
   const { 
     createExamFields,
@@ -51,10 +53,9 @@ const GiveExam = () => {
         return;
       }
       const examPaper ={
-        subjectName:subject,
+        subjectName:subjectName,
         notes:['test'],
       }
-
       examPaper.questions=res.payload.data;
       console.log('examPaper set :>>:>>:>>:>> ');
       dispatch(loadExamPaper(examPaper))
@@ -62,17 +63,16 @@ const GiveExam = () => {
     const examPaper=getItemLocal('examPaper');
     if(examPaper){
       dispatch(loadExamPaper(getItemLocal('examPaper')))
-          console.log('set ansIndx')
-          const ansIndexLocal = getItemLocal('ansIndex')
+          console.log('set ansIndx');
+          const ansIndexLocal = getItemLocal('ansIndex');
           console.log('ansIndexLocal :>> ', ansIndexLocal);
-          console.log('ansIndexLocal', JSON.parse(ansIndexLocal))
-            dispatch(initiateAnsIndex(JSON.parse(ansIndexLocal)))
+          console.log('ansIndexLocal', JSON.parse(ansIndexLocal));
+          dispatch(initiateAnsIndex(JSON.parse(ansIndexLocal)));
     }
     else{
       fetchExamPaper();
     }  
   },[])
-
 
   useEffect(()=>{
     const handleStorageChange = ()=>{
@@ -100,8 +100,7 @@ const GiveExam = () => {
 
   return (
     <div className='flex justify-center mt-[70px] '>
-        {
-          
+        {         
                 <div>
                   <p className='text-center text-4xl mb-6'>Give Exam</p>
                   <ShowExam
@@ -113,6 +112,7 @@ const GiveExam = () => {
                   validate={validate}
                   error={error}
                   role={'student'}
+                  subjectName={subjectName}
                   />
 
                   <div className='flex justify-center mt-2'>

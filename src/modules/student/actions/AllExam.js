@@ -51,7 +51,7 @@ const AllExam = () => {
             {
               <div className=''>
                 <p className='text-center text-4xl mb-4'>All Exams</p>
-                <Pagination data={allExamData} keys={keys} btn={btn} searchKey={['subjectName','email']}  lastVisitedPage={lastVisitedPage}/>
+                <Pagination data={allExamData} keys={keys} studentBtn={btn} searchKey={['subjectName','email']}  lastVisitedPage={lastVisitedPage}/>
               </div>                     
             }
         </div>

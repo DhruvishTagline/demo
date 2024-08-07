@@ -17,7 +17,7 @@ const SignUp = () => {
     return () => {
       dispatch(initiateSignupData())
     }
-  }, [dispatch])
+  }, [])
 
   const { signupField, handleSignup } = useSignupData();
   const status = useSelector(state => state.api.status);

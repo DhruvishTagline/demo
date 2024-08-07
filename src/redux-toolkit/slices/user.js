@@ -29,9 +29,10 @@ export const userSlice = createSlice({
             state.loginData[name] = value;
         },
         handleSignupData:(state,action) => {
-            const {name,value} = action.payload
+            const {name,value} = action.payload;
             state.error = {};
             state.signupData[name] = value;
+            console.log('state.signupData :>> ', state.signupData[name]);
         },
         handleError:(state,action) => {
             state.error = action.payload;
@@ -62,8 +63,7 @@ export const userSlice = createSlice({
         initiateResetPassword:(state,action) => {
             state.error = {};
             state.resetPassword = action.payload;
-        },
-       
+        },     
         handlePrevVisitedPage:(state,action) => {
             state.prevVisitedPage = action.payload
         },
