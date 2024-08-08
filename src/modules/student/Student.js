@@ -31,7 +31,7 @@ const Student = () => {
 
   return (
     <div className='flex h-[100%] w-[100vw]'>
-      <div className={`w-[100%] z-10 fixed h-[100%] mt-[50px]  ${menu ? 'show-menu' :'hide-menu'}`}>
+      <div className={`w-[100%] z-10 fixed h-[100%] ${menu ? 'show-menu' :'hide-menu'}`}>
         <Navbar navItems={studentRoutes}/>
       </div>
       <div className='w-full mb-[20px]'>

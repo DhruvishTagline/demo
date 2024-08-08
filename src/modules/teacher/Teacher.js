@@ -44,7 +44,7 @@ const Teacher = () => {
 
   return (
     <div className='flex h-[100%] w-[100vw]'>
-      <div className={`w-[100%] z-10 fixed h-[100%] top-[50px] overflow-scroll ${menu ? 'show-menu' :'hide-menu'}`} >
+      <div className={`w-[100%] z-10 fixed h-[100%]  overflow-scroll ${menu ? 'show-menu' :'hide-menu'}`} >
         <Navbar navItems={teacherRoutes}/>
       </div>
       <div className='w-full mb-[20px]'>
