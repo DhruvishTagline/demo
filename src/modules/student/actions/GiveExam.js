@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
-import { useGiveExam } from '../studentdata/useGiveExam';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { getCurrUserData } from '../../../Current User/currentUser';
 import { fetchData } from '../../../redux-toolkit/slices/api';
@@ -9,6 +9,7 @@ import { ALL_EXAM, LOGIN_PAGE } from '../../../utils/constant';
 import { initiateExamPaper, loadExamPaper } from '../../../redux-toolkit/slices/student';
 import { initiateAnsIndex, initiateExam } from '../../../redux-toolkit/slices/teacher';
 import ShowExam from '../../../shared/ShowExam';
+import { useGiveExam } from '../../../hooks/useGiveExam';
 
 const GiveExam = () => {
   console.log('Give=Exam');

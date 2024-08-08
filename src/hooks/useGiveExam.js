@@ -1,12 +1,12 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router';
-import { cancelExam, handleStudentAns, loadAllExamData } from '../../../redux-toolkit/slices/student';
-import { getCurrUserData } from '../../../Current User/currentUser';
-import { fetchData } from '../../../redux-toolkit/slices/api';
-import { ALL_EXAM } from '../../../utils/constant';
-import { initiateAnsIndex } from '../../../redux-toolkit/slices/teacher';
-import { removeItemLocal } from '../../../utils/localStorageFunction';
+import { cancelExam, handleStudentAns, loadAllExamData } from '../redux-toolkit/slices/student';
+import { getCurrUserData } from '../Current User/currentUser';
+import { fetchData } from '../redux-toolkit/slices/api';
+import { ALL_EXAM } from '../utils/constant';
+import { initiateAnsIndex } from '../redux-toolkit/slices/teacher';
+import { removeItemLocal } from '../utils/localStorageFunction';
 
 export const useGiveExam = (id) => {
   console.log('useGiveExam --- id :>> ', id);
@@ -153,18 +153,22 @@ export const useGiveExam = (id) => {
       ]
 
       const ansArr =examData?.questions?.reduce((acc,curr)=>{
+        console.log('curr',curr);
         const obj ={
-            question:curr.id,
+            question:curr._id,
             answer:curr.answer
         }
+        console.log('useGiveExam obj :>> ', obj);
         if(curr.answer !== undefined){
             acc.push(obj)
         }
         return acc;
       },[])
+      console.log('useGiveExam ansArr :>> ', ansArr);
 
       const handleSubmitExam =()=>{
         if(ansArr.length === 7){
+          console.log('ansArr :>> ', ansArr);
             const submitExam = async ()=>{
                 try {
                     const config = {

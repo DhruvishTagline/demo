@@ -16,6 +16,7 @@ const Pagination = ({ data, viewPath, lastVisitedPage,btn ,studentBtn}) => {
   const indexOfLastItem = currPage * recordsPerPage;
   const indexOfFirstItem = indexOfLastItem - recordsPerPage;
   const currentItems = data.slice(indexOfFirstItem, indexOfLastItem - 1);
+  console.log('currentItems :>> ', currentItems);
 
   const pages = [];
   for (let i = 1; i <= Math.ceil(data.length / recordsPerPage); i++) {
@@ -70,7 +71,7 @@ const Pagination = ({ data, viewPath, lastVisitedPage,btn ,studentBtn}) => {
       data.length === 0 ?
       <div className='spinner mt-20 mx-auto'></div>:
       <div>
-        <BasicTable data={currentItems} btn={btn} path={viewPath} studentBtn={studentBtn}/>
+        <BasicTable data={currentItems} btn={btn} path={viewPath} studentBtn={studentBtn} />
         <div className='flex justify-between items-center mt-4'>
           <span className='text-gray-700'>{currPage} page of {totalPage} </span>
           {

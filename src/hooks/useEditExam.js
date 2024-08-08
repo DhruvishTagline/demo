@@ -75,7 +75,8 @@ const useEditExam = (id) => {
 
       const optionArr= examData?.questions?.[currQuestion]?.options;
       console.log("examData",examData);
-       const createExamFields = [
+
+      const createExamFields = [
       {
         type:'text',
         id:'subject',
@@ -191,7 +192,7 @@ const useEditExam = (id) => {
         opIndex:3,
         error:error
       }
-    ]
+      ]
 
       const validateExamData = {
         subjectName:examData?.subjectName,
@@ -259,6 +260,7 @@ const useEditExam = (id) => {
               params:{id}
             }
             const res =await dispatch(fetchData(config));
+            console.log('res :>> ', res);
             navigate(VIEW_EXAM);
           }
           deleteExam();
@@ -294,9 +296,9 @@ const useEditExam = (id) => {
       createExamFields,
       currQuestion,
       edited,
-      // validateExamData,
-      // validate,
-      // examData,
+      validateExamData,
+      validate,
+      examData,
       setCurrQuestion,
       handleEditExam,
       handleDeleteExam,

@@ -2,10 +2,8 @@ import React from 'react'
 import Pagination from './Pagination'
 import { useSelector } from 'react-redux'
 
-const CurrStudentDetail = ({...props}) => {
+const CurrStudentDetail = ({currStudentDetail}) => {
 
-  const {currStudentDetail}={...props};
-  
     
     console.log("currStudentDetail",currStudentDetail)
     const keys = ['subjectName','rank','score','resultStatus']
@@ -19,11 +17,10 @@ const CurrStudentDetail = ({...props}) => {
           <pre className='text-center'>Result</pre>
             {
                 currStudentDetail?.Result?.length > 0 ? 
-                <Pagination data={currStudentDetail.Result} keys={keys}/> :
+                <Pagination data={currStudentDetail.Result} /> :
                 <pre className='text-center'>Result Not found</pre>
             }
         </div>
-
     </div>
   )
 }

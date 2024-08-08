@@ -65,7 +65,8 @@ const EditExam = () => {
               validateExamData={validateExamData}
               validate={validate}   
               eData={eData} 
-              subjectName={subjectName}         
+              subjectName={subjectName} 
+                    
               />
 
               <div>

@@ -28,13 +28,14 @@ const CreateExam = () => {
 } = useCreateExam();
 
 useEffect(() => {
-  const createExamData = getItemLocal('createExam');
-
+  const createExamData = JSON.parse(getItemLocal('createExam'));
+  console.log('CreateExam -- initiateExam -- createExamData from local :>> ', createExamData);
   if(!createExamData){
-    
+    console.log('true');
     dispatch(initiateExam(initiateConfig));
     dispatch(initiateAnsIndex([]))
-  }else{
+  }else{  
+    console.log('false');
     dispatch(initiateExam(createExamData))
     if(ansIndex !== null){
       dispatch(initiateAnsIndex(ansIndex))

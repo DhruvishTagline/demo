@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router';
 import { handlePrevVisitedPage } from '../../../redux-toolkit/slices/user';
 import { removeItemLocal, setItemLocal } from '../../../utils/localStorageFunction';
 import { LOGIN_PAGE } from '../../../utils/constant';
+import useEditExam from '../../../hooks/useEditExam';
 
 const ViewExam = () => {
 
@@ -17,8 +18,8 @@ const ViewExam = () => {
   const viewExam = useSelector(state => state.teacher.viewExam);
   const btn = {
     editBtn:'/teacher/edit-exam',
-   
   }
+
 
   useEffect(() => {
     const fetchViewExamData = async() => {

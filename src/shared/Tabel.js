@@ -5,8 +5,9 @@ import { NavLink } from 'react-router-dom';
 
 export default function BasicTable(props) {
   const { data: list2, path ,btn,studentBtn} = props;
-  console.log("path",path);
+  console.log("Table-data",list2);
   const keys = Object.keys(list2[0] || {});
+  console.log('keys :>> ', keys);
 
   return (
     <div className=" w-full">
@@ -15,8 +16,9 @@ export default function BasicTable(props) {
           <tr className="w-full bg-gray-100">
             <th className="text-center py-3 px-4 border-b">Sr No</th>
             {
+              
               keys?.map((item, index) => {
-                if (item !== '_id' && item !== '__v')
+                if (item !== '_id' && item !== '__v' && item !=='studentAnswer' && item !== 'studentId' )
                   return <th className="text-center py-3 px-4 border-b" key={index}>{capitalizeFirstChar(item)}</th>
               })
             }
@@ -26,46 +28,44 @@ export default function BasicTable(props) {
             }
           </tr>
         </thead>
-        <tbody>
-          {
-            list2?.map((row, index) => (
-              
-              <tr key={index} className="hover:bg-gray-100">
-                <td className="text-center py-3 px-4 border-b">{index + 1}</td>
-                {
-                  keys?.map((item, idx) => {
-                    
-                    if (item !== '_id' && item !== '__v' && item !== 'Result' )
-                      return <td className="text-center py-3 px-4 border-b" key={idx}>{row[item]}</td>
-                  })
-                }
-                {
-                  path !== '/teacher/view-student-detail' ? '' :
-                    <td className="text-center py-3 px-4 border-b text-blue-500">
-                      <NavLink to={`${path}?id=${row._id}`}>
-                        View
-                      </NavLink>
+          <tbody>
+            {
+              list2?.map((row, index) => (
+                
+                <tr key={index} className="hover:bg-gray-100">
+                  <td className="text-center py-3 px-4 border-b">{index + 1}</td>
+                  {
+                    keys?.map((item, idx) => {
+                      console.log('item :>> ', item);
+                      
+                      if (item !== '_id' && item !== '__v'  && item !=='studentAnswer' && item !== 'studentId' && item !== 'Result'  )
+                        return <td className="text-center py-3 px-4 border-b" key={idx}>{row[item]}</td>
+                    })
+                  }
+                  {
+                    path !== '/teacher/view-student-detail' ? '' :
+                      <td className="text-center py-3 px-4 border-b text-blue-500">
+                        <NavLink to={`${path}?id=${row._id}`}>
+                          View
+                        </NavLink>
+                      </td>
+                  }
+                  {
+                    btn && <td className="text-center py-3 px-4 border-b text-blue-500">
+                      <NavLink to={`/teacher/edit-exam?id=${row._id}&subjectName=${row.subjectName}`} replace style={{marginRight:'10px'}}>Edit</NavLink>
+                        
                     </td>
-                }
-                {
-                  btn && <td className="text-center py-3 px-4 border-b text-blue-500">
-                    <NavLink to={`/teacher/edit-exam?id=${row._id}&subjectName=${row.subjectName}`} replace style={{marginRight:'10px'}}>View</NavLink>
-                    <button style={{marginRight:'10px'}}>Delete</button>    
-                  </td>
-                }     
-                {
-                  console.log(row)
-                }
-                {
-                  studentBtn  && <td className='className="text-center py-3 px-4 border-b text-blue-500"'>
-                    <NavLink to={`/student/give-exam?id=${row._id}&subjectName=${row.subjectName}`} style={{marginRight:'10px'}}>GiveExam</NavLink>
-                    <NavLink to={`/teacher/dashboard`}>Show</NavLink>
-                  </td>
-                }      
-              </tr>
-            ))
-          }    
-        </tbody> 
+                  }     
+                  {
+                    studentBtn  && <td className='className="text-center py-3 px-4 border-b text-blue-500"'>
+                      <NavLink to={`/student/give-exam?id=${row._id}&subjectName=${row.subjectName}`} style={{marginRight:'10px'}}>GiveExam</NavLink>
+                      {/* <NavLink to={`/teacher/dashboard`}>Show</NavLink> */}
+                    </td>
+                  }      
+                </tr>
+              ))
+            }    
+          </tbody> 
       </table>
     </div>
   );

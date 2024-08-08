@@ -11,13 +11,17 @@ import { removeItemLocal, setItemLocal } from '../../../utils/localStorageFuncti
 const ViewStudentDetail = () => {
 
      
-    const location=useLocation();
-    console.log("location",location.search.slice(4))
+    
+    const [searchParams,setSearchParams]=useSearchParams();
+    const id = searchParams.get('id');
+    
+   
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const currStudentDetail = useSelector(state => state.teacher.currStudentDetail);
+    console.log('currStudentDetail :>> ', currStudentDetail);
     const status = useSelector(state => state.api.status);
-    const id = location.search.slice(4);
+    
 
     useEffect(() => {
         try{
@@ -54,7 +58,7 @@ const ViewStudentDetail = () => {
 
   return (
     <div className='flex justify-center mt-[70px] text-black'>
-        <div className=''>
+        <div >
             {
                 status === 'loading' ? 
                     <div className='spinner mt-[20px]'></div> 

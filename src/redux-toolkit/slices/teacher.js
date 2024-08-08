@@ -95,6 +95,7 @@ export const teacherSlice = createSlice({
 
         initiateExam:(state,action) => {
             state.error = {};
+            console.log('initiateExamn -- action.payload :>> ', action.payload);
             state['createExam'] = action.payload;
         },
         initiateAnsIndex:(state,action) => {

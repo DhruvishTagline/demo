@@ -273,6 +273,7 @@ export const useCreateExam = () => {
     }
 
     const handleCancel = () => {
+      
         dispatch(initiateExam(initiateConfig));
         dispatch(initiateQuestions());
         dispatch(initiateAnsIndex([]));

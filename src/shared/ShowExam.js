@@ -17,7 +17,8 @@ const ShowExam = ({
   validateExamData,
   validate,
   eData,
-  subjectName
+  subjectName,
+  
 }) => {
      
     console.log(" subjectName ",subjectName);

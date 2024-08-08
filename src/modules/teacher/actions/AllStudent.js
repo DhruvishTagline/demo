@@ -41,7 +41,7 @@ const AllStudent = () => {
 
   return (
     <div className='flex items-center flex-col mt-4'>
-      <div className='w-full max-w-4xl p-6 bg-white shadow-md rounded-lg'>
+      <div className='w-full max-w-4xl p-6 bg-white rounded-lg'>
         {
           status === 'loading' ?
             <div className='spinner mt-20 mx-auto'></div> :

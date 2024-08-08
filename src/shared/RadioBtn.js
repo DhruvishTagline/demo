@@ -14,6 +14,8 @@ const RadioBtn = ({fieldData}) => {
         acc.push(ansIndex);
         return acc;
     },[])
+
+    // console.log('fieldData :>> ', fieldData);
                
   return (
     <div>
@@ -21,7 +23,7 @@ const RadioBtn = ({fieldData}) => {
         type={fieldData.type}
         id={fieldData.id}
         name={fieldData.name}
-        checked={fieldData?.data?.[fieldData.id] === fieldData?.ans && ansIndex?.[fieldData.currQuestion] === fieldData?.opIndex }
+        checked={fieldData?.data?.[fieldData.id] === fieldData?.ans }
         onChange={(e) => {
             dispatch(handleAnsIndexes({
                 currQuestion:fieldData.currQuestion,

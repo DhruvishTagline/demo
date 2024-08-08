@@ -20,12 +20,18 @@ export const studentSlice = createSlice({
         loadExamPaper:(state,action) => {
             state.examPaper = action.payload;
         },
+        loadStudentProfile:(state,action) => {
+            state.studentProfile = action.payload;
+        },
 
         handleStudentAns:(state,action) => {
             const {queIndex,ans} = action.payload;
             state.error = {};
             state.examPaper.questions[queIndex].answer = ans;
             localStorage.setItem('examPaper',JSON.stringify(state.examPaper))
+        },
+        handleStudentError:(state,action) => {
+            state.error = action.payload;
         },
 
         initiateExamPaper:(state,action) => {
@@ -36,6 +42,11 @@ export const studentSlice = createSlice({
             state.examPaper = {};
         },
         
+        updateProfile:(state,action) => {
+            const {name,value} = action.payload;
+            state.error = {}
+            state.studentProfile[name] = value;
+        },
     }
 })
 
@@ -45,7 +56,10 @@ export const
         handleStudentAns,
         cancelExam,
         loadExamPaper,
-        initiateExamPaper
+        initiateExamPaper,
+        handleStudentError,
+        loadStudentProfile,
+        updateProfile
 
     } = studentSlice.actions;
 
