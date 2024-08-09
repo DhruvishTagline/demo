@@ -2,13 +2,14 @@ import React, { useEffect } from 'react'
 import { getCurrUserData} from '../../../Current User/currentUser';
 import { fetchData } from '../../../redux-toolkit/slices/api';
 import { useDispatch, useSelector } from 'react-redux';
-import {  loadViewExamData } from '../../../redux-toolkit/slices/teacher';
+import {  loadViewExamData, updateFilteredData } from '../../../redux-toolkit/slices/teacher';
 import Pagination from '../../../shared/Pagination';
 import { useNavigate } from 'react-router';
 import { handlePrevVisitedPage } from '../../../redux-toolkit/slices/user';
 import { removeItemLocal, setItemLocal } from '../../../utils/localStorageFunction';
 import { LOGIN_PAGE } from '../../../utils/constant';
 import useEditExam from '../../../hooks/useEditExam';
+import FilterFeild from '../../../shared/FilterFeild';
 
 const ViewExam = () => {
 
@@ -16,6 +17,9 @@ const ViewExam = () => {
   const navigate = useNavigate();
   const status = useSelector(state => state.api.status);
   const viewExam = useSelector(state => state.teacher.viewExam);
+  const filteredData = useSelector(state => state.teacher.filteredData);
+  const searchQuery = useSelector(state => state.teacher.searchQuery);
+
   const btn = {
     editBtn:'/teacher/edit-exam',
   }
@@ -47,6 +51,14 @@ const ViewExam = () => {
     dispatch(handlePrevVisitedPage(1))
   },[])
 
+  useEffect(()=>{
+    const filtered = viewExam.filter(exam=>
+        exam.subjectName.toLowerCase().includes(searchQuery.toLowerCase()) 
+      
+    );
+    dispatch(updateFilteredData(filtered))
+},[searchQuery,viewExam,dispatch])
+
 
   console.log("viewExam",viewExam)
 
@@ -54,14 +66,15 @@ const ViewExam = () => {
 
   return (
     <div className='flex justify-center mt-[70px]'>
-        <div className=' max-[900px]:w-[850px] max-[860px]:w-[800px] max-[800px]:w-[750px] max-[750px]:w-[700px] max-[700px]:w-[650px] max-[650px]:w-[600px] max-[590px]:w-[550px] max-[550px]:w-[500px] max-[500px]:w-[450px] max-[450px]:w-[400px] max-[400px]:w-[350px] max-[350px]:w-[310px] h-[100%] mb-[40px]'>
+        <div className=' max-[900px]:w-[850px] max-[860px]:w-[800px] max-[800px]:w-[750px] max-[750px]:w-[700px] max-[700px]:w-[650px] max-[650px]:w-[600px] max-[590px]:w-[550px] max-[550px]:w-[500px] max-[500px]:w-[450px] max-[450px]:w-[400px] max-[400px]:w-[350px] max-[350px]:w-[310px] h-[100%] min-w-[70%] mb-[40px]'>
             {
                 status === 'loading' ? 
                   <div className='spinner mt-[20px] mx-auto'></div> :
                     <div>
                       <p className='text-center text-4xl mb-4'>View Exams</p>
+                      <FilterFeild searchQuery={searchQuery}/>
                       <Pagination 
-                        data={viewExam} 
+                        data={filteredData} 
                         recodesPerPage={10} 
                         keys={keys} 
                         btn={btn}

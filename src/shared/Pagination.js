@@ -65,11 +65,14 @@ const Pagination = ({ data, viewPath, lastVisitedPage,btn ,studentBtn}) => {
   }
 
   return (
-    <div className="bg-white shadow-md rounded-lg p-6">
-
+    <div className="bg-white shadow-lg rounded-lg p-6 border-solid border-2 ">
     {
       data.length === 0 ?
-      <div className='spinner mt-20 mx-auto'></div>:
+      <>
+      {/* <div className='spinner mt-20 mx-auto'></div> */}
+      <p className='text-2xl text-red-400'>No data found ...</p>
+      </>:
+      
       <div>
         <BasicTable data={currentItems} btn={btn} path={viewPath} studentBtn={studentBtn} />
         <div className='flex justify-between items-center mt-4'>
@@ -103,5 +106,4 @@ const Pagination = ({ data, viewPath, lastVisitedPage,btn ,studentBtn}) => {
 
 export default Pagination
 
-
-// this is BasicTable component
+// if first i go to 5th page of pagination and then i search some value in search feild it's not set current page to 1 plese add some changes so it will be set current page to 1
