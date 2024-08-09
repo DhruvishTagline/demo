@@ -43,7 +43,6 @@ const ShowExam = ({
           dispatch(handleError(error));
           return;
         } 
-        
         if(currQuestion !== totalQuestion){
            
             const question = {

@@ -8,15 +8,21 @@ import { handlePrevVisitedPage } from '../../../redux-toolkit/slices/user';
 
 import Pagination from '../../../shared/Pagination';
 import { loadAllExamData } from '../../../redux-toolkit/slices/student';
+import { updateFilteredData } from '../../../redux-toolkit/slices/teacher';
+import FilterFeild from '../../../shared/FilterFeild';
 
 const AllExam = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const allExamData = useSelector(state=>state.student.allExamData)
+  const allExamData = useSelector(state=>state.student.allExamData);
+  const status = useSelector(state => state.api.status);
   console.log('allExamData :>> ', allExamData);
+
   const lastVisitedPage =useSelector(state=>state.user.prevVisitedPage);
-  
+  const filteredData = useSelector(state => state.teacher.filteredData);
+  const searchQuery = useSelector(state => state.teacher.searchQuery);
+
   useEffect(()=>{
     const fetchAllExam = async()=>{
       const config ={
@@ -39,19 +45,38 @@ const AllExam = () => {
     }
   },[]);
 
+
+  useEffect(() => {
+    const filtered = allExamData?.filter(exam =>
+      exam.subjectName.toLowerCase().includes(searchQuery.toLowerCase()) 
+    );
+    console.log('filtered Data of AllStudent :>> ', filtered);
+    dispatch(updateFilteredData(filtered));
+  }, [searchQuery, allExamData, dispatch]);
+
+
   const keys =['subjectName','email'];
   const btn ={
     giveExamBtn : '/student/give-exam',
     ShowResultBtn: '/student/show-result'
   }
     return (
-      <div className='flex items-center flex-col mt-[10px]  all-exam'>
+      <div className='flex items-center flex-col mt-4'>
       
-        <div className='max-[900px]:w-[850px] max-[860px]:w-[800px] max-[800px]:w-[750px] max-[750px]:w-[700px] max-[700px]:w-[650px] max-[650px]:w-[600px] max-[590px]:w-[550px] max-[550px]:w-[500px] max-[500px]:w-[450px] max-[450px]:w-[400px] max-[400px]:w-[350px] max-[350px]:w-[310px] all-exam'>
+        <div className='w-full max-w-6xl max-h-[90%] p-6 bg-white rounded-lg'>
             {
-              <div className=''>
+              status === 'loading' ? 
+              <div className='spinner mt-20 mx-auto'></div> :
+              <div>
                 <p className='text-center text-4xl mb-4'>All Exams</p>
-                <Pagination data={allExamData} keys={keys} studentBtn={btn} searchKey={['subjectName','email']}  lastVisitedPage={lastVisitedPage}/>
+                <FilterFeild searchQuery={searchQuery}/>
+                <Pagination 
+                  data={filteredData} 
+                  keys={keys} 
+                  studentBtn={btn} 
+                  searchKey={['subjectName','email']}  
+                  lastVisitedPage={lastVisitedPage}
+                />
               </div>                     
             }
         </div>

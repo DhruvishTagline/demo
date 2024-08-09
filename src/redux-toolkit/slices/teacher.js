@@ -114,7 +114,7 @@ export const teacherSlice = createSlice({
             state.ansIndex.splice();
         },
 
-        
+       
         updateSearchQuery:(state, action) => {
             state.searchQuery = action.payload;
         },

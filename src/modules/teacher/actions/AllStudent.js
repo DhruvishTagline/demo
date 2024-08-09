@@ -21,29 +21,30 @@ const AllStudent = () => {
   const searchQuery = useSelector(state => state.teacher.searchQuery);
 
   useEffect(() => {
+    dispatch(updateSearchQuery('')) 
     const fetchAllStudentData = async () => {
       const config = {
-        method: 'get',
-        url: 'dashboard/Teachers',
-        headers: { "access-token": getCurrUserData().token }
-      }
-      const res = await dispatch(fetchData(config));
-      if (res?.payload?.statusCode === 401) {
-        removeItemLocal('userData');
-        setItemLocal('login', false);
-        navigate('/login')
-        return;
+        method: 'get',  
+        url: 'dashboard/Teachers',  
+        headers: { "access-token": getCurrUserData().token }  
+      }  
+      const res = await dispatch(fetchData(config));  
+      if (res?.payload?.statusCode === 401) {  
+        removeItemLocal('userData');  
+        setItemLocal('login', false);  
+        navigate('/login')  
+        return;  
       }
       dispatch(loadAllStudentData(res?.payload?.data));
     }
-    if (allStudentData.length === 0) {
+    if (allStudentData?.length === 0) {
       dispatch(handlePrevVisitedPage(1));
       fetchAllStudentData();
     }
-  }, [allStudentData.length, dispatch, navigate]);
+  }, [allStudentData?.length, dispatch, navigate]);
 
   useEffect(() => {
-    const filtered = allStudentData.filter(student =>
+    const filtered = allStudentData?.filter(student =>
       student.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       student.email.toLowerCase().includes(searchQuery.toLowerCase())
     );
@@ -59,7 +60,6 @@ const AllStudent = () => {
             <div className='spinner mt-20 mx-auto'></div> :
             <div>
               <p className='text-center text-4xl mb-4'>All Students</p>
-              
               <FilterFeild searchQuery={searchQuery}/>
               <Pagination
                 data={filteredData}

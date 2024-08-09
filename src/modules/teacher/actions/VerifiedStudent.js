@@ -26,6 +26,7 @@ const VerifiedStudent = () => {
     const lastVisitedPage = useSelector(state => state.user.prevVisitedPage);
 
     useEffect(() => {
+        dispatch(updateSearchQuery('')) 
         const fetchAllStudentData = async() => {
             const config = {
                 method:'get',

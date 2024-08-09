@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { getCurrUserData} from '../../../Current User/currentUser';
 import { fetchData } from '../../../redux-toolkit/slices/api';
 import { useDispatch, useSelector } from 'react-redux';
-import {  loadViewExamData, updateFilteredData } from '../../../redux-toolkit/slices/teacher';
+import {  loadViewExamData, updateFilteredData, updateSearchQuery } from '../../../redux-toolkit/slices/teacher';
 import Pagination from '../../../shared/Pagination';
 import { useNavigate } from 'react-router';
 import { handlePrevVisitedPage } from '../../../redux-toolkit/slices/user';
@@ -26,6 +26,7 @@ const ViewExam = () => {
 
 
   useEffect(() => {
+    dispatch(updateSearchQuery(''))  
     const fetchViewExamData = async() => {
       try{
         const config = {
@@ -52,9 +53,9 @@ const ViewExam = () => {
   },[])
 
   useEffect(()=>{
+    
     const filtered = viewExam.filter(exam=>
         exam.subjectName.toLowerCase().includes(searchQuery.toLowerCase()) 
-      
     );
     dispatch(updateFilteredData(filtered))
 },[searchQuery,viewExam,dispatch])

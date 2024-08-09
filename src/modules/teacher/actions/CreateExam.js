@@ -28,7 +28,7 @@ const CreateExam = () => {
 } = useCreateExam();
 
 useEffect(() => {
-  const createExamData = JSON.parse(getItemLocal('createExam'));
+  const createExamData = getItemLocal('createExam');
   console.log('CreateExam -- initiateExam -- createExamData from local :>> ', createExamData);
   if(!createExamData){
     console.log('true');
