@@ -239,7 +239,6 @@ const useEditExam = (id) => {
           const res = await dispatch(fetchData(config));
           dispatch(initiateQuestions());
           dispatch(handleEdited());
-        
           navigate(VIEW_EXAM)
         }catch(error){
           console.log("error",error);

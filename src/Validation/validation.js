@@ -4,6 +4,7 @@ export const validateField = (data, validate) => {
     for (let key in validate) {
         for (let field of validate[key]) {
             if (field.required && !data[key]) {
+                console.log('required :>> ');
                 error[key] = field.message;
                 break;
             }

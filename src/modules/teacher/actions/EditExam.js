@@ -14,7 +14,8 @@ const EditExam = () => {
 
   const [searchParams,setSearchParams]=useSearchParams();
   const id = searchParams.get('id');
-  const subjectName = searchParams.get('subjectName') ;
+  const subjectName = searchParams.get('subjectName');
+  const status =useSelector(state=>state.api.status)
 
   useEffect(()=>{
     const getExamDetails=async()=>{
@@ -52,7 +53,8 @@ const EditExam = () => {
 
   return (
     <>
-    
+     {status === 'loading' ?
+     <div className='spinner mt-20 mx-auto'></div> :  
    
     <div className='flex flex-col items-center mt-[10px] '>
       {
@@ -86,7 +88,7 @@ const EditExam = () => {
               </div>
             </>
       }
-    </div>
+    </div>}
     </>
   )
 }

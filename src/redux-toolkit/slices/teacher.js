@@ -81,7 +81,7 @@ export const teacherSlice = createSlice({
             state.edited = true;
             const {name,value} = action.payload;
             state.error = {};
-            state.createExam[name] = value;
+            state.createExam[name] = value;          
             setItemLocal('createExam',JSON.stringify(state.createExam))
         },
         handleAnsIndexes:(state,action) => {

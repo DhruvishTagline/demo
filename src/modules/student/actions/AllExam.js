@@ -24,7 +24,7 @@ const AllExam = () => {
         url:'student/studentExam',
         headers:{ 'access-token':getCurrUserData().token }
       }
-      const res =await dispatch(fetchData(config));
+      const res = await dispatch(fetchData(config));
       if(res?.payload?.statusCode === 401){
         removeItemLocal('userData');
         setItemLocal('login',false);

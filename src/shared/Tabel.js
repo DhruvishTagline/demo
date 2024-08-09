@@ -35,8 +35,7 @@ export default function BasicTable(props) {
                 <tr key={index} className="hover:bg-gray-100">
                   <td className="text-center py-3 px-4 border-b">{index + 1}</td>
                   {
-                    keys?.map((item, idx) => {
-                      console.log('item :>> ', item);
+                    keys?.map((item, idx) => { 
                       
                       if (item !== '_id' && item !== '__v'  && item !=='studentAnswer' && item !== 'studentId' && item !== 'Result'  )
                         return <td className="text-center py-3 px-4 border-b" key={idx}>{row[item]}</td>
@@ -53,9 +52,8 @@ export default function BasicTable(props) {
                   {
                     btn && <td className="text-center py-3 px-4 border-b text-blue-500">
                       <NavLink to={`/teacher/edit-exam?id=${row._id}&subjectName=${row.subjectName}`} replace style={{marginRight:'10px'}}>Edit</NavLink>
-                        
                     </td>
-                  }     
+                  }   
                   {
                     studentBtn  && <td className='className="text-center py-3 px-4 border-b text-blue-500"'>
                       <NavLink to={`/student/give-exam?id=${row._id}&subjectName=${row.subjectName}`} style={{marginRight:'10px'}}>GiveExam</NavLink>

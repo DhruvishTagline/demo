@@ -62,6 +62,8 @@ console.log('createstudentProfile :>> ', createStudentFields);
   }
   
   return (
+    status === 'loading' ?
+    <div className='spinner mt-20 mx-auto'></div> :  
     <div className='flex justify-center mt-[70px] overflow-hidden'>
       <div>
         {

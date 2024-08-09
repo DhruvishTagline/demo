@@ -5,6 +5,9 @@ import { RiDashboardHorizontalFill } from "react-icons/ri"
 import { useSelector } from 'react-redux';
 import { ALL_EXAM, STUDENT_DASHBOARD, STUDENT_PROFILE } from '../../utils/constant';
 import StudentDashboard from './actions/StudentDashboard';
+import { PiExamFill } from 'react-icons/pi';
+import { CgProfile } from "react-icons/cg";
+
 
 const Student = () => {
 
@@ -20,12 +23,12 @@ const Student = () => {
     {
       path:ALL_EXAM,
       name:'Exam',
-      icon:<RiDashboardHorizontalFill style={{fontSize:25}}/>
+      icon:<PiExamFill style={{fontSize:25}}/>
     },
     {
       path:STUDENT_PROFILE,
       name:'Profile',
-      icon:<RiDashboardHorizontalFill style={{fontSize:25}}/>
+      icon:<CgProfile style={{fontSize:25}} />
     }
   ]
 

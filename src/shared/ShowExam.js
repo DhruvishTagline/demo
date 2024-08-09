@@ -21,7 +21,7 @@ const ShowExam = ({
   
 }) => {
      
-    console.log(" subjectName ",subjectName);
+
   
     const totalQuestion =  14;
     const examData = useSelector(state => state.teacher.createExam);
@@ -39,23 +39,16 @@ const ShowExam = ({
       console.log('next');
         const error = validateField(validateExamData,validate);
         if(Object.keys(error).length !== 0){
+          console.log('error :>> ', error);
           dispatch(handleError(error));
           return;
         } 
         
-        // if(hasDuplicates(optionArr)){
-        //   console.log("called")
-        //   const error = {};
-        //   error.repeatedOption = ' Options are repeated Check it once ';
-        //   dispatch(handleError(error));
-        //   return;
-        // }
-
         if(currQuestion !== totalQuestion){
            
             const question = {
                 question:'',
-                answer:' ',
+                answer:'',
                 options:[
                     '',
                     '',

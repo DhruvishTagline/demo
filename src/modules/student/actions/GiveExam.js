@@ -33,6 +33,8 @@ const GiveExam = () => {
   const dispatch = useDispatch();
   const examData = useSelector(state=>state.student.examPaper);
   const ansIndex=useSelector(state=>state.teacher.ansIndex);
+  const status = useSelector(state=>state.api.status);
+  console.log('status :>> ', status);
 
   useEffect(()=>{
     const fetchExamPaper = async()=>{
@@ -102,6 +104,8 @@ const GiveExam = () => {
   return (
     <div className='flex justify-center mt-[70px] '>
         {         
+          status === 'loading' ?
+          <div className='spinner mt-20 mx-auto'></div> :            
                 <div>
                   <p className='text-center text-4xl mb-6'>Give Exam</p>
                   <ShowExam

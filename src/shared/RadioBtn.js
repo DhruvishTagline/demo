@@ -5,7 +5,7 @@ import { handleAnsIndexes } from '../redux-toolkit/slices/teacher';
 
 const RadioBtn = ({fieldData}) => {
 
-    console.log('feildData :>> ', fieldData);
+    // console.log('feildData :>> ', fieldData);
     const dispatch = useDispatch()
     const eData=useSelector(state=>state.teacher.createExam);
     

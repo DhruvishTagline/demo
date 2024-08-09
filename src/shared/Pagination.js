@@ -102,3 +102,6 @@ const Pagination = ({ data, viewPath, lastVisitedPage,btn ,studentBtn}) => {
 }
 
 export default Pagination
+
+
+// this is BasicTable component

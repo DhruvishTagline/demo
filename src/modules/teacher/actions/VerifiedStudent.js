@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchData } from '../../../redux-toolkit/slices/api';
-import { token } from '../../../Current User/currentUser';
+import { getCurrUserData, token } from '../../../Current User/currentUser';
 import Pagination from '../../../shared/Pagination';
 import {  loadVerifiedStudentData } from '../../../redux-toolkit/slices/teacher';
 import { useNavigate } from 'react-router';
@@ -24,7 +24,7 @@ const VerifiedStudent = () => {
             const config = {
                 method:'get',
                 url:'dashboard/Teachers/StudentForExam',
-                headers: { "access-token":token }
+                headers: { "access-token":getCurrUserData()?.token }
             }
             const res = await dispatch(fetchData(config))
             if(res?.payload?.statusCode === 401){
