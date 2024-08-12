@@ -1,22 +1,20 @@
 
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { handleAnsIndexes } from '../redux-toolkit/slices/teacher';
 
 const RadioBtn = ({fieldData}) => {
 
-    // console.log('feildData :>> ', fieldData);
+ 
     const dispatch = useDispatch()
-    const eData=useSelector(state=>state.teacher.createExam);
+   
     
-    const ansIndex= eData?.questions?.reduce((acc,curr)=>{
-        const ansIndex =curr.options.findIndex(option=>option === curr.answer);
-        acc.push(ansIndex);
-        return acc;
-    },[])
+    // const ansIndex= eData?.questions?.reduce((acc,curr)=>{
+    //     const ansIndex =curr.options.findIndex(option=>option === curr.answer);
+    //     acc.push(ansIndex);
+    //     return acc;
+    // },[])
 
-    // console.log('fieldData :>> ', fieldData);
-               
   return (
     <div>
         <input 
@@ -36,9 +34,8 @@ const RadioBtn = ({fieldData}) => {
                 queIndex:fieldData?.currQuestion,
                 opIndex:fieldData?.opIndex,
                 ans:fieldData?.data[fieldData.id],
-                ansIndex:fieldData.ansIndex
+                ansIndex:fieldData.ansIndex,
             }
-            
             dispatch(fieldData.updateData(data))
         }}
         className='border-black border'
@@ -48,4 +45,3 @@ const RadioBtn = ({fieldData}) => {
 }
 
 export default RadioBtn
-

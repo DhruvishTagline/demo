@@ -2,7 +2,7 @@
 import { Box, TextField } from '@mui/material';
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { handleError } from '../redux-toolkit/slices/teacher';
+import { handleError, handleSubject } from '../redux-toolkit/slices/teacher';
 import RadioBtn from './RadioBtn';
 
 
@@ -31,6 +31,12 @@ const InputField = ({fieldData,ansIndex,subjectName}) => {
         InputLabelProps={{ shrink: true }}
        
         onChange={
+          fieldData?.name ==='subjectName' ?(e)=>{
+            const {name,value}=e.target;
+            
+            dispatch(handleSubject({name,value}))
+          }:
+          
           (e) => {
             const {name,value} = e.target;
             let data = { 

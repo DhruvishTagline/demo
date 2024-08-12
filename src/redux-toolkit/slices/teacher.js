@@ -81,6 +81,7 @@ export const teacherSlice = createSlice({
         handleSubject:(state, action) => {
             state.edited = true;
             const {name, value} = action.payload;
+            console.log('name,value :>> ', name,value);
             state.error = {};
             state.createExam[name] = value;          
             setItemLocal('createExam', JSON.stringify(state.createExam));

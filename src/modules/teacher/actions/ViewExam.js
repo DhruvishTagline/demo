@@ -49,11 +49,10 @@ const ViewExam = () => {
     if(viewExam.length === 0){
       fetchViewExamData();
     }
-    dispatch(handlePrevVisitedPage(1))
+    dispatch(handlePrevVisitedPage(1));
   },[])
 
   useEffect(()=>{
-    
     const filtered = viewExam.filter(exam=>
         exam.subjectName.toLowerCase().includes(searchQuery.toLowerCase()) 
     );

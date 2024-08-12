@@ -100,6 +100,7 @@ const GiveExam = () => {
     }
   },[])
 
+  console.log('examData - GiveExam:>> ', examData);
 
   return (
     <div className='flex justify-center mt-[70px] '>
@@ -113,7 +114,7 @@ const GiveExam = () => {
                   setCurrQuestion={setCurrQuestion} 
                   currQuestion={currQuestion}
                   validateExamData={validateExamData}
-                  totalQue={examData?.questions?.length - 1}
+                  totalQue={examData?.questions?.length }
                   validate={validate}
                   error={error}
                   role={'student'}

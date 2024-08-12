@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate, useSearchParams } from 'react-router-dom';
-// import useEditExam from '../../../hooks/useEditExam';
+import {useSearchParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCurrUserData } from '../../../Current User/currentUser';
 import { fetchData } from '../../../redux-toolkit/slices/api';
@@ -14,7 +13,7 @@ const EditExam = () => {
 
   const [searchParams,setSearchParams]=useSearchParams();
   const id = searchParams.get('id');
-  const subjectName = searchParams.get('subjectName');
+  
   const status =useSelector(state=>state.api.status)
 
   useEffect(()=>{
@@ -27,9 +26,8 @@ const EditExam = () => {
         params:{id}
       }
       const res =await dispatch(fetchData(config));
-      console.log("RR",res?.payload?.data?.questions);
       dispatch(handleQuestions(res?.payload?.data?.questions));
-      console.log('res?.payload?.data?.questions[currQuestion].answer :>> ', res?.payload?.data?.questions[currQuestion].answer);
+     
       dispatch(setAnsIndex(res?.payload?.data?.questions[currQuestion].answer,currQuestion))
     }
     getExamDetails();
@@ -42,14 +40,13 @@ const EditExam = () => {
     validateExamData,
     validate,
     edited,
-     // examData,
+    examData,
     setCurrQuestion,
     handleEditExam,
     handleDeleteExam,
     handleCancel
   } = useEditExam(id);
 
-  console.log('eData :>> ', eData);
 
   return (
     <>
@@ -67,10 +64,8 @@ const EditExam = () => {
               validateExamData={validateExamData}
               validate={validate}   
               eData={eData} 
-              subjectName={subjectName} 
-                    
+              subjectName={examData.subjectName}                  
               />
-
               <div>
                 <button 
                 disabled={!edited}
@@ -94,3 +89,4 @@ const EditExam = () => {
 }
 
 export default EditExam;
+

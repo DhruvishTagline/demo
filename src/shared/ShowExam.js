@@ -18,12 +18,14 @@ const ShowExam = ({
   validate,
   eData,
   subjectName,
+  totalQue
   
 }) => {
      
-
+    console.log('totalQue :>> ', totalQue);
   
-    const totalQuestion =  14;
+    const totalQuestion = totalQue ||  15;
+    console.log('totalQuestion :>> ', totalQuestion);
     const examData = useSelector(state => state.teacher.createExam);
    
     const optionArr = examData?.questions?.[currQuestion]?.options;
@@ -43,6 +45,7 @@ const ShowExam = ({
           dispatch(handleError(error));
           return;
         } 
+        
         if(currQuestion !== totalQuestion){
            
             const question = {
@@ -64,6 +67,7 @@ const ShowExam = ({
             setCurrQuestion(currQuestion+1);
         }
     }
+    console.log('currQuestion :>> ', currQuestion);
   return (
     <div>
       <div>
@@ -89,9 +93,9 @@ const ShowExam = ({
         >Prev</button>
 
         <button 
-        disabled={currQuestion === 14 }
+        disabled={currQuestion === totalQuestion-1 }
         onClick={ handleNextQuestion }
-        className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 ml-2 rounded focus:outline-none focus:shadow-outline ${currQuestion === 14 ? 'opacity-50 cursor-not-allowed' : ''}`}
+        className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 ml-2 rounded focus:outline-none focus:shadow-outline ${currQuestion === totalQuestion-1 ? 'opacity-50 cursor-not-allowed' : ''}`}
         >Next</button>
 
       </div>
@@ -103,6 +107,81 @@ export default ShowExam
 
 
 
+// import React from 'react'
+// import { useDispatch, useSelector } from 'react-redux'
+// import { addNewQuestion, handleError } from '../redux-toolkit/slices/teacher';
+// import InputField from './InputField';
+// import { validateField } from '../Validation/validation';
+
+// const ShowExam = ({
+//   createExamFields,
+//   error,
+//   setCurrQuestion,
+//   currQuestion,
+//   validateExamData,
+//   validate,
+//   subjectName,
+//   totalQue
+// }) => {
+//   const totalQuestion = totalQue || 14;
+//   const examData = useSelector(state => state.teacher.createExam);
+//   const dispatch = useDispatch();
+
+//   const handlePrevQuestion = () => {
+//     dispatch(handleError({}));
+//     setCurrQuestion(currQuestion - 1);
+//   }
+
+//   const handleNextQuestion = () => {
+//     const error = validateField(validateExamData, validate);
+//     if (Object.keys(error).length !== 0) {
+//       dispatch(handleError(error));
+//       return;
+//     }
+
+//     if (currQuestion !== totalQuestion) {
+//       const question = {
+//         question: '',
+//         answer: '',
+//         options: ['', '', '', '']
+//       };
+//       if (examData.questions.length !== 15) {
+//         dispatch(addNewQuestion(question));
+//       }
+//       setCurrQuestion(currQuestion + 1);
+//     }
+//   }
+
+//   return (
+//     <div>
+//       <div>
+//         {createExamFields.map((field, i) => (
+//           <InputField fieldData={field} subjectName={subjectName} key={i} />
+//         ))}
+//       </div>
+//       {error?.answer !== undefined && <span className='text-red-500 text-sm'>{error.answer}</span>}
+//       {error?.sameOption !== undefined && <span className='text-red-500 text-sm'>{error.sameOption}</span>}
+//       <div className='mt-2 ml-[50px]'>
+//         <button
+//           onClick={handlePrevQuestion}
+//           disabled={currQuestion === 0}
+//           className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ${currQuestion === 0 ? 'opacity-50 cursor-not-allowed' : ''}`}
+//         >
+//           Prev
+//         </button>
+//         <button
+//           onClick={handleNextQuestion}
+//           disabled={currQuestion === totalQue}
+//           className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 ml-2 rounded focus:outline-none focus:shadow-outline ${currQuestion === 14 || currQuestion === 7 ? 'opacity-50 cursor-not-allowed' : ''}`}
+//         >
+//           Next
+//         </button>
+//       </div>
+//     </div>
+//   )
+// }
+
+// export default ShowExam;
 
 
 

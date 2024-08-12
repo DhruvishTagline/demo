@@ -231,8 +231,6 @@ export const useCreateExam = () => {
     const handleCreateExam = () => {
       
         console.log("before validateExamData -- > question",validateExamData.question)
-      
-
         if((sameQuestions.includes(validateExamData.question) && sameQuestions.length === currQuestion ) || sameQuestions[currQuestion] !== validateExamData.question)
         {
           validateExamData.question = sameQuestions;

@@ -14,6 +14,7 @@ const useEditExam = (id) => {
     const navigate = useNavigate();
 
     const examData= useSelector(state=>state.teacher.createExam);
+   
     const sameQuestions = useSelector(state=>state.teacher.questions);
     const [currQuestion,setCurrQuestion]=useState(0);
     const error =useSelector(state=>state.teacher.error)
@@ -74,7 +75,7 @@ const useEditExam = (id) => {
       }
 
       const optionArr= examData?.questions?.[currQuestion]?.options;
-      console.log("examData",examData);
+     
 
       const createExamFields = [
       {
@@ -227,7 +228,7 @@ const useEditExam = (id) => {
           {
             return;
           }
-
+          
           const config ={
             method:'put',
             url:'dashboard/Teachers/editExam',
@@ -237,6 +238,7 @@ const useEditExam = (id) => {
           }
           dispatch(loadViewExamData([]));
           const res = await dispatch(fetchData(config));
+        
           dispatch(initiateQuestions());
           dispatch(handleEdited());
           navigate(VIEW_EXAM)
