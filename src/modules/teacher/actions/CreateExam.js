@@ -26,6 +26,7 @@ const CreateExam = () => {
     handleCancel
 } = useCreateExam();
 
+console.log('CreateExam error :>> ', error);
 useEffect(() => {
   const createExamData = getItemLocal('createExam');
   console.log('CreateExam -- initiateExam -- createExamData from local :>> ', createExamData);

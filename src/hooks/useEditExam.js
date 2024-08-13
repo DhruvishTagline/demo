@@ -291,7 +291,7 @@ const useEditExam = (id) => {
         dispatch(initiateExam(initiateConfig));
         navigate(VIEW_EXAM);
       }
-      console.log('useEditExam examData :>> ', examData);
+      
   return {
 
       eData,
@@ -301,6 +301,7 @@ const useEditExam = (id) => {
       validateExamData,
       validate,
       examData,
+      error,
       setCurrQuestion,
       handleEditExam,
       handleDeleteExam,

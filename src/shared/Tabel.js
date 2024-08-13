@@ -5,9 +5,9 @@ import { NavLink } from 'react-router-dom';
 
 export default function BasicTable(props) {
   const { data: list2, path ,btn,studentBtn} = props;
-  console.log("Table-data",list2);
+
   const keys = Object.keys(list2[0] || {});
-  console.log('keys :>> ', keys);
+
 
   return (
     <div className=" w-full">
@@ -51,7 +51,7 @@ export default function BasicTable(props) {
                   }
                   {
                     btn && <td className="text-center py-3 px-4 border-b text-blue-500">
-                      <NavLink to={`/teacher/edit-exam?id=${row._id}`} replace style={{marginRight:'10px'}}>Edit</NavLink>
+                      <NavLink to={`/teacher/edit-exam?id=${row._id}&subjectName=${row.subjectName}`} replace style={{marginRight:'10px'}}>Edit</NavLink>
                     </td>
                   }   
                   {

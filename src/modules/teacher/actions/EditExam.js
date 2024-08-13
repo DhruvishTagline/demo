@@ -13,6 +13,7 @@ const EditExam = () => {
 
   const [searchParams,setSearchParams]=useSearchParams();
   const id = searchParams.get('id');
+  // const subjectName=searchParams.get('subjectName');
   
   const status =useSelector(state=>state.api.status)
 
@@ -24,12 +25,13 @@ const EditExam = () => {
     validate,
     edited,
     examData,
+    error,
     setCurrQuestion,
     handleEditExam,
     handleDeleteExam,
     handleCancel
   } = useEditExam(id);
-  console.log('Edit Exam examData :>> ', examData);
+  // console.log('Edit Exam examData :>> ', examData); // return empty string value in subjectName  
 
   useEffect(()=>{
     const getExamDetails=async()=>{
@@ -41,6 +43,7 @@ const EditExam = () => {
         params:{id}
       }
       const res =await dispatch(fetchData(config));
+      console.log('EditExam useEffect res :>> ',  res);
       dispatch(handleQuestions(res?.payload?.data?.questions));
      
       dispatch(setAnsIndex(res?.payload?.data?.questions[currQuestion].answer,currQuestion))
@@ -63,7 +66,8 @@ const EditExam = () => {
                 validateExamData={validateExamData}
                 validate={validate}   
                 eData={eData} 
-                subjectName={examData.subjectName}  
+                subjectName={examData?.subjectName}   // subjectName = {subjectName}
+                error={error}
                 />
                 <div>
                   <button 

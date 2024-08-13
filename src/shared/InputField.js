@@ -5,12 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { handleError, handleSubject } from '../redux-toolkit/slices/teacher';
 import RadioBtn from './RadioBtn';
 
-
-
-const InputField = ({fieldData,ansIndex,subjectName}) => {
+const InputField = ({fieldData,ansIndex,subjectName,er}) => {
   
-
-    
     const dispatch = useDispatch();
    
     if(fieldData?.type === 'radio'){
@@ -25,7 +21,7 @@ const InputField = ({fieldData,ansIndex,subjectName}) => {
         id={fieldData?.id}
         name={fieldData?.name}
         value= { fieldData?.name ==='subjectName' ? subjectName : fieldData?.data?.[fieldData.name] }  
-        disabled={ fieldData?.disable}
+        disabled={fieldData?.disable}
         variant="outlined"
         placeholder={fieldData?.label}
         InputLabelProps={{ shrink: true }}
@@ -33,13 +29,10 @@ const InputField = ({fieldData,ansIndex,subjectName}) => {
         onChange={
           fieldData?.name ==='subjectName' ?(e)=>{
             const {name,value}=e.target;
-            
             dispatch(handleSubject({name,value}))
-          }:
-          
-          (e) => {
+          }:(e) => {
             const {name,value} = e.target;
-            let data = { 
+            const data = { 
                 name:name,
                 value: value,
                 queIndex:fieldData?.currQuestion,
@@ -47,20 +40,25 @@ const InputField = ({fieldData,ansIndex,subjectName}) => {
                 ans:fieldData?.data?.[fieldData.id],
                 ansIndex:fieldData?.ansIndex
             }            
+            console.log('fieldData.optionArr :>> ', fieldData.optionArr);
+            console.log('fieldData?.optionArr?.includes(e?.target?.value :>> ', fieldData?.optionArr?.includes(e?.target?.value));
             if(fieldData?.optionArr?.includes(e?.target?.value)){
-                const error = {};
-                error[fieldData.name] = 'Option is Already Present';
-                
-                dispatch(fieldData.updateData(data))
-                dispatch(handleError(error));
+                console.log('include-con');
+                // const error = {};
+                // console.log('onChange error :>> ', error);
+                // error[fieldData.name] = 'Option is Already Present';
+
+                dispatch(fieldData.updateData(data));
+                dispatch(handleError({[fieldData.name]:'option is already present'}));
                 return;
-            }            
+            }     
+            dispatch(handleError({[fieldData.name]:''}));       
             dispatch(fieldData.updateData(data))
           } 
         }
-        />      
+        />     
         {
-            fieldData?.error?.[fieldData.name] ? <span className='text-red-500 text-sm'>{fieldData?.error?.[fieldData.name]}</span> : null
+            fieldData?.error ? <span className='text-red-500 text-sm'>{fieldData?.error?.[fieldData.name]}</span> : null
         }
     </div>
   )
