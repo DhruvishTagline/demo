@@ -30,11 +30,11 @@ useEffect(() => {
   const createExamData = getItemLocal('createExam');
   console.log('CreateExam -- initiateExam -- createExamData from local :>> ', createExamData);
   if(!createExamData){
-    console.log('true');
+    
     dispatch(initiateExam(initiateConfig));
     dispatch(initiateAnsIndex([]));
   }else{  
-    console.log('false');
+    
     dispatch(initiateExam(createExamData))
     if(ansIndex !== null){
       dispatch(initiateAnsIndex(ansIndex))

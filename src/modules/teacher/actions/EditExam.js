@@ -16,6 +16,21 @@ const EditExam = () => {
   
   const status =useSelector(state=>state.api.status)
 
+  const {
+    eData,
+    createExamFields,
+    currQuestion,
+    validateExamData,
+    validate,
+    edited,
+    examData,
+    setCurrQuestion,
+    handleEditExam,
+    handleDeleteExam,
+    handleCancel
+  } = useEditExam(id);
+  console.log('Edit Exam examData :>> ', examData);
+
   useEffect(()=>{
     const getExamDetails=async()=>{
       
@@ -33,57 +48,41 @@ const EditExam = () => {
     getExamDetails();
   },[])
 
-  const {
-    eData,
-    createExamFields,
-    currQuestion,
-    validateExamData,
-    validate,
-    edited,
-    examData,
-    setCurrQuestion,
-    handleEditExam,
-    handleDeleteExam,
-    handleCancel
-  } = useEditExam(id);
-
-
   return (
     <>
-     {status === 'loading' ?
-     <div className='spinner mt-20 mx-auto'></div> :  
-   
-    <div className='flex flex-col items-center mt-[10px] '>
-      {
-            <>
-            <p className='text-center mb-4 text-4xl'>Edit Exam</p>
-              <ShowExam 
-              createExamFields={createExamFields} 
-              setCurrQuestion={setCurrQuestion} 
-              currQuestion={currQuestion}
-              validateExamData={validateExamData}
-              validate={validate}   
-              eData={eData} 
-              subjectName={examData.subjectName}                  
-              />
-              <div>
-                <button 
-                disabled={!edited}
-                onClick={handleEditExam}
-                className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ${!edited ? 'opacity-50 cursor-not-allowed':''}`}
-                >Submit</button>
-                <button 
-                onClick={handleDeleteExam}
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 ml-2 mt-2 rounded focus:outline-none focus:shadow-outline"
-                >Delete</button>
-                <button
-                onClick={handleCancel}
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 ml-2 mt-2 rounded focus:outline-none focus:shadow-outline"
-                >Cancel</button>
-              </div>
-            </>
-      }
-    </div>}
+      {status === 'loading' ?
+      <div className='spinner mt-20 mx-auto'></div> :     
+      <div className='flex flex-col items-center mt-[10px] '>
+        {
+              <>
+              <p className='text-center mb-4 text-4xl'>Edit Exam</p>
+                <ShowExam 
+                createExamFields={createExamFields} 
+                setCurrQuestion={setCurrQuestion} 
+                currQuestion={currQuestion}
+                validateExamData={validateExamData}
+                validate={validate}   
+                eData={eData} 
+                subjectName={examData.subjectName}  
+                />
+                <div>
+                  <button 
+                  disabled={!edited}
+                  onClick={handleEditExam}
+                  className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ${!edited ? 'opacity-50 cursor-not-allowed':''}`}
+                  >Submit</button>
+                  <button 
+                  onClick={handleDeleteExam}
+                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 ml-2 mt-2 rounded focus:outline-none focus:shadow-outline"
+                  >Delete</button>
+                  <button
+                  onClick={handleCancel}
+                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 ml-2 mt-2 rounded focus:outline-none focus:shadow-outline"
+                  >Cancel</button>
+                </div>
+              </>
+        }
+      </div>}
     </>
   )
 }
