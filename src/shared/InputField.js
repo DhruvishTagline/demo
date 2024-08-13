@@ -43,7 +43,7 @@ const InputField = ({fieldData,ansIndex,subjectName,er}) => {
             console.log('fieldData.optionArr :>> ', fieldData.optionArr);
             console.log('fieldData?.optionArr?.includes(e?.target?.value :>> ', fieldData?.optionArr?.includes(e?.target?.value));
             if(fieldData?.optionArr?.includes(e?.target?.value)){
-                console.log('include-con');
+                
                 // const error = {};
                 // console.log('onChange error :>> ', error);
                 // error[fieldData.name] = 'Option is Already Present';
@@ -51,8 +51,7 @@ const InputField = ({fieldData,ansIndex,subjectName,er}) => {
                 dispatch(fieldData.updateData(data));
                 dispatch(handleError({[fieldData.name]:'option is already present'}));
                 return;
-            }     
-            dispatch(handleError({[fieldData.name]:''}));       
+            }                        
             dispatch(fieldData.updateData(data))
           } 
         }

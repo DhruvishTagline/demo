@@ -12,38 +12,39 @@ import ShowExam from '../../../shared/ShowExam';
 import { useGiveExam } from '../../../hooks/useGiveExam';
 
 const GiveExam = () => {
-  console.log('Give=Exam');
+  
   const [searchParams,setSearchParams] = useSearchParams();
   const id = searchParams.get('id');
   const subjectName = searchParams.get('subjectName');
-  console.log('subjectName ---------- :>> ', subjectName);
 
   const { 
     createExamFields,
     currQuestion,
-    setCurrQuestion,
     validateExamData,
     validate,
+    error,
+    setCurrQuestion,
     handleSubmitExam,
-    handleCancel,
-    error
+    handleCancel
   } = useGiveExam(id);
 
   const navigate =useNavigate();
   const dispatch = useDispatch();
-  const examData = useSelector(state=>state.student.examPaper);
-  const ansIndex=useSelector(state=>state.teacher.ansIndex);
-  const status = useSelector(state=>state.api.status);
+  const examData = useSelector(state => state.student.examPaper);
+  const ansIndex=useSelector(state => state.teacher.ansIndex);
+  const status = useSelector(state => state.api.status);
   console.log('status :>> ', status);
 
   useEffect(()=>{
     const fetchExamPaper = async()=>{
-      const config={
+      
+      const config = {
         method:'get',
         url:'student/examPaper',
-        headers:{'access-token':getCurrUserData().token },
+        headers:{ 'access-token':getCurrUserData().token },
         params:{id}
       }
+
       const res = await dispatch(fetchData(config));
       if(res?.payload?.statusCode===401){
         removeItemLocal('userData');
@@ -51,25 +52,24 @@ const GiveExam = () => {
         navigate(LOGIN_PAGE);
         return;
       }
+
       if(res?.payload?.statusCode===500){
         navigate(ALL_EXAM);
         return;
       }
+      
       const examPaper ={
         subjectName:subjectName,
         notes:['test'],
       }
+
       examPaper.questions=res.payload.data;
-      console.log('examPaper set :>>:>>:>>:>> ');
       dispatch(loadExamPaper(examPaper))
     }
     const examPaper=getItemLocal('examPaper');
     if(examPaper){
-      dispatch(loadExamPaper(getItemLocal('examPaper')))
-          console.log('set ansIndx');
+      dispatch(loadExamPaper(getItemLocal('examPaper')));
           const ansIndexLocal = getItemLocal('ansIndex');
-          console.log('ansIndexLocal :>> ', ansIndexLocal);
-          console.log('ansIndexLocal', JSON.parse(ansIndexLocal));
           dispatch(initiateAnsIndex(JSON.parse(ansIndexLocal)));
     }
     else{
@@ -88,6 +88,7 @@ const GiveExam = () => {
           dispatch(initiateAnsIndex(ansIndexLocal))
         }
         else{
+          console.log('initiateExamPaper -- GiveExam :>> ', initiateExamPaper);
           dispatch(initiateExamPaper({}));
           dispatch(initiateAnsIndex(ansIndex))
           navigate(ALL_EXAM);

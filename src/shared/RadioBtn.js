@@ -14,7 +14,7 @@ const RadioBtn = ({fieldData}) => {
         type={fieldData.type}
         id={fieldData.id}
         name={fieldData.name}
-        checked={fieldData?.ans && (fieldData?.data?.[fieldData.id] === fieldData?.ans) }  // feildData?.ans && .......
+        checked={fieldData?.ans && fieldData?.data?.[fieldData.id] === fieldData?.ans }  // feildData?.ans && .......
         onChange={(e) => {
             dispatch(handleAnsIndexes({
                 currQuestion:fieldData.currQuestion,
