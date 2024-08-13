@@ -15,13 +15,15 @@ const RadioBtn = ({fieldData}) => {
     //     return acc;
     // },[])
 
+    console.log('fieldData?.data?.[fieldData.id] :>> ', fieldData);
+
   return (
     <div>
         <input 
         type={fieldData.type}
         id={fieldData.id}
         name={fieldData.name}
-        checked={fieldData?.data?.[fieldData.id] === fieldData?.ans }
+        checked={fieldData?.ans && (fieldData?.data?.[fieldData.id] === fieldData?.ans) }  // feildData?.ans && .......
         onChange={(e) => {
             dispatch(handleAnsIndexes({
                 currQuestion:fieldData.currQuestion,
