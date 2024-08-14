@@ -1,6 +1,6 @@
-import { ExpandMoreSharp } from "@mui/icons-material";
+
 import { createSlice } from "@reduxjs/toolkit";
-import { loadAllStudentData } from "./teacher";
+
 
 const initialState={
     allExamData:[],
@@ -14,7 +14,7 @@ export const studentSlice = createSlice({
     initialState,
     reducers:{
         loadAllExamData:(state,action)=>{
-            console.log('action :>> ', action);
+            
             state.allExamData=action.payload;
         },
         loadExamPaper:(state,action) => {
@@ -25,9 +25,7 @@ export const studentSlice = createSlice({
         },
 
         handleStudentAns:(state,action) => {
-            console.log('handleStudentans');
             const {queIndex,ans} = action.payload;
-            console.log('queIndex,ans :>> ', queIndex);
             state.error = {};
             state.examPaper.questions[queIndex].answer = ans;
             localStorage.setItem('examPaper',JSON.stringify(state.examPaper))
@@ -62,7 +60,6 @@ export const
         handleStudentError,
         loadStudentProfile,
         updateProfile
-
     } = studentSlice.actions;
 
 export default studentSlice.reducer;

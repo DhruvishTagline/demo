@@ -1,6 +1,5 @@
 import React from 'react'
 import { Navigate, Outlet, useLocation } from 'react-router-dom'
-import {jwtDecode} from 'jwt-decode';
 import { getCurrUserData } from '../Current User/currentUser';
 
 const Auth = ({role}) => {

@@ -4,21 +4,15 @@ import { handleError, handleSignupData, initiateSignupData } from "../redux-tool
 import { validateField } from "../Validation/validation";
 import { fetchData } from "../redux-toolkit/slices/api";
 import { useNavigate } from "react-router";
-
 import { LOGIN_PAGE } from "../utils/constant";
-
-
-
 
 export const useSignupData = () => {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
-
     const signupData = useSelector(state => state.user.signupData);
     const error = useSelector(state => state.user.error);
     const [disable,setDisable] = useState(false);
-
 
     const signupField = [
         {
@@ -101,7 +95,7 @@ export const useSignupData = () => {
             return;
           }
           setDisable(!disable);
-          console.log('handleSignup - signupData :>> ', signupData);  // student
+         
           const config = {
             method:'post',
             url:'users/SignUp',
@@ -118,7 +112,7 @@ export const useSignupData = () => {
             return;
           }
           dispatch(initiateSignupData());
-          console.log('Signup Successful');
+         
           navigate(LOGIN_PAGE,{replace:true});
         }catch(error){
           setDisable(false);

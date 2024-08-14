@@ -7,9 +7,9 @@ const StudentDashboard = () => {
 
   useEffect(()=>{
     dispatch(handlePrevVisitedPage(1));
-  },[])
+  },[dispatch])
   return (
-    <div className='flex justify-center items-center text-2xl mt-[10px]'>Student Dashboard</div>
+    <div className='flex justify-center items-center text-4xl mt-[50px]'>Student Dashboard</div>
   )
 }
 

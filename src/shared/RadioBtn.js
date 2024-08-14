@@ -4,10 +4,8 @@ import { useDispatch } from 'react-redux';
 import { handleAnsIndexes } from '../redux-toolkit/slices/teacher';
 
 const RadioBtn = ({fieldData}) => {
-
- 
+    
     const dispatch = useDispatch();
-
   return (
     <div>
         <input 

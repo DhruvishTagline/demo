@@ -8,10 +8,8 @@ const initialState = {
 }
 
 export const fetchData = createAsyncThunk('data/fetchData', async(config) => {
-    
     try{
         const data = await axiosInstance(config);
-       
         return data.data;
     }catch (e){
         throw new Error(e);
@@ -21,11 +19,7 @@ export const fetchData = createAsyncThunk('data/fetchData', async(config) => {
 const apiSlice = createSlice({
     name:'api',
     initialState : initialState,
-    reducers:{
-        addData: () => {
-            
-        }
-    },
+    
     extraReducers: (builder) => {
         builder
             .addCase(fetchData.pending, (state,action) => {

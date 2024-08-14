@@ -1,12 +1,8 @@
-
-import React, { useState } from 'react'
+import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { addNewQuestion, handleError} from '../redux-toolkit/slices/teacher';
-
 import InputField from './InputField';
 import { validateField } from '../Validation/validation';
-
-
 
 const ShowExam = ({
   createExamFields,
@@ -15,29 +11,24 @@ const ShowExam = ({
   currQuestion,
   validateExamData,
   validate,
-  eData,
   subjectName,
   totalQue
-  
 }) => {
 
       const totalQuestion = totalQue ||  15;
       const examData = useSelector(state => state.teacher.createExam);
-      const optionArr = examData?.questions?.[currQuestion]?.options;
       const dispatch = useDispatch();
     
       const handlePrevQuestion = () => {
         dispatch(handleError({}));
-        console.log('prev',currQuestion);
         setCurrQuestion(currQuestion -1)
       }
 
       const handleNextQuestion = () => {
-        console.log('next');
-        const error = validateField(validateExamData,validate);
         
+        const error = validateField(validateExamData,validate);
         if(Object.keys(error).length !== 0){
-          console.log('error :>> ', error);
+        
           dispatch(handleError(error));
           return;
         } 
@@ -55,14 +46,13 @@ const ShowExam = ({
           if(examData.questions.length !== 15 ){
             dispatch(addNewQuestion(question));
           }
-          else{
-            console.log("condition false")
-          }               
+          // else{
+          //   console.log("condition false")
+          // }               
           setCurrQuestion(currQuestion+1);
         }
       }
-      console.log('ShowExam er :>> ',  error);
-    
+  
       return (
         <div>
           <div>
@@ -79,7 +69,7 @@ const ShowExam = ({
             error?.sameOption !== undefined ? <span className='text-red-500 text-sm'>{error.sameOption}</span> : ''
           }
 
-          <div className='mt-2 ml-[50px]'>
+          <div className='mt-2 ml-[28px]'>
               
             <button 
             onClick={ handlePrevQuestion }

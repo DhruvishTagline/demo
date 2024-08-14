@@ -37,4 +37,4 @@ export const GIVE_EXAM = '/student/give-exam'
 
 export const STUDENT_PROFILE = '/student/student-profile'
 
-export const SHOW_RESULT = '/student/show-result'
+

@@ -1,14 +1,11 @@
 import React, { Suspense, lazy } from 'react';
-import { Outlet } from 'react-router';
+
 import { ALL_EXAM, ALL_STUDENT, CREATE_EXAM, EDIT_EXAM, FORGET_PASSWORD, GIVE_EXAM, HOME_PAGE, LOGIN_PAGE, NEW_PASSWORD, SHOW_RESULT, SIGNUP_PAGE, STUDENT, STUDENT_DASHBOARD, STUDENT_DETAIL, STUDENT_PROFILE, TEACHER, TEACHER_DASHBOARD, VERIFIED_STUDENT, VIEW_EXAM } from '../utils/constant';
 import ErrorPage from '../shared/ErrorPage';
 import Auth from '../HOC/Auth';
 
 const Loading = () => <div>Loading...</div>;
-
-
 const App = lazy(() => import("../App"));
-
 const Home = lazy(() => import("../shared/Home"));
 const Teacher = lazy(() => import("../modules/teacher/Teacher"));
 const AllStudent = lazy(() => import("../modules/teacher/actions/AllStudent"));
@@ -28,9 +25,8 @@ const StudentDashboard = lazy(() => import("../modules/student/actions/StudentDa
 const AllExam = lazy(() => import("../modules/student/actions/AllExam"));
 const GiveExam = lazy(() => import("../modules/student/actions/GiveExam"));
 const StudentProfile = lazy(() => import("../modules/student/actions/StudentProfile"));
-const ShowResult = lazy(() => import("../modules/student/actions/ShowResult"));
 
-// Define the routes with Suspense for lazy-loaded components
+
 export const routes = [
   {
     path: HOME_PAGE,
@@ -221,14 +217,7 @@ export const routes = [
                   </Suspense>
                 )
               },
-              {
-                path: SHOW_RESULT,
-                element: (
-                  <Suspense fallback={<Loading />}>
-                    <ShowResult />
-                  </Suspense>
-                )
-              }
+              
             ]
           }
         ]

@@ -1,19 +1,14 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchData } from '../../../redux-toolkit/slices/api';
-import { getCurrUserData, token } from '../../../Current User/currentUser';
+import { getCurrUserData } from '../../../Current User/currentUser';
 import Pagination from '../../../shared/Pagination';
 import {  loadVerifiedStudentData, updateFilteredData, updateSearchQuery } from '../../../redux-toolkit/slices/teacher';
 import { useNavigate } from 'react-router';
-
 import { removeItemLocal, setItemLocal } from '../../../utils/localStorageFunction';
 import FilterFeild from '../../../shared/FilterFeild';
 
-
-
-
 const VerifiedStudent = () => {
-    console.log("verified Student");
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -21,8 +16,6 @@ const VerifiedStudent = () => {
     const verifiedStudentData = useSelector(state => state.teacher.verifiedStudentData);
     const filteredData = useSelector(state => state.teacher.filteredData);
     const searchQuery = useSelector(state => state.teacher.searchQuery);
-  
-    
     const lastVisitedPage = useSelector(state => state.user.prevVisitedPage);
 
     useEffect(() => {
@@ -45,7 +38,7 @@ const VerifiedStudent = () => {
         if(verifiedStudentData.length === 0){
             fetchAllStudentData();
         }
-    },[]);
+    },[dispatch,navigate]);
 
     useEffect(()=>{
         const filtered = verifiedStudentData.filter(student=>
@@ -59,22 +52,13 @@ const VerifiedStudent = () => {
   return (
    <>
     <div className='h-[100vh] flex items-center flex-col mt-[10px]'>
-        
             {
                 status === 'loading' ? 
                 <div className='spinner mt-[250px]'>
                 </div> :
                 <div className='min-w-[70%]'>
                     <p className='text-center text-4xl mb-4'>Verified Students</p>
-                    {/* <input
-                        type="text"
-                        placeholder="Search by name or email"
-                        value={searchQuery}
-                        onChange={(e) => dispatch(updateSearchQuery(e.target.value))}
-                        className="w-full p-2 border border-gray-300 rounded mb-6"
-                    /> */}
                     <FilterFeild searchQuery={searchQuery}/>
-                    
                     <Pagination 
                         data={filteredData} 
                         recodesPerPage={10} 

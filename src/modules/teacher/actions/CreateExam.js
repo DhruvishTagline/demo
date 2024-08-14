@@ -1,5 +1,3 @@
-
-
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { initiateAnsIndex, initiateExam } from '../../../redux-toolkit/slices/teacher';
@@ -26,16 +24,13 @@ const CreateExam = () => {
     handleCancel
 } = useCreateExam();
 
-console.log('CreateExam error :>> ', error);
 useEffect(() => {
   const createExamData = getItemLocal('createExam');
-  console.log('CreateExam -- initiateExam -- createExamData from local :>> ', createExamData);
+
   if(!createExamData){
-    
     dispatch(initiateExam(initiateConfig));
     dispatch(initiateAnsIndex([]));
   }else{  
-    
     dispatch(initiateExam(createExamData))
     if(ansIndex !== null){
       dispatch(initiateAnsIndex(ansIndex))
@@ -45,7 +40,7 @@ useEffect(() => {
 
   return (
     <div className='flex items-center flex-col mt-[10px]'>
-      <p className='text-center '>Create Exam</p>
+      <p className='text-center text-3xl mb-5'>Create Exam</p>
       <ShowExam 
       createExamFields={createExamFields} 
       error={error} 
@@ -68,7 +63,7 @@ useEffect(() => {
         <button
         onClick={handleCancel}
         className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ml-2`}
-        >Clear</button>
+        >Clear Question</button>
       </div>
     </div>
   )

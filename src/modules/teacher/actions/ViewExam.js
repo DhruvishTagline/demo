@@ -8,7 +8,6 @@ import { useNavigate } from 'react-router';
 import { handlePrevVisitedPage } from '../../../redux-toolkit/slices/user';
 import { removeItemLocal, setItemLocal } from '../../../utils/localStorageFunction';
 import { LOGIN_PAGE } from '../../../utils/constant';
-import useEditExam from '../../../hooks/useEditExam';
 import FilterFeild from '../../../shared/FilterFeild';
 
 const ViewExam = () => {
@@ -23,7 +22,6 @@ const ViewExam = () => {
   const btn = {
     editBtn:'/teacher/edit-exam',
   }
-
 
   useEffect(() => {
     dispatch(updateSearchQuery(''))  
@@ -50,7 +48,7 @@ const ViewExam = () => {
       fetchViewExamData();
     }
     dispatch(handlePrevVisitedPage(1));
-  },[])
+  },[dispatch,navigate])
 
   useEffect(()=>{
     const filtered = viewExam.filter(exam=>
@@ -59,28 +57,22 @@ const ViewExam = () => {
     dispatch(updateFilteredData(filtered))
 },[searchQuery,viewExam,dispatch])
 
-
-  console.log("viewExam",viewExam)
-
-  const keys = ['subjectName','email'];
-
   return (
     <div className='flex justify-center mt-[70px]'>
         <div className=' max-[900px]:w-[850px] max-[860px]:w-[800px] max-[800px]:w-[750px] max-[750px]:w-[700px] max-[700px]:w-[650px] max-[650px]:w-[600px] max-[590px]:w-[550px] max-[550px]:w-[500px] max-[500px]:w-[450px] max-[450px]:w-[400px] max-[400px]:w-[350px] max-[350px]:w-[310px] h-[100%] min-w-[70%] mb-[40px]'>
             {
-                status === 'loading' ? 
-                  <div className='spinner mt-[20px] mx-auto'></div> :
-                    <div>
-                      <p className='text-center text-4xl mb-4'>View Exams</p>
-                      <FilterFeild searchQuery={searchQuery}/>
-                      <Pagination 
-                        data={filteredData} 
-                        recodesPerPage={10} 
-                        keys={keys} 
-                        btn={btn}
-                        viewPath={`/teacher/view-exam`}
-                      />
-                    </div>
+              status === 'loading' ? 
+              <div className='spinner mt-[20px] mx-auto'></div> :
+              <div>
+                  <p className='text-center text-4xl mb-4'>View Exams</p>
+                  <FilterFeild searchQuery={searchQuery}/>
+                  <Pagination 
+                    data={filteredData} 
+                    recodesPerPage={10} 
+                    btn={btn}
+                    viewPath={`/teacher/view-exam`}
+                  />
+              </div> 
             }
         </div>
     </div>

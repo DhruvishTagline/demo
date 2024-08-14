@@ -12,17 +12,16 @@ import { LOGIN_PAGE } from '../../../utils/constant';
 
 const StudentProfile = () => {
 
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const status = useSelector(state => state.api.status);
+
   const {
     createStudentFields,
     saveProfile,
     disable,
     setDisable
 } = useStudentProfile();
-console.log('createstudentProfile :>> ', createStudentFields);
-
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const status = useSelector(state => state.api.status);
 
   useEffect(() => {
     const fetchStudentDetail = async() => {
@@ -52,7 +51,7 @@ console.log('createstudentProfile :>> ', createStudentFields);
       dispatch(loadStudentProfile(student))
     }
     dispatch(handlePrevVisitedPage(1));
-  },[]);
+  },[dispatch,navigate]);
 
   
 

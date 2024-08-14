@@ -10,7 +10,7 @@ const FilterFeild = ({searchQuery}) => {
         placeholder="Search here..."
         value={searchQuery}
         onChange={(e) => dispatch(updateSearchQuery(e.target.value))}
-        className="w-full p-2 border border-gray-300 rounded mb-6"
+        className="w-full p-2 border border-gray-300 rounded mb-6 h-12 text-xl"
     />
   )
 }

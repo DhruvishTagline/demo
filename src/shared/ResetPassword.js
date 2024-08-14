@@ -2,12 +2,10 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { handleError, handlePrevVisitedPage, handleResetPassword, initiateResetPassword } from '../redux-toolkit/slices/user';
 import InputField from './InputField';
-import { getCurrUserData, token } from '../Current User/currentUser';
+import { getCurrUserData } from '../Current User/currentUser';
 import { fetchData } from '../redux-toolkit/slices/api';
 import { validateField } from '../Validation/validation';
 import { useNavigate } from 'react-router-dom';
-import { currUserRole } from '../Current User/currentUser';
-
 
 const ResetPassword = () => {
 
@@ -25,7 +23,7 @@ const ResetPassword = () => {
         return () => {
             dispatch(initiateResetPassword({}))
         }
-    },[])
+    },[dispatch])
 
     const ResetPasswordFields = [
         {
@@ -122,8 +120,6 @@ const ResetPassword = () => {
                 console.log("Old Password and New Password are same")
                 return;
             }
-            
-            console.log('Password Reset Successfully');
             dispatch(initiateResetPassword());
             navigate(`/${role}/dashboard`);
         }catch(error){

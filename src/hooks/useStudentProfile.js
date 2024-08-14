@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getItemLocal, setItemLocal } from '../utils/localStorageFunction';
 import {  handleStudentError, loadStudentProfile, updateProfile } from '../redux-toolkit/slices/student';
@@ -11,7 +11,7 @@ const useStudentProfile = () => {
 
     const [disable,setDisable]=useState(true);
     const studentProfile = useSelector(state=>state.student.studentProfile);
-    console.log('studentProfile :>> ', studentProfile);
+    
     const error = useSelector(state=>state.student.error);
 
     const createStudentFields = [
@@ -76,7 +76,7 @@ const useStudentProfile = () => {
 
             const res= await dispatch(fetchData(config));
             setItemLocal('student',res.payload.data);
-            console.log('Profile Updated Successfully');
+            
         setDisable(true);
         } catch (error) {
             console.log("error",error);

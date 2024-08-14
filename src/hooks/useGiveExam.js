@@ -9,7 +9,7 @@ import { initiateAnsIndex } from '../redux-toolkit/slices/teacher';
 import { removeItemLocal } from '../utils/localStorageFunction';
 
 export const useGiveExam = (id) => {
-  console.log('useGiveExam --- id :>> ', id);
+
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -153,22 +153,22 @@ export const useGiveExam = (id) => {
       ]
 
       const ansArr =examData?.questions?.reduce((acc,curr)=>{
-        console.log('curr',curr);
+       
         const obj ={
             question:curr._id,
             answer:curr.answer
         }
-        console.log('useGiveExam obj :>> ', obj);
+     
         if(curr.answer !== undefined){
             acc.push(obj)
         }
         return acc;
       },[])
-      console.log('useGiveExam ansArr :>> ', ansArr);
+      
 
       const handleSubmitExam =()=>{
         if(ansArr.length === 7){
-          console.log('ansArr :>> ', ansArr);
+          
             const submitExam = async ()=>{
                 try {
                     const config = {
@@ -180,7 +180,6 @@ export const useGiveExam = (id) => {
                     }
                     dispatch(loadAllExamData([]));
                     const res = await dispatch(fetchData(config));
-                    console.log("exam Submitted ");
                     navigate(ALL_EXAM);
                 } catch(error) {
                     console.log("error",error);
@@ -200,7 +199,6 @@ export const useGiveExam = (id) => {
         removeItemLocal('examPaper');
         navigate(ALL_EXAM)
       }
-
 
       return {
         createExamFields,

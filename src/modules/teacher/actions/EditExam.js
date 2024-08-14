@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import {useSearchParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCurrUserData } from '../../../Current User/currentUser';
 import { fetchData } from '../../../redux-toolkit/slices/api';
-import { handleEdited, handleQuestions, initiateAnsIndex, initiateExam, initiateQuestions, setAnsIndex } from '../../../redux-toolkit/slices/teacher';
+import {  handleQuestions, setAnsIndex } from '../../../redux-toolkit/slices/teacher';
 import ShowExam from '../../../shared/ShowExam';
 import useEditExam from '../../../hooks/useEditExam';
 
@@ -13,8 +13,6 @@ const EditExam = () => {
 
   const [searchParams,setSearchParams]=useSearchParams();
   const id = searchParams.get('id');
-  // const subjectName=searchParams.get('subjectName');
-  
   const status =useSelector(state=>state.api.status)
 
   const {
@@ -31,7 +29,7 @@ const EditExam = () => {
     handleDeleteExam,
     handleCancel
   } = useEditExam(id);
-  // console.log('Edit Exam examData :>> ', examData); // return empty string value in subjectName  
+ 
 
   useEffect(()=>{
     const getExamDetails=async()=>{
@@ -43,13 +41,11 @@ const EditExam = () => {
         params:{id}
       }
       const res =await dispatch(fetchData(config));
-      console.log('EditExam useEffect res :>> ',  res);
       dispatch(handleQuestions(res?.payload?.data?.questions));
-     
       dispatch(setAnsIndex(res?.payload?.data?.questions[currQuestion].answer,currQuestion))
     }
     getExamDetails();
-  },[])
+  },[dispatch,id,currQuestion])
 
   return (
     <>

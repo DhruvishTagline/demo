@@ -1,13 +1,12 @@
 import * as React from 'react';
 
-import { capitalizeFirstChar, objectKeys } from '../utils/functions';
+import { capitalizeFirstChar } from '../utils/functions';
 import { NavLink } from 'react-router-dom';
 
 export default function BasicTable(props) {
   const { data: list2, path ,btn,studentBtn} = props;
 
   const keys = Object.keys(list2[0] || {});
-
 
   return (
     <div className=" w-full">

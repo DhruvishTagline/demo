@@ -11,6 +11,5 @@ export const store = configureStore({
         api:apiSlice,
         teacher:teacherSlice,
         student:studentSlice,
-       
     }
 })

@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 
-import axios from 'axios';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, useNavigate } from 'react-router';
 import { handleError, handleForgetPassword, initiateForgetPassword } from '../redux-toolkit/slices/user';
@@ -14,13 +14,13 @@ const ForgotPassword = () => {
 
     const dispatch=useDispatch();
     const navigate=useNavigate();
-    useEffect(()=>{
 
+    useEffect(()=>{
       dispatch(handleError);
       return ()=>{
         dispatch(initiateForgetPassword({}))
       }
-    },[])
+    },[dispatch])
 
     const forgetPassword =useSelector(state =>state.user.forgetPassword)
     const error= useSelector(state => state.user.error);
@@ -34,7 +34,6 @@ const ForgotPassword = () => {
       data:forgetPassword,
       updateData:handleForgetPassword,
       error:error
-
     }
 
     const validate={
@@ -72,7 +71,7 @@ const ForgotPassword = () => {
         }
         navigate(LOGIN_PAGE);
         dispatch(initiateForgetPassword({}));
-        console.log('Mail Sent Sucessfully on your Email')
+        
       }
       catch(error){
         console.log("error",error);
@@ -82,24 +81,19 @@ const ForgotPassword = () => {
       return <Navigate to={`/${role}/dashboard`}/>
     }
 
-
-
-
   return (
     <>
-         {
-            !login && 
-            <div className='flex items-center flex-col mt-[70px]'>
-                <p className='text-center mb-4 text-4xl'>Forget Password</p>
-                <InputField fieldData={fieldData}/>
-                <button 
+        {
+          !login && 
+          <div className='flex items-center flex-col mt-[70px]'>
+              <p className='text-center mb-4 text-4xl'>Forget Password</p>
+              <InputField fieldData={fieldData}/>
+              <button 
                 onClick={sendMail}
-                
                 className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-2 `}
-                >
-                    Submit
-                </button>
-            </div>
+              >Submit
+              </button>
+          </div>
         }
     </>
   )

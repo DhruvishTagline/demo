@@ -6,7 +6,6 @@ import { RiLockPasswordFill } from "react-icons/ri";
 import { TbLogout } from "react-icons/tb";
 import { handleLogin, handleMenu } from '../redux-toolkit/slices/user';
 import { loadViewExamData } from '../redux-toolkit/slices/teacher';
-
 import { cleatItemLocal, setItemLocal } from '../utils/localStorageFunction';
 import { LOGIN_PAGE } from '../utils/constant';
 
@@ -15,7 +14,6 @@ const Navbar = ({ navItems }) => {
   const dispatch = useDispatch();
   const location = useLocation()
   const edit = location.pathname.split('/')[2]
-
   const currUserRole = getCurrUserData().role;
 
   const handleLogout = () => {
@@ -29,7 +27,6 @@ const Navbar = ({ navItems }) => {
   return (
     <div className='w-full h-full bg-opacity-90 fixed' onClick={() => dispatch(handleMenu())}>
       <div className="w-60 h-full overflow-y-auto  bg-white dark:bg-gray-900 flex flex-col shadow-lg" onClick={(e) => e.stopPropagation()}>
-
         <ul className="space-y-3 font-medium mt-6">
           {
             navItems.map((item, i) => {

@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router';
-import { handleAns, handleAnsIndexes, handleEdited, handleError, handleOptions, handleQuestion, handleQuestions, handleSubject, initiateExam, initiateQuestions, loadViewExamData } from '../redux-toolkit/slices/teacher';
+import { handleAns, handleEdited, handleError, handleOptions, handleQuestion, handleSubject, initiateExam, initiateQuestions, loadViewExamData } from '../redux-toolkit/slices/teacher';
 import { validateField } from '../Validation/validation';
 import { getCurrUserData } from '../Current User/currentUser';
 import { fetchData } from '../redux-toolkit/slices/api';
@@ -12,9 +12,7 @@ const useEditExam = (id) => {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
-
     const examData= useSelector(state=>state.teacher.createExam);
-   
     const sameQuestions = useSelector(state=>state.teacher.questions);
     const [currQuestion,setCurrQuestion]=useState(0);
     const error =useSelector(state=>state.teacher.error)
@@ -249,8 +247,8 @@ const useEditExam = (id) => {
 
       const handleDeleteExam=()=>{
         try{
-          const bool =window.confirm('are you sure you want to delete exam ?');
-          if(bool == false){
+          const bool = window.confirm('are you sure you want to delete exam ?');
+          if(bool === false){
             return
           }
           const deleteExam =async()=>{
@@ -261,7 +259,6 @@ const useEditExam = (id) => {
               params:{id}
             }
             const res =await dispatch(fetchData(config));
-            console.log('res :>> ', res);
             navigate(VIEW_EXAM);
           }
           deleteExam();
@@ -293,7 +290,6 @@ const useEditExam = (id) => {
       }
       
   return {
-
       eData,
       createExamFields,
       currQuestion,

@@ -11,25 +11,27 @@ const SignUp = () => {
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(handleError({}));
 
-    return () => {
-      dispatch(initiateSignupData())
-    }
-  }, [])
 
   const { signupField, handleSignup } = useSignupData();
   const status = useSelector(state => state.api.status);
   const Login = JSON.parse(localStorage.getItem('login'));
   const role = getCurrUserData().role;
 
+  useEffect(() => {
+    dispatch(handleError({}));
+
+    return () => {
+      dispatch(initiateSignupData())
+    }
+  }, [dispatch])
+
   const dropDownOptions = ['student', 'teacher'];
 
   if (Login) {
     return <Navigate to={`/${role}/dashboard`} />
   }
-
+  
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="bg-white shadow-md rounded-lg p-8 max-w-sm w-full">

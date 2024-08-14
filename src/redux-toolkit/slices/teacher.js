@@ -5,7 +5,6 @@ const initialState = {
     allStudentData:[],
     verifiedStudentData:[],
     error:[],
-    error2:[],
     viewExam:[],
     currStudentDetail:{},
     createExam:{
@@ -50,7 +49,7 @@ export const teacherSlice = createSlice({
         
 
         handleError:(state, action) => {            
-           state.error={...state.error,...action.payload}
+           state.error = {...state.error,...action.payload}
         },
         handleAns:(state, action) => {
             state.edited = true;
@@ -82,13 +81,13 @@ export const teacherSlice = createSlice({
         handleSubject:(state, action) => {
             state.edited = true;
             const {name, value} = action.payload;
-            console.log('name,value :>> ', name,value);
+            
             state.error = {};
             state.createExam[name] = value;          
             setItemLocal('createExam', JSON.stringify(state.createExam));
         },
         handleAnsIndexes:(state, action) => {
-            console.log('handleAnsIndex -- action :>> ', action);
+           
             state.ansIndex[action.payload.currQuestion] = action.payload.ansIndex;
             setItemLocal('ansIndex', JSON.stringify(state.ansIndex));
         },
@@ -98,7 +97,7 @@ export const teacherSlice = createSlice({
 
         initiateExam:(state, action) => {
             state.error = {};
-            console.log('initiateExamn -- action.payload :>> ', action.payload);
+    
             state['createExam'] = action.payload;
         },
         initiateAnsIndex:(state, action) => {
@@ -108,20 +107,22 @@ export const teacherSlice = createSlice({
             state.questions = [];
         },
 
+        updateSearchQuery:(state, action) => {
+            state.searchQuery = action.payload.trim();
+        },
+        updateFilteredData:(state, action) => {
+            state.filteredData = action.payload;
+        },
+
         addNewQuestion:(state, action) => {
             state.createExam.questions.push(action.payload);
         },
         setAnsIndex:(state, action) => {
             state.ansIndex = [];
             state.ansIndex.splice();
-        },
-
-        updateSearchQuery:(state, action) => {
-            state.searchQuery = action.payload;
-        },
-        updateFilteredData:(state, action) => {
-            state.filteredData = action.payload;
         }
+
+        
     }
 })
 
@@ -150,179 +151,6 @@ export const {
 export default teacherSlice.reducer;
 
 
-
-
-
-
-///////////////////--------------
-
-
-// import { createSlice } from "@reduxjs/toolkit";
-// import { setItemLocal } from "../../utils/localStorageFunction";
-
-// const initialState = {
-//     allStudentData:[],
-//     verifiedStudentData:[],
-//     error:[],
-//     error2:[],
-//     viewExam:[],
-//     currStudentDetail:{},
-//     createExam:{
-//         subjectName:'',
-//         questions:[
-//             {
-//                 question:'',
-//                 options:[
-//                     '',
-//                     '',
-//                     '',
-//                     ''
-//                 ],
-//                 answer:""
-//             }
-//         ],
-//         notes:['test notes']
-//     },
-//     questions:[],
-//     edited:false,
-//     ansIndex:[],
-//     searchQuery:'',
-//     filteredData:[]
-// }
-
-// export const teacherSlice = createSlice({
-//     name:'teacher',
-//     initialState,
-//     reducers:{
-//         loadAllStudentData:(state, action) => {
-//             state.allStudentData = action.payload;
-//         },
-//         loadVerifiedStudentData:(state, action) => {
-//             state.verifiedStudentData = action.payload;
-//         },    
-//         loadViewExamData:(state, action) => {
-//             state.viewExam = action.payload;
-//         },
-//         loadCurrStudentDetail:(state, action) => {
-//             state.currStudentDetail = action.payload;
-//         },
-        
-
-//         handleError:(state, action) => {
-            
-//             // console.log('action.payload :>> ',state.error,action.payload, { ...state.error,...action.payload});
-
-//             // console.log('typeof(state.error) :>> ', Array.isArray(state.error2));
-//             // // state.error = [ ...state.error,  ...action.payload];
-            
-//             // state.error.push(action.payload);
-//             // console.log('state.error :>> ', state.error);
-            
-//             // const b = {...state.error,...action.payload}
-//             // console.log('b :>> ', b);
-//             // console.log('state.error :>> ', state.error);
-
-//             // state.error.push({'a':1234})
-//             state.error.push(action.payload)
-            
-           
-//         },
-//         handleAns:(state, action) => {
-//             state.edited = true;
-//             const {queIndex, ans} = action.payload;
-//             state.error = [...state.error];
-//             state.createExam.questions[queIndex].answer = ans;
-//             localStorage.setItem('createExam', JSON.stringify(state.createExam));
-//         },
-//         handleOptions:(state, action) => {
-//             state.edited = true;
-//             const {queIndex, opIndex, value} = action.payload;
-//             state.error = [...state.error];
-//             state.createExam.questions[queIndex].options[opIndex] = value;
-//             setItemLocal('createExam', JSON.stringify(state.createExam));
-//         },
-//         handleQuestion:(state, action) => {
-//             state.edited = true;
-//             const {name, value, queIndex} = action.payload;
-//             state.error = [...state.error];
-//             state.createExam.questions[queIndex][name] = value;
-//             setItemLocal('createExam', JSON.stringify(state.createExam));
-//         },
-//         handleQuestions:(state, action) => {
-//             state.edited = true;
-//             const questions = action.payload;
-//             state.createExam.questions = questions;
-//             setItemLocal('createExam', JSON.stringify(state.createExam));
-//         },
-//         handleSubject:(state, action) => {
-//             state.edited = true;
-//             const {name, value} = action.payload;
-//             console.log('name,value :>> ', name,value);
-//             state.error = [...state.error];
-//             state.createExam[name] = value;          
-//             setItemLocal('createExam', JSON.stringify(state.createExam));
-//         },
-//         handleAnsIndexes:(state, action) => {
-//             console.log('handleAnsIndex -- action :>> ', action);
-//             state.ansIndex[action.payload.currQuestion] = action.payload.ansIndex;
-//             setItemLocal('ansIndex', JSON.stringify(state.ansIndex));
-//         },
-//         handleEdited:(state, action) => {
-//             state.edited = false;
-//         },
-
-//         initiateExam:(state, action) => {
-//             state.error = [...state.error];
-//             console.log('initiateExamn -- action.payload :>> ', action.payload);
-//             state['createExam'] = action.payload;
-//         },
-//         initiateAnsIndex:(state, action) => {
-//             state.ansIndex = action.payload;
-//         },
-//         initiateQuestions:(state, action) => {
-//             state.questions = [];
-//         },
-
-//         addNewQuestion:(state, action) => {
-//             state.createExam.questions.push(action.payload);
-//         },
-//         setAnsIndex:(state, action) => {
-//             state.ansIndex = [];
-//             state.ansIndex.splice();
-//         },
-
-//         updateSearchQuery:(state, action) => {
-//             state.searchQuery = action.payload;
-//         },
-//         updateFilteredData:(state, action) => {
-//             state.filteredData = action.payload;
-//         }
-//     }
-// })
-
-// export const {
-//     loadAllStudentData,
-//     loadVerifiedStudentData,
-//     handleError,
-//     loadViewExamData,
-//     loadCurrStudentDetail,   
-//     initiateAnsIndex,
-//     initiateExam,
-//     addNewQuestion,
-//     handleAns,
-//     handleQuestion,
-//     handleQuestions,
-//     handleSubject,
-//     initiateQuestions,
-//     handleOptions,
-//     handleAnsIndexes,
-//     handleEdited,
-//     setAnsIndex,
-//     updateSearchQuery,
-//     updateFilteredData
-// } = teacherSlice.actions;
-
-// export default teacherSlice.reducer;
 
 
 

@@ -1,12 +1,8 @@
 import React from 'react'
 import Pagination from './Pagination'
-import { useSelector } from 'react-redux'
+
 
 const CurrStudentDetail = ({currStudentDetail}) => {
-
-    
-    console.log("currStudentDetail",currStudentDetail)
-    const keys = ['subjectName','rank','score','resultStatus']
 
   return (
     <div className='flex flex-col text-xl max-[350px]:text-lg'>

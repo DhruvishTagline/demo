@@ -25,6 +25,7 @@ const InputField = ({fieldData,ansIndex,subjectName,er}) => {
         variant="outlined"
         placeholder={fieldData?.label}
         InputLabelProps={{ shrink: true }}
+        required
        
         onChange={
           fieldData?.name ==='subjectName' ?(e)=>{
@@ -40,8 +41,7 @@ const InputField = ({fieldData,ansIndex,subjectName,er}) => {
                 ans:fieldData?.data?.[fieldData.id],
                 ansIndex:fieldData?.ansIndex
             }            
-            console.log('fieldData.optionArr :>> ', fieldData.optionArr);
-            console.log('fieldData?.optionArr?.includes(e?.target?.value :>> ', fieldData?.optionArr?.includes(e?.target?.value));
+           
             if(fieldData?.optionArr?.includes(e?.target?.value)){
                 
                 // const error = {};
@@ -51,7 +51,8 @@ const InputField = ({fieldData,ansIndex,subjectName,er}) => {
                 dispatch(fieldData.updateData(data));
                 dispatch(handleError({[fieldData.name]:'option is already present'}));
                 return;
-            }                        
+            }                
+            dispatch(handleError({[fieldData.name]:''}));   
             dispatch(fieldData.updateData(data))
           } 
         }

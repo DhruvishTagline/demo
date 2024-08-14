@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import { getCurrUserData} from '../../../Current User/currentUser';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchData } from '../../../redux-toolkit/slices/api';
@@ -10,16 +10,11 @@ import { removeItemLocal, setItemLocal } from '../../../utils/localStorageFuncti
 
 const ViewStudentDetail = () => {
 
-     
-    
     const [searchParams,setSearchParams]=useSearchParams();
     const id = searchParams.get('id');
-    
-   
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const currStudentDetail = useSelector(state => state.teacher.currStudentDetail);
-    console.log('currStudentDetail :>> ', currStudentDetail);
     const status = useSelector(state => state.api.status);
     
 
@@ -43,14 +38,14 @@ const ViewStudentDetail = () => {
                     navigate(ALL_STUDENT)
                     return;
                  }
-                  console.log('Student Detail', res.payload.data[0])
+                 
                 dispatch(loadCurrStudentDetail(res.payload.data[0]));
             }
             fetchStudentDetail();
         }catch(error){
             console.log('error', error)
         }
-    },[])
+    },[dispatch,id,navigate])
 
     const goBack = () => {
         navigate('/teacher/allstudent');
@@ -61,18 +56,16 @@ const ViewStudentDetail = () => {
         <div >
             {
                 status === 'loading' ? 
-                    <div className='spinner mt-[20px]'></div> 
-                        :
-                            <div>
-                                <p className='text-center mb-4 text-4xl'>Student Detail</p>
-                                <CurrStudentDetail currStudentDetail={currStudentDetail}/>
-                                <button
-                                onClick={goBack}
-                                className='mt-[30px] ml-[45%] bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
-                                >Back</button>
-                            </div>
+                <div className='spinner mt-[20px]'></div> :
+                <div>
+                    <p className='text-center mb-4 text-4xl'>Student Detail</p>
+                    <CurrStudentDetail currStudentDetail={currStudentDetail}/>
+                    <button
+                        onClick={goBack}
+                        className='mt-[30px] ml-[45%] bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
+                    >Back</button>
+                </div>               
             }
-            
         </div>
     </div>
   )

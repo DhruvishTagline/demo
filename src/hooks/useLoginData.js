@@ -1,10 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 import { handleError, handleLogin, handleLoginData, initiateLoginData } from "../redux-toolkit/slices/user";
-
 import { fetchData } from "../redux-toolkit/slices/api";
 import { useState } from "react";
 import { useNavigate } from "react-router";
-
 import { setItemLocal } from "../utils/localStorageFunction";
 import { validateField } from "../Validation/validation";
 
@@ -58,10 +56,8 @@ export const useLoginData = () => {
     }
 
     const handleSubmit = async() => {
-      console.log("handle submit called")
         try{
           const error = validateField(loginData,validate);
-
           if(Object.keys(error).length !== 0){
             dispatch(handleError(error));
             return;
@@ -75,21 +71,18 @@ export const useLoginData = () => {
           const res = await dispatch(fetchData(config))
           
           if(res.payload.statusCode === 500){
-            console.log(res.payload.message);   // if email is not verified
             setDisable(false);
             return;
           }
           if(res.payload.statusCode === 400){
-            console.log('check once more something wrong');
             return;
           }
-          console.log('Login Successful');
+         
           setItemLocal('userData',res.payload.data);
           setItemLocal('login',true)
           dispatch(handleLogin(true));
-          dispatch(initiateLoginData());    //we have to store login data in redux or not?
-        
-      
+          dispatch(initiateLoginData());   
+
           navigate(`/${res.payload.data.role}/dashboard`,{replace:true});
         }catch(error){
           setDisable(false);

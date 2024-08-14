@@ -20,10 +20,9 @@ export const useCreateExam = () => {
     const [currQuestion,setCurrQuestion] = useState(0);
     const error = useSelector(state => state.teacher.error);
     const sameQuestions = useSelector(state => state.teacher.questions);
-    const totalQuestion = 14;
+    // const totalQuestion = 14;
     const sameOptionError = useSelector(state => state.teacher.error);
 
-    
     const validateExamData = {
         subjectName:examData?.subjectName,
         question:examData?.questions?.[currQuestion]?.question,
@@ -225,19 +224,15 @@ export const useCreateExam = () => {
               ]
           }
       ],
-      notes:['gffgdg']
+      notes:['test note']
     }
 
     const handleCreateExam = () => {
-      
-        console.log("before validateExamData -- > question",validateExamData.question)
+
         if((sameQuestions.includes(validateExamData.question) && sameQuestions.length === currQuestion ) || sameQuestions[currQuestion] !== validateExamData.question)
         {
           validateExamData.question = sameQuestions;
         }
-
-        console.log("after validateExamData -- > question",validateExamData.question)
-
         const error = validateField(validateExamData,validate);
 
         if(Object.keys(error).length !== 0){
@@ -257,8 +252,7 @@ export const useCreateExam = () => {
               headers: { "access-token":getCurrUserData().token }
             }
             const res = await dispatch(fetchData(config));
-            console.log("resssssss",res)
-            console.log('Exam Created Successfully');
+           
             setCurrQuestion(0);
             dispatch(initiateQuestions());
             
@@ -273,6 +267,7 @@ export const useCreateExam = () => {
     const handleCancel = () => {
       
         dispatch(initiateExam(initiateConfig));
+        dispatch(handleSubject(""))
         dispatch(initiateQuestions());
         dispatch(initiateAnsIndex([]));
         removeItemLocal('ansIndex')

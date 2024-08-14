@@ -1,7 +1,7 @@
-import axios from 'axios';
-import React, { useState } from 'react'
+
+import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { Navigate, useLocation, useNavigate, useParams, useSearchParams } from 'react-router-dom'
+import { Navigate, useNavigate,  useSearchParams } from 'react-router-dom'
 import { getItemLocal } from '../utils/localStorageFunction';
 import { getCurrUserData } from '../Current User/currentUser';
 import { handleError, handleNewPassword } from '../redux-toolkit/slices/user';
@@ -12,13 +12,11 @@ import InputField from './InputField';
 
 const NewPassword = () => {
 
-
     const dispatch =useDispatch();
     const navigate = useNavigate();
-
     const newPassword=useSelector(state=>state.user.newPassword);
     const error=useSelector(state=>state.user.error);
-    const [searchParams,serSearchParams]=useSearchParams();
+    const [searchParams,setSearchParams]=useSearchParams();
     const token =searchParams.get('token');
     const login =getItemLocal('login');
     const role = getCurrUserData().role;
@@ -77,7 +75,6 @@ const NewPassword = () => {
     }
 
     const handleChangePassword=async()=>{
-
       try{
         const error= validateField(newPassword,validate);
         if(Object.keys(error).length !== 0){
@@ -91,7 +88,6 @@ const NewPassword = () => {
           params:{token} 
         }
         const res = await dispatch(fetchData(config));
-        console.log('Password change sucessfully');
         navigate(LOGIN_PAGE);
       }catch(error){
         console.log("error",error);

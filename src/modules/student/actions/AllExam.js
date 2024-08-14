@@ -17,8 +17,6 @@ const AllExam = () => {
   const navigate = useNavigate();
   const allExamData = useSelector(state=>state.student.allExamData);
   const status = useSelector(state => state.api.status);
-  console.log('allExamData :>> ', allExamData);
-
   const lastVisitedPage =useSelector(state=>state.user.prevVisitedPage);
   const filteredData = useSelector(state => state.teacher.filteredData);
   const searchQuery = useSelector(state => state.teacher.searchQuery);
@@ -43,14 +41,13 @@ const AllExam = () => {
       dispatch(handlePrevVisitedPage(1));
       fetchAllExam();
     }
-  },[]);
+  },[navigate,dispatch,allExamData.length]);
 
 
   useEffect(() => {
     const filtered = allExamData?.filter(exam =>
       exam.subjectName.toLowerCase().includes(searchQuery.toLowerCase()) 
     );
-    console.log('filtered Data of AllStudent :>> ', filtered);
     dispatch(updateFilteredData(filtered));
   }, [searchQuery, allExamData, dispatch]);
 
@@ -62,14 +59,13 @@ const AllExam = () => {
   }
     return (
       <div className='flex items-center flex-col mt-4'>
-      
         <div className='w-full max-w-6xl max-h-[90%] p-6 bg-white rounded-lg'>
             {
               status === 'loading' ? 
               <div className='spinner mt-20 mx-auto'></div> :
               <div>
                 <p className='text-center text-4xl mb-4'>All Exams</p>
-                <FilterFeild searchQuery={searchQuery}/>
+                <FilterFeild searchQuery={searchQuery} />
                 <Pagination 
                   data={filteredData} 
                   keys={keys} 

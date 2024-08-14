@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit"
 
-
 const initialState = {
     loginData:{},
     signupData:{
@@ -32,7 +31,6 @@ export const userSlice = createSlice({
             const {name,value} = action.payload;
             state.error = {};
             state.signupData[name] = value;
-            console.log('state.signupData :>> ', state.signupData[name]);
         },
         handleError:(state,action) => {
             state.error = action.payload;
@@ -99,6 +97,7 @@ export const
         handlePrevVisitedPage,
         initiateForgetPassword,
         handleMenu
+        
     } = userSlice.actions;
 
 export default userSlice.reducer;

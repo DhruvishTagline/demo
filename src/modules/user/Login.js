@@ -11,11 +11,11 @@ const Login = () => {
 
   useEffect(() => {
     dispatch(handleError({}));
-
+    
     return () => {
       dispatch(initiateLoginData());
     };
-  }, []);
+  }, [dispatch]);
 
   const { loginField, handleSubmit } = useLoginData();
   let status = useSelector((state) => state.api.status);
