@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getCurrUserData } from '../../../Current User/currentUser';
 import { fetchData } from '../../../redux-toolkit/slices/api';
 import { getItemLocal, removeItemLocal, setItemLocal } from '../../../utils/localStorageFunction';
-import { ALL_EXAM, LOGIN_PAGE } from '../../../utils/constant';
+import { ALL_EXAM, EXAM_ESTRICTION_PAGE, LOGIN_PAGE } from '../../../utils/constant';
 import { initiateExamPaper, loadExamPaper } from '../../../redux-toolkit/slices/student';
 import { initiateAnsIndex } from '../../../redux-toolkit/slices/teacher';
 import ShowExam from '../../../shared/ShowExam';
@@ -51,8 +51,9 @@ const GiveExam = () => {
         return;
       }
 
-      if(res?.payload?.statusCode===500){
-        navigate(ALL_EXAM);
+      if (res?.payload?.statusCode === 500) {
+        const message = res?.payload?.message;
+        navigate(EXAM_ESTRICTION_PAGE, { state: { message } });
         return;
       }
       
@@ -136,3 +137,4 @@ const GiveExam = () => {
 }
 
 export default GiveExam
+

@@ -81,13 +81,11 @@ export const teacherSlice = createSlice({
         handleSubject:(state, action) => {
             state.edited = true;
             const {name, value} = action.payload;
-            
             state.error = {};
             state.createExam[name] = value;          
             setItemLocal('createExam', JSON.stringify(state.createExam));
         },
         handleAnsIndexes:(state, action) => {
-           
             state.ansIndex[action.payload.currQuestion] = action.payload.ansIndex;
             setItemLocal('ansIndex', JSON.stringify(state.ansIndex));
         },
@@ -97,7 +95,6 @@ export const teacherSlice = createSlice({
 
         initiateExam:(state, action) => {
             state.error = {};
-    
             state['createExam'] = action.payload;
         },
         initiateAnsIndex:(state, action) => {
@@ -121,8 +118,6 @@ export const teacherSlice = createSlice({
             state.ansIndex = [];
             state.ansIndex.splice();
         }
-
-        
     }
 })
 

@@ -26,11 +26,13 @@ const CreateExam = () => {
 
 useEffect(() => {
   const createExamData = getItemLocal('createExam');
+  handleCancel();
 
   if(!createExamData){
     dispatch(initiateExam(initiateConfig));
     dispatch(initiateAnsIndex([]));
   }else{  
+    
     dispatch(initiateExam(createExamData))
     if(ansIndex !== null){
       dispatch(initiateAnsIndex(ansIndex))

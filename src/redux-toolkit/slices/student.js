@@ -14,7 +14,6 @@ export const studentSlice = createSlice({
     initialState,
     reducers:{
         loadAllExamData:(state,action)=>{
-            
             state.allExamData=action.payload;
         },
         loadExamPaper:(state,action) => {

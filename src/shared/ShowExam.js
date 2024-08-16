@@ -18,6 +18,8 @@ const ShowExam = ({
       const totalQuestion = totalQue ||  15;
       const examData = useSelector(state => state.teacher.createExam);
       const dispatch = useDispatch();
+      const status = useSelector(state => state.api.status);
+
     
       const handlePrevQuestion = () => {
         dispatch(handleError({}));
@@ -55,6 +57,11 @@ const ShowExam = ({
   
       return (
         <div>
+          
+          {status === 'loading' ? 
+            <div className='spinner mt-20 mx-auto'></div> :
+          
+         <div>
           <div>
             {
               createExamFields.map((field,i) => {
@@ -84,6 +91,10 @@ const ShowExam = ({
             >Next</button>
 
           </div>
+         </div>
+         
+}
+
         </div>
       )
 }
