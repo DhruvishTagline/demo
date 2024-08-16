@@ -7,6 +7,7 @@ import { loadCurrStudentDetail } from '../../../redux-toolkit/slices/teacher';
 import CurrStudentDetail from '../../../shared/CurrStudentDetail';
 import { ALL_STUDENT } from '../../../utils/constant';
 import { removeItemLocal, setItemLocal } from '../../../utils/localStorageFunction';
+import { toast } from 'react-toastify';
 
 const ViewStudentDetail = () => {
 
@@ -29,16 +30,22 @@ const ViewStudentDetail = () => {
                 }
                 const res = await dispatch(fetchData(config));
                 if(res?.payload?.statusCode === 401){
+                    toast(res?.payload?.message)
                     removeItemLocal('userData');
                     setItemLocal('login',false);
                     navigate('/login')
                     return;
-                  }
+                }
                 if(res?.payload?.statusCode === 500){
+                    toast(res?.payload?.message)
                     navigate(ALL_STUDENT)
                     return;
-                 }
-                 
+                }
+                if(res?.payload?.statusCode !== 200){
+                    toast(res?.payload?.message)
+                    navigate(ALL_STUDENT);
+                    return;
+                } 
                 dispatch(loadCurrStudentDetail(res.payload.data[0]));
             }
             fetchStudentDetail();

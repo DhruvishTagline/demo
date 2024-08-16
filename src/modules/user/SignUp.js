@@ -11,8 +11,6 @@ const SignUp = () => {
 
   const dispatch = useDispatch();
 
-
-
   const { signupField, handleSignup } = useSignupData();
   const status = useSelector(state => state.api.status);
   const Login = JSON.parse(localStorage.getItem('login'));

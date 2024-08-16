@@ -9,6 +9,7 @@ import { handlePrevVisitedPage } from '../../../redux-toolkit/slices/user';
 import { removeItemLocal, setItemLocal } from '../../../utils/localStorageFunction';
 import { LOGIN_PAGE } from '../../../utils/constant';
 import FilterFeild from '../../../shared/FilterFeild';
+import { toast } from 'react-toastify';
 
 const ViewExam = () => {
 
@@ -32,13 +33,15 @@ const ViewExam = () => {
           url:'dashboard/Teachers/viewExam',
           headers: { "access-token":getCurrUserData().token }
       }
-      const res = await dispatch(fetchData(config))
-      if(res?.payload?.statusCode === 401){
+      const res = await dispatch(fetchData(config));
+      if(res?.payload?.statusCode !== 200){
+        toast(res?.payload?.message);
         removeItemLocal('userData');
         setItemLocal('login',false);
         navigate(LOGIN_PAGE)
         return;
       }
+      toast(res?.payload?.message);
       dispatch(loadViewExamData(res.payload.data));
       }catch(error){
         console.log('error', error)
@@ -55,7 +58,7 @@ const ViewExam = () => {
         exam.subjectName.toLowerCase().includes(searchQuery.toLowerCase()) 
     );
     dispatch(updateFilteredData(filtered))
-},[searchQuery,viewExam,dispatch])
+  },[searchQuery,viewExam,dispatch])
 
   return (
     <div className='flex justify-center mt-[70px]'>

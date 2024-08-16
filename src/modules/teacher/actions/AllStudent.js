@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router';
 import { handlePrevVisitedPage } from '../../../redux-toolkit/slices/user';
 import { removeItemLocal, setItemLocal } from '../../../utils/localStorageFunction';
 import FilterFeild from '../../../shared/FilterFeild';
+import { toast } from 'react-toastify';
 
 const AllStudent = () => {
   const dispatch = useDispatch();
@@ -27,19 +28,24 @@ const AllStudent = () => {
         url: 'dashboard/Teachers',  
         headers: { "access-token": getCurrUserData().token }  
       }  
+      
       const res = await dispatch(fetchData(config));  
-      if (res?.payload?.statusCode === 401) {  
+      if (res?.payload?.statusCode !== 200) {  
+        toast(res?.payload?.message);
         removeItemLocal('userData');  
         setItemLocal('login', false);  
         navigate('/login')  
         return;  
       }
+      toast(res?.payload?.message);
       dispatch(loadAllStudentData(res?.payload?.data));
     }
+
     if (allStudentData?.length === 0) {
       dispatch(handlePrevVisitedPage(1));
       fetchAllStudentData();
     }
+    
   }, [allStudentData?.length, dispatch, navigate]);
 
   useEffect(() => {

@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import { setItemLocal } from "../utils/localStorageFunction";
 import { validateField } from "../Validation/validation";
+import { toast } from "react-toastify";
 
 export const useLoginData = () => {
     const dispatch = useDispatch();
@@ -56,6 +57,7 @@ export const useLoginData = () => {
     }
 
     const handleSubmit = async() => {
+        
         try{
           const error = validateField(loginData,validate);
           if(Object.keys(error).length !== 0){
@@ -71,17 +73,22 @@ export const useLoginData = () => {
           const res = await dispatch(fetchData(config))
           
           if(res.payload.statusCode === 500){
-            setDisable(false);
-            return;
-          }
-          if(res.payload.statusCode === 400){
-            return;
-          }
-         
-          setItemLocal('userData',res.payload.data);
-          setItemLocal('login',true)
-          dispatch(handleLogin(true));
-          dispatch(initiateLoginData());   
+            toast(res?.payload?.message)
+            console.log(res?.payload?.message);    
+            setDisable(false);    
+            return;    
+          }    
+          if(res.payload.statusCode === 400){    
+            toast(res?.payload?.message);    
+            console.log(res?.payload?.message);    
+            return;    
+          }    
+          toast('LogIn Successfully')
+             
+          setItemLocal('userData',res.payload.data);    
+          setItemLocal('login',true)    
+          dispatch(handleLogin(true));    
+          dispatch(initiateLoginData());       
 
           navigate(`/${res.payload.data.role}/dashboard`,{replace:true});
         }catch(error){

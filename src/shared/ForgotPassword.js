@@ -9,6 +9,7 @@ import { validateField } from '../Validation/validation';
 import { fetchData } from '../redux-toolkit/slices/api';
 import { LOGIN_PAGE } from '../utils/constant';
 import InputField from './InputField'
+import { toast } from 'react-toastify';
 
 const ForgotPassword = () => {
 
@@ -62,16 +63,17 @@ const ForgotPassword = () => {
           data:forgetPassword
         }
         const res =await dispatch(fetchData(config));
-        if(res.payload.statusCode === 500){
-          console.log('Email not Found please sign in');
+        if(res?.payload?.statusCode === 500){
+          toast(res?.payload?.message);
           return;
         }
-        if(res.payload.statusCode === 400){
-          console.log('Please check email')
+        if(res?.payload?.statusCode === 400){
+          toast(res?.payload?.message);
+          return;
         }
+        toast(res?.payload?.message)
         navigate(LOGIN_PAGE);
         dispatch(initiateForgetPassword({}));
-        
       }
       catch(error){
         console.log("error",error);
@@ -86,11 +88,11 @@ const ForgotPassword = () => {
         {
           !login && 
           <div className='flex items-center flex-col mt-[70px]'>
-              <p className='text-center mb-4 text-4xl'>Forget Password</p>
+              <p className='text-center mb-4 text-4xl'>Forget Password </p>
               <InputField fieldData={fieldData}/>
               <button 
                 onClick={sendMail}
-                className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-2 `}
+                className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-2`}
               >Submit
               </button>
           </div>

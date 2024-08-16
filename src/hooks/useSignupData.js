@@ -5,6 +5,7 @@ import { validateField } from "../Validation/validation";
 import { fetchData } from "../redux-toolkit/slices/api";
 import { useNavigate } from "react-router";
 import { LOGIN_PAGE } from "../utils/constant";
+import { toast } from "react-toastify";
 
 export const useSignupData = () => {
 
@@ -104,11 +105,11 @@ export const useSignupData = () => {
           
           const res = await dispatch(fetchData(config))
           if(res.payload.statusCode === 400){
-            console.log('check once more something wrong');
+            toast('check once more something wrong');
             return;
           }
           if(res?.payload?.statusCode !== 200){
-            console.log('Email Already Exist Please Login');
+            toast('Email Already Exist Please Login');
             return;
           }
           dispatch(initiateSignupData());

@@ -88,6 +88,14 @@ const NewPassword = () => {
           params:{token} 
         }
         const res = await dispatch(fetchData(config));
+        if(res?.payload?.statusCode===500){
+          console.log('Password not match');
+          return;
+        }
+        if(res?.payload?.statusCode===400){
+          console.log('Something Went Wrong');
+          return;
+        }
         navigate(LOGIN_PAGE);
       }catch(error){
         console.log("error",error);

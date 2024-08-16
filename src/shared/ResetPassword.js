@@ -6,6 +6,7 @@ import { getCurrUserData } from '../Current User/currentUser';
 import { fetchData } from '../redux-toolkit/slices/api';
 import { validateField } from '../Validation/validation';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const ResetPassword = () => {
 
@@ -116,10 +117,11 @@ const ResetPassword = () => {
                 headers: { "access-token":`${token}` }
             }
             const res = await dispatch(fetchData(config));
-            if(res.payload.statusCode === 500){
-                console.log("Old Password and New Password are same")
+            if(res.payload.statusCode !== 200){
+                toast(res?.payload?.message)
                 return;
             }
+            toast(res?.payload?.message)
             dispatch(initiateResetPassword());
             navigate(`/${role}/dashboard`);
         }catch(error){

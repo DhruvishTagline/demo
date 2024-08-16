@@ -9,6 +9,7 @@ import { useNavigate } from "react-router";
 import { validateField } from "../Validation/validation";
 import { removeItemLocal } from "../utils/localStorageFunction";
 import { VIEW_EXAM } from "../utils/constant";
+import { toast } from "react-toastify";
 
 
 export const useCreateExam = () => {
@@ -256,7 +257,12 @@ export const useCreateExam = () => {
             setCurrQuestion(0);
             dispatch(initiateQuestions());
             
-            navigate(VIEW_EXAM);
+            if(res?.payload?.statusCode !== 200){
+              toast(res?.payload?.message)
+              navigate(VIEW_EXAM);  
+            }
+            toast(res?.payload?.message);
+            
           }catch(err){
             console.log('error', err)
           }

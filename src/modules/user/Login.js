@@ -5,13 +5,13 @@ import { Link, Navigate } from 'react-router-dom';
 import { useLoginData } from '../../hooks/useLoginData';
 import { handleError, initiateLoginData } from '../../redux-toolkit/slices/user';
 import { getCurrUserData } from '../../Current User/currentUser';
+import { toast } from "react-toastify";
 
 const Login = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(handleError({}));
-    
     return () => {
       dispatch(initiateLoginData());
     };

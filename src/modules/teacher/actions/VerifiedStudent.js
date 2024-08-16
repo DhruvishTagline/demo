@@ -7,6 +7,7 @@ import {  loadVerifiedStudentData, updateFilteredData, updateSearchQuery } from 
 import { useNavigate } from 'react-router';
 import { removeItemLocal, setItemLocal } from '../../../utils/localStorageFunction';
 import FilterFeild from '../../../shared/FilterFeild';
+import { toast } from 'react-toastify';
 
 const VerifiedStudent = () => {
 
@@ -28,11 +29,13 @@ const VerifiedStudent = () => {
             }
             const res = await dispatch(fetchData(config))
             if(res?.payload?.statusCode === 401){
+                toast(res?.payload?.message);
                 removeItemLocal('userData');
                 setItemLocal('login',false);
                 navigate('/login')
                 return;
-              }
+            }
+            toast(res?.payload?.message)
             dispatch(loadVerifiedStudentData(res?.payload?.data));
         }
         if(verifiedStudentData.length === 0){

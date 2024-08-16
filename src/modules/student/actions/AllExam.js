@@ -5,11 +5,11 @@ import { getCurrUserData } from '../../../Current User/currentUser';
 import { fetchData } from '../../../redux-toolkit/slices/api';
 import { removeItemLocal, setItemLocal } from '../../../utils/localStorageFunction';
 import { handlePrevVisitedPage } from '../../../redux-toolkit/slices/user';
-
 import Pagination from '../../../shared/Pagination';
 import { loadAllExamData } from '../../../redux-toolkit/slices/student';
 import { updateFilteredData } from '../../../redux-toolkit/slices/teacher';
 import FilterFeild from '../../../shared/FilterFeild';
+import { toast } from 'react-toastify';
 
 
 const AllExam = () => {
@@ -31,11 +31,13 @@ const AllExam = () => {
       }
       const res = await dispatch(fetchData(config));
       if(res?.payload?.statusCode === 401){
+        toast(res?.payload?.message)
         removeItemLocal('userData');
         setItemLocal('login',false);
         navigate('/login');
         return;
       }
+      toast(res?.payload?.message);
       dispatch(loadAllExamData(res?.payload?.data))
     }
     if(allExamData.length === 0){
@@ -52,8 +54,6 @@ const AllExam = () => {
     dispatch(updateFilteredData(filtered));
   }, [searchQuery, allExamData, dispatch]);
 
-
-  const keys =['subjectName','email'];
   const btn ={
     giveExamBtn : '/student/give-exam',
     ShowResultBtn: '/student/show-result'
@@ -65,13 +65,11 @@ const AllExam = () => {
               status === 'loading' ? 
               <div className='spinner mt-20 mx-auto'></div> :
               <div>
-                <p className='text-center text-4xl mb-4'>All Exams</p>
+                <p className='text-center text-4xl mb-4'>All Exams</p>. 
                 <FilterFeild searchQuery={searchQuery} />
                 <Pagination 
                   data={filteredData} 
-                  keys={keys} 
-                  studentBtn={btn} 
-                  searchKey={['subjectName','email']}  
+                  studentBtn={btn}  
                   lastVisitedPage={lastVisitedPage}
                 />
               </div>                     

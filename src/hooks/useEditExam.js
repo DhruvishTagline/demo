@@ -6,6 +6,7 @@ import { validateField } from '../Validation/validation';
 import { getCurrUserData } from '../Current User/currentUser';
 import { fetchData } from '../redux-toolkit/slices/api';
 import { VIEW_EXAM } from '../utils/constant';
+import { toast } from 'react-toastify';
 
 
 const useEditExam = (id) => {
@@ -236,7 +237,11 @@ const useEditExam = (id) => {
           }
           dispatch(loadViewExamData([]));
           const res = await dispatch(fetchData(config));
-        
+          if(res?.payload?.statusCode !== 200){
+            toast(res?.payload?.message);
+            return;
+          }
+          toast(res?.payload?.message);
           dispatch(initiateQuestions());
           dispatch(handleEdited());
           navigate(VIEW_EXAM)
@@ -259,6 +264,11 @@ const useEditExam = (id) => {
               params:{id}
             }
             const res =await dispatch(fetchData(config));
+            if(res?.payload?.statusCode !== 200){
+              toast(res?.payload?.message);
+              return;
+            }
+            toast(res?.payload?.message);
             navigate(VIEW_EXAM);
           }
           deleteExam();
