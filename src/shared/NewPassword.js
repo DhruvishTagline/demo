@@ -71,7 +71,6 @@ const NewPassword = () => {
           match:true,
           comKey:newPassword.Password
         }
-
       ]
     }
 

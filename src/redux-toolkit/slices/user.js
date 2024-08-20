@@ -97,7 +97,6 @@ export const
         handlePrevVisitedPage,
         initiateForgetPassword,
         handleMenu
-        
     } = userSlice.actions;
 
 export default userSlice.reducer;

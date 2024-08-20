@@ -13,7 +13,7 @@ const EditExam = () => {
 
   const [searchParams,setSearchParams]=useSearchParams();
   const id = searchParams.get('id');
-  const status =useSelector(state=>state.api.status)
+  // const status =useSelector(state=>state.api.status)
 
   const {
     eData,
@@ -61,7 +61,7 @@ const EditExam = () => {
                 validateExamData={validateExamData}
                 validate={validate}   
                 eData={eData} 
-                subjectName={examData?.subjectName}   // subjectName = {subjectName}
+                subjectName={examData?.subjectName}   // subjectName = {subjectName} from searchParams.get()
                 error={error}
                 />
                 

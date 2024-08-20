@@ -44,13 +44,14 @@ useEffect(() => {
     <div className='flex items-center flex-col mt-[10px]'>
       <p className='text-center text-3xl mb-5'>Create Exam</p>
       <ShowExam 
-      createExamFields={createExamFields} 
-      error={error} 
-      setCurrQuestion={setCurrQuestion} 
-      currQuestion={currQuestion}
-      validateExamData={validateExamData}
-      validate={validate}
-      Options={Options} />
+        createExamFields={createExamFields} 
+        error={error} 
+        setCurrQuestion={setCurrQuestion} 
+        currQuestion={currQuestion}
+        validateExamData={validateExamData}
+        validate={validate}
+        Options={Options} 
+      />
 
       <div className='pt-2'>
         <button 

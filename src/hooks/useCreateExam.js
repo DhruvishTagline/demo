@@ -17,7 +17,7 @@ export const useCreateExam = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const examData = useSelector(state => state.teacher.createExam)
+    const examData = useSelector(state => state.teacher.createExam);
     const [currQuestion,setCurrQuestion] = useState(0);
     const error = useSelector(state => state.teacher.error);
     const sameQuestions = useSelector(state => state.teacher.questions);
@@ -225,7 +225,7 @@ export const useCreateExam = () => {
               ]
           }
       ],
-      notes:['test note']
+      notes:['test note'],
     }
 
     const handleCreateExam = () => {
@@ -246,8 +246,8 @@ export const useCreateExam = () => {
 
         const createExam = async() => {
           try{
-            const config = {
-              method:'post',
+            const config = {  
+              method:'post',  
               url:'dashboard/Teachers/Exam',
               data:examData,
               headers: { "access-token":getCurrUserData().token }
@@ -271,7 +271,6 @@ export const useCreateExam = () => {
     }
 
     const handleCancel = () => {
-      
         dispatch(initiateExam(initiateConfig));
         dispatch(handleSubject(""))
         dispatch(initiateQuestions());

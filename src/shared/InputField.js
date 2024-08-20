@@ -69,7 +69,7 @@ const InputField = ({ fieldData, ansIndex, subjectName, er }) => {
             >
               {showPassword ? <VisibilityOff /> : <Visibility />}
             </IconButton>
-          ),
+          )
         }}
       />
       {fieldData?.error ? <span className='text-red-500 text-sm'>{fieldData?.error?.[fieldData?.name]}</span> : null}
