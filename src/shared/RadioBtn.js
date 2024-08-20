@@ -29,7 +29,7 @@ const RadioBtn = ({fieldData}) => {
             }
             dispatch(fieldData.updateData(data))
         }}
-        className='border-black border'
+        className='border-black border h-[10px] w-[10px]'
         />
     </div>
   )

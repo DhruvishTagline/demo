@@ -9,6 +9,7 @@ import { validateField } from '../Validation/validation';
 import { fetchData } from '../redux-toolkit/slices/api';
 import { LOGIN_PAGE } from '../utils/constant';
 import InputField from './InputField';
+import { toast } from 'react-toastify';
 
 const NewPassword = () => {
 
@@ -89,6 +90,7 @@ const NewPassword = () => {
         }
         const res = await dispatch(fetchData(config));
         if(res?.payload?.statusCode===500){
+          toast(res?.payload?.message);
           console.log('Password not match');
           return;
         }
@@ -96,6 +98,7 @@ const NewPassword = () => {
           console.log('Something Went Wrong');
           return;
         }
+        toast('Password Changed Sucessfully');
         navigate(LOGIN_PAGE);
       }catch(error){
         console.log("error",error);

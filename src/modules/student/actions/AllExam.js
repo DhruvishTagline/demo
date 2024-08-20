@@ -65,7 +65,7 @@ const AllExam = () => {
               status === 'loading' ? 
               <div className='spinner mt-20 mx-auto'></div> :
               <div>
-                <p className='text-center text-4xl mb-4'>All Exams</p>. 
+                <p className='text-center text-4xl mb-4'>All Exams</p>
                 <FilterFeild searchQuery={searchQuery} />
                 <Pagination 
                   data={filteredData} 

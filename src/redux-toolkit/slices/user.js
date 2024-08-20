@@ -101,3 +101,98 @@ export const
     } = userSlice.actions;
 
 export default userSlice.reducer;
+
+
+
+
+
+
+
+// import { createSlice } from "@reduxjs/toolkit";
+
+// const initialState = {
+//     signupData: {
+//         name: '',
+//         email: '',
+//         password: '',
+//         role: 'student',
+//     },
+//     login: false,
+//     focused: false,
+//     menu: false,
+//     forgetPassword: {},
+//     newPassword: {},
+//     resetPassword: {},
+//     error: {},
+//     prevVisitedPage: 1,
+// };
+
+// export const userSlice = createSlice({
+//     name: 'user',
+//     initialState,
+//     reducers: {
+//         handleSignupData: (state, action) => {
+//             const { name, value } = action.payload;
+//             state.error = {};
+//             state.signupData[name] = value;
+//         },
+//         handleError: (state, action) => {
+//             state.error = action.payload;
+//         },
+//         handleLogin: (state, action) => {
+//             state.login = action.payload;
+//         },
+//         handleResetPassword: (state, action) => {
+//             const { name, value } = action.payload;
+//             state.error = {};
+//             state.resetPassword[name] = value;
+//         },
+//         initiateSignupData: (state, action) => {
+//             state.signupData = {
+//                 name: '',
+//                 email: '',
+//                 password: '',
+//                 role: 'student',
+//             };
+//         },
+//         initiateForgetPassword: (state, action) => {
+//             state.forgetPassword = action.payload;
+//         },
+//         initiateResetPassword: (state, action) => {
+//             state.error = {};
+//             state.resetPassword = action.payload;
+//         },
+//         handlePrevVisitedPage: (state, action) => {
+//             state.prevVisitedPage = action.payload;
+//         },
+//         handleMenu: (state, action) => {
+//             state.menu = !state.menu;
+//         },
+//         handleForgetPassword: (state, action) => {
+//             const { name, value } = action.payload;
+//             state.error = {};
+//             state.forgetPassword[name] = value;
+//         },
+//         handleNewPassword: (state, action) => {
+//             const { name, value } = action.payload;
+//             state.error = {};
+//             state.newPassword[name] = value;
+//         },
+//     },
+// });
+
+// export const {
+//     handleSignupData,
+//     handleError,
+//     handleForgetPassword,
+//     handleNewPassword,
+//     handleResetPassword,
+//     initiateResetPassword,
+//     handleLogin,
+//     initiateSignupData,
+//     handlePrevVisitedPage,
+//     initiateForgetPassword,
+//     handleMenu,
+// } = userSlice.actions;
+
+// export default userSlice.reducer;
