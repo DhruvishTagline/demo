@@ -2,7 +2,6 @@
 import { useDispatch, useSelector } from "react-redux"
 import { handleAns, handleError, handleOptions, handleQuestion, handleSubject, initiateAnsIndex, initiateExam, initiateQuestions } from "../redux-toolkit/slices/teacher";
 import { useState } from "react";
-
 import { fetchData } from "../redux-toolkit/slices/api";
 import { getCurrUserData } from "../Current User/currentUser";
 import { useNavigate } from "react-router";
@@ -230,7 +229,8 @@ export const useCreateExam = () => {
 
     const handleCreateExam = () => {
 
-        if((sameQuestions.includes(validateExamData.question) && sameQuestions.length === currQuestion ) || sameQuestions[currQuestion] !== validateExamData.question)
+        if( (sameQuestions.includes(validateExamData.question) && sameQuestions.length === currQuestion ) || 
+        sameQuestions[currQuestion] !== validateExamData.question )
         {
           validateExamData.question = sameQuestions;
         }
@@ -243,7 +243,6 @@ export const useCreateExam = () => {
         if(Object.keys(sameOptionError).length !== 0){
           return;
         }
-
         const createExam = async() => {
           try{
             const config = {  
@@ -262,9 +261,9 @@ export const useCreateExam = () => {
               navigate(VIEW_EXAM);  
             }
             toast(res?.payload?.message);
-            
+
           }catch(err){
-            console.log('error', err)
+            console.log('error', err);
           }
         }
         createExam();

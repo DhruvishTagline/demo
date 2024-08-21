@@ -27,6 +27,7 @@ const RadioBtn = ({fieldData}) => {
                 ans:fieldData?.data[fieldData.id],
                 ansIndex:fieldData.ansIndex,
             }
+            console.log('data :>> ', data);
             dispatch(fieldData.updateData(data))
         }}
         className='border-black border h-[10px] w-[10px]'

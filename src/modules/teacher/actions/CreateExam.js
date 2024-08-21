@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { initiateAnsIndex, initiateExam } from '../../../redux-toolkit/slices/teacher';
-import { getItemLocal } from '../../../utils/localStorageFunction';
+import { getItemLocal, removeItemLocal } from '../../../utils/localStorageFunction';
 import ShowExam from '../../../shared/ShowExam';
 import { useCreateExam } from '../../../hooks/useCreateExam';
 
@@ -22,17 +22,24 @@ const CreateExam = () => {
     handleCreateExam,
     initiateConfig,
     handleCancel
-} = useCreateExam();
+  } = useCreateExam();
+
+
+  
 
 useEffect(() => {
+  removeItemLocal('createExam');
+  dispatch(initiateAnsIndex([]))
   const createExamData = getItemLocal('createExam');
+  console.log('createExamData :>> ', createExamData);
+  console.log('createExamFields :>> ', createExamFields);
   handleCancel();
+  
 
   if(!createExamData){
     dispatch(initiateExam(initiateConfig));
     dispatch(initiateAnsIndex([]));
   }else{  
-    
     dispatch(initiateExam(createExamData))
     if(ansIndex !== null){
       dispatch(initiateAnsIndex(ansIndex))
@@ -73,7 +80,3 @@ useEffect(() => {
 }
 
 export default CreateExam
-
-
-
-

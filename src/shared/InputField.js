@@ -17,7 +17,7 @@ const InputField = ({ fieldData, ansIndex, subjectName, er }) => {
   }
 
   const inputType = fieldData?.type === 'password' && showPassword ? 'text' : fieldData?.type;
-  console.log('inputType :>> ', inputType);
+
   
   if(fieldData?.type === 'radio'){
     return <RadioBtn ansIndex={ansIndex} fieldData={fieldData} />
@@ -57,6 +57,7 @@ const InputField = ({ fieldData, ansIndex, subjectName, er }) => {
               return;
             }
             dispatch(handleError({ [fieldData.name]: '' }));
+          
             dispatch(fieldData.updateData(data));
           }
         }
