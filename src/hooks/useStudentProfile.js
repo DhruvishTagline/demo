@@ -5,6 +5,7 @@ import {  handleStudentError, loadStudentProfile, updateProfile } from '../redux
 import { validateField } from '../Validation/validation';
 import { fetchData } from '../redux-toolkit/slices/api';
 import { getCurrUserData } from '../Current User/currentUser';
+import { toast } from 'react-toastify';
 
 const useStudentProfile = () => {
     const dispatch =useDispatch();
@@ -76,10 +77,15 @@ const useStudentProfile = () => {
 
             const res= await dispatch(fetchData(config));
             setItemLocal('student',res.payload.data);
+            if(res?.payload.statusCode !== 200){
+              toast(res?.payload?.message);
+              return;
+            }
+            toast(res?.payload?.message);
             
         setDisable(true);
         } catch (error) {
-            console.log("error",error);
+            toast("error",error);
         }
       }
 

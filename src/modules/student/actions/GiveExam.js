@@ -11,6 +11,7 @@ import ShowExam from '../../../shared/ShowExam';
 import { useGiveExam } from '../../../hooks/useGiveExam';
 
 const GiveExam = () => {
+
   
   const [searchParams,setSearchParams] = useSearchParams();
   const id = searchParams.get('id');
@@ -32,8 +33,9 @@ const GiveExam = () => {
     handleSubmitExam,
     handleCancel
   } = useGiveExam(id);
-
+ 
   useEffect(()=>{
+    
     const fetchExamPaper = async()=>{
       
       const config = {
@@ -42,6 +44,7 @@ const GiveExam = () => {
         headers:{ 'access-token':getCurrUserData().token },
         params:{id}
       }
+      
 
       const res = await dispatch(fetchData(config));
       if(res?.payload?.statusCode===401){
@@ -65,6 +68,7 @@ const GiveExam = () => {
       examPaper.questions=res.payload.data;
       dispatch(loadExamPaper(examPaper))
     }
+    
     const examPaper=getItemLocal('examPaper');
     if(examPaper){
       dispatch(loadExamPaper(getItemLocal('examPaper')));
@@ -74,7 +78,7 @@ const GiveExam = () => {
     else{
       fetchExamPaper();
     }  
-  },[dispatch,id,navigate])
+  },[])
 
   useEffect(()=>{
     const handleStorageChange = ()=>{
@@ -96,7 +100,7 @@ const GiveExam = () => {
     return () => {
     
     }
-  },[dispatch,navigate])
+  },[])
 
   
 

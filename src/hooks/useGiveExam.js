@@ -7,9 +7,10 @@ import { fetchData } from '../redux-toolkit/slices/api';
 import { ALL_EXAM } from '../utils/constant';
 import { initiateAnsIndex } from '../redux-toolkit/slices/teacher';
 import { removeItemLocal } from '../utils/localStorageFunction';
+import { toast } from 'react-toastify';
 
 export const useGiveExam = (id) => {
-
+    
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -18,12 +19,14 @@ export const useGiveExam = (id) => {
     const examData = useSelector(state=>state.student.examPaper);
     const error = useSelector(state=>state.student.error);
     
+   
     const Options = {
         op1:examData?.questions?.[currQuestion]?.options[0],
         op2:examData?.questions?.[currQuestion]?.options[1],
         op3:examData?.questions?.[currQuestion]?.options[2],
         op4:examData?.questions?.[currQuestion]?.options[3]
     }
+    console.log('Options :>> ', Options);
     const validate = { 
         answer:[
             {
@@ -168,7 +171,6 @@ export const useGiveExam = (id) => {
 
       const handleSubmitExam =()=>{
         if(ansArr.length === 7){
-          
             const submitExam = async ()=>{
                 try {
                     const config = {
@@ -180,6 +182,12 @@ export const useGiveExam = (id) => {
                     }
                     dispatch(loadAllExamData([]));
                     const res = await dispatch(fetchData(config));
+                    toast(res?.payload?.message)
+
+                    if(res?.payload?.statusCode!==200){
+                      toast(res?.payload?.message);
+                      return;
+                    }
                     navigate(ALL_EXAM);
                 } catch(error) {
                     console.log("error",error);
@@ -188,7 +196,7 @@ export const useGiveExam = (id) => {
             submitExam();
         }
         else{
-            console.log('please answer all question');
+            toast('please answer all question');
         }
       }
 

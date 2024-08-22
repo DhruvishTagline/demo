@@ -29,12 +29,7 @@ const useEditExam = (id) => {
       }
 
       const validate = {
-        subjectName:[
-          {
-            required:true,
-            message:'Please Enter Subject'
-          }        
-        ],
+        
         question:[
           {
             required:true,
@@ -84,7 +79,8 @@ const useEditExam = (id) => {
         label:'Subject Name',
         data:examData?.subjectName,
         updateData:handleSubject,
-        error:error
+        error:error,
+        disable:true
       },
       {
         type:'text',

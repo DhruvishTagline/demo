@@ -153,25 +153,17 @@ const ShowExam = ({
     console.log('validationError :>> ', validationErrors);
     console.log('error :>> ', error);
     console.log('Object.values(error) :>> ', Object.values(error));
-    
 
- 
-    let e=false;
-    const isError=Object.values(error)?.forEach(element => {
-      element !== ''? e=true : e=false;
-    });
+
+    const e = Object.values(error).some(element => element !== '');
     console.log('e :>> ', e);
+
 
     // const hasErrors =  Object.keys(error).length > 0 && Object.keys(validationErrors).length > 0;
     // const hasErrors =  Object.values(validationErrors).length > 0 || Object.values(error).length > 0;
     const hasErrors =  Object.values(validationErrors).length > 0 || e ;
     
-    
-    if (hasErrors) {
-      console.log('Validation errors present:', validationErrors);
-      console.log('Current error state:', error);
-      return;  
-    }
+    if (hasErrors) return;
 
     if (currQuestion < totalQuestion - 1) { 
 
@@ -206,6 +198,7 @@ const ShowExam = ({
           {error?.sameOption && <span className='text-red-500 text-sm'>{error.sameOption}</span>}
 
           <div className='mt-2 ml-[28px]'>
+            
             <button
               onClick={handlePrevQuestion}
               disabled={currQuestion === 0}
@@ -221,6 +214,7 @@ const ShowExam = ({
             >
               Next
             </button>
+
           </div>
         </div>
       )}

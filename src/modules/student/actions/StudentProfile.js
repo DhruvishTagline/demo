@@ -9,6 +9,7 @@ import { loadStudentProfile } from '../../../redux-toolkit/slices/student';
 import { handlePrevVisitedPage } from '../../../redux-toolkit/slices/user';
 import InputField from '../../../shared/InputField';
 import { LOGIN_PAGE } from '../../../utils/constant';
+import { toast } from 'react-toastify';
 
 const StudentProfile = () => {
 
@@ -33,6 +34,7 @@ const StudentProfile = () => {
         }
         const res = await dispatch(fetchData(config));
         if(res?.payload?.statusCode === 401){
+          toast(res?.payload?.message);
           removeItemLocal('userData');
           setItemLocal('login',false);
           navigate(LOGIN_PAGE)
@@ -41,7 +43,7 @@ const StudentProfile = () => {
         dispatch(loadStudentProfile(res.payload.data));
         setItemLocal('student',res.payload.data)
       }catch(error){
-        console.log('error', error)
+       toast('error', error)
       }
     }
     const student = getItemLocal('student')
