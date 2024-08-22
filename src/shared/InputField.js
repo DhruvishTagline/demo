@@ -56,6 +56,7 @@ const InputField = ({ fieldData, ansIndex, subjectName, er }) => {
               dispatch(handleError({ [fieldData.name]: 'Option is already present' }));
               return;
             }
+
             dispatch(handleError({ [fieldData.name]: '' }));
           
             dispatch(fieldData.updateData(data));

@@ -19,14 +19,13 @@ export const useGiveExam = (id) => {
     const examData = useSelector(state=>state.student.examPaper);
     const error = useSelector(state=>state.student.error);
     
-   
     const Options = {
         op1:examData?.questions?.[currQuestion]?.options[0],
         op2:examData?.questions?.[currQuestion]?.options[1],
         op3:examData?.questions?.[currQuestion]?.options[2],
         op4:examData?.questions?.[currQuestion]?.options[3]
     }
-    console.log('Options :>> ', Options);
+    
     const validate = { 
         answer:[
             {
@@ -168,7 +167,6 @@ export const useGiveExam = (id) => {
         return acc;
       },[])
       
-
       const handleSubmitExam =()=>{
         if(ansArr.length === 7){
             const submitExam = async ()=>{

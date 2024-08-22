@@ -18,7 +18,6 @@ const ViewStudentDetail = () => {
     const currStudentDetail = useSelector(state => state.teacher.currStudentDetail);
     const status = useSelector(state => state.api.status);
     
-
     useEffect(() => {
         try{
             const fetchStudentDetail = async() => {
@@ -54,23 +53,16 @@ const ViewStudentDetail = () => {
         }
     },[dispatch,id,navigate])
 
-    const goBack = () => {
-        navigate('/teacher/allstudent');
-    }
 
   return (
-    <div className='flex justify-center mt-[70px] text-black'>
+    <div className='flex justify-center mt-[10px] text-black'>
         <div >
             {
                 status === 'loading' ? 
                 <div className='spinner mt-[20px]'></div> :
                 <div>
                     <p className='text-center mb-4 text-4xl'>Student Detail</p>
-                    <CurrStudentDetail currStudentDetail={currStudentDetail}/>
-                    <button
-                        onClick={goBack}
-                        className='mt-[30px] ml-[45%] bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
-                    >Back</button>
+                    <CurrStudentDetail currStudentDetail={currStudentDetail}/>                   
                 </div>               
             }
         </div>

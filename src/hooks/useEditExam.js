@@ -279,7 +279,7 @@ const useEditExam = (id) => {
           subjectName:'',
           questions:[
             {
-              question:'',
+              question:'', 
               options:[
                 '',
                 '',
@@ -288,7 +288,7 @@ const useEditExam = (id) => {
               ]
             }
           ],
-          notes:['test notes']
+          notes:['test notes'],
         }
         dispatch(initiateQuestions());
         dispatch(initiateExam(initiateConfig));

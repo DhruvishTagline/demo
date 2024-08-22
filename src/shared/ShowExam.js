@@ -115,8 +115,6 @@
 // export default ShowExam
 
 
-
-
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addNewQuestion, handleError } from '../redux-toolkit/slices/teacher';
@@ -133,18 +131,17 @@ const ShowExam = ({
   subjectName,
   totalQue
 }) => {
+
   const totalQuestion = totalQue || 15;
   const examData = useSelector((state) => state.teacher.createExam);
   const dispatch = useDispatch();
   const status = useSelector((state) => state.api.status);
-
 
   const handlePrevQuestion = () => {
     dispatch(handleError({}));
     setCurrQuestion(currQuestion - 1);
   };
 
- 
   const handleNextQuestion = () => {
   
     const validationErrors = validateField(validateExamData, validate);
@@ -154,10 +151,8 @@ const ShowExam = ({
     console.log('error :>> ', error);
     console.log('Object.values(error) :>> ', Object.values(error));
 
-
     const e = Object.values(error).some(element => element !== '');
     console.log('e :>> ', e);
-
 
     // const hasErrors =  Object.keys(error).length > 0 && Object.keys(validationErrors).length > 0;
     // const hasErrors =  Object.values(validationErrors).length > 0 || Object.values(error).length > 0;

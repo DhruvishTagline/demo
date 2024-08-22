@@ -17,6 +17,7 @@ export const useCreateExam = () => {
     const navigate = useNavigate();
 
     const examData = useSelector(state => state.teacher.createExam);
+    console.log('examData :>> ', examData);
     const [currQuestion,setCurrQuestion] = useState(0);
     const error = useSelector(state => state.teacher.error);
     const sameQuestions = useSelector(state => state.teacher.questions);
@@ -92,7 +93,7 @@ export const useCreateExam = () => {
     }
 
     const optionArr = examData?.questions?.[currQuestion]?.options;
-
+    
     const createExamFields = [
       {
         type:'text',

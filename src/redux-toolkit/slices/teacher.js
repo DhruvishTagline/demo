@@ -80,7 +80,7 @@ export const teacherSlice = createSlice({
         handleSubject:(state, action) => {
             state.edited = true;
             const {name, value} = action.payload;
-            state.error = {...state.error};
+            state.error = {...state.error , subjectName:''};
             state.createExam[name] = value; 
             setItemLocal('createExam', JSON.stringify(state.createExam));
         },

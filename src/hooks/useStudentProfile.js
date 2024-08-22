@@ -89,12 +89,12 @@ const useStudentProfile = () => {
         }
       }
 
-  return {
-    createStudentFields,
+    return {
+        createStudentFields,
         saveProfile,
         disable,
         setDisable
-  }
+    }
 }
 
 export default useStudentProfile
