@@ -240,7 +240,7 @@ const useEditExam = (id) => {
           toast(res?.payload?.message);
           dispatch(initiateQuestions());
           dispatch(handleEdited());
-          navigate(VIEW_EXAM)
+          navigate(VIEW_EXAM);
         }catch(error){
           console.log("error",error);
         }

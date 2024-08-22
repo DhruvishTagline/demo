@@ -235,16 +235,27 @@ export const useCreateExam = () => {
         {
           validateExamData.question = sameQuestions;
         }
-        const error = validateField(validateExamData,validate);
 
+        const error = validateField(validateExamData,validate);
         if(Object.keys(error).length !== 0){
           dispatch(handleError(error));
           return;
         }
-        if(Object.keys(sameOptionError).length !== 0){
+        if(Object.values(sameOptionError).some(element => element !== ''))
+        {
+          console.log('sameOptionError :>> ', sameOptionError);
+          console.log('same option error');
           return;
         }
+
+        // if(Object.keys(sameOptionError).length !== 0){
+        //   console.log('sameOptionError :>> ', sameOptionError);
+        //   console.log('same option error');
+        //   return;
+        // }
+     
         const createExam = async() => {
+          console.log('createExam');
           try{
             const config = {  
               method:'post',  

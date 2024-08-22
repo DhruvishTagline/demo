@@ -6,7 +6,7 @@ import { handleAnsIndexes } from '../redux-toolkit/slices/teacher';
 const RadioBtn = ({fieldData}) => {
     
     const dispatch = useDispatch();
-    console.log('fieldData :>> ', fieldData);
+    // console.log('fieldData :>> ', fieldData);
     console.log('aaaaa',fieldData?.data?.[fieldData.id] === fieldData?.ans && fieldData?.ans  );
   return (
     <div>
@@ -21,7 +21,7 @@ const RadioBtn = ({fieldData}) => {
                 ansIndex:fieldData.opIndex
             }))
             
-            const data = {
+            const data = { 
                 name:e?.target?.name,
                 value:e?.target?.value,
                 queIndex:fieldData?.currQuestion,

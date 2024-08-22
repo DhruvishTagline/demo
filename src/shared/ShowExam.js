@@ -145,7 +145,7 @@ const ShowExam = ({
   const handleNextQuestion = () => {
   
     const validationErrors = validateField(validateExamData, validate);
-   
+  
     dispatch(handleError(validationErrors));
     console.log('validationError :>> ', validationErrors);
     console.log('error :>> ', error);
