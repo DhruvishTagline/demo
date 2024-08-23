@@ -7,7 +7,7 @@ const RadioBtn = ({fieldData}) => {
     
     const dispatch = useDispatch();
     // console.log('fieldData :>> ', fieldData);
-    console.log('aaaaa',fieldData?.data?.[fieldData.id] === fieldData?.ans && fieldData?.ans  );
+    // console.log('aaaaa',fieldData?.data?.[fieldData.id] === fieldData?.ans && fieldData?.ans  );
   return (
     <div>
         <input 

@@ -8,6 +8,9 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import RadioBtn from './RadioBtn';
 
 const InputField = ({ fieldData, ansIndex, subjectName, er }) => {
+  // console.log('subjectName :>> ', subjectName);
+  // console.log('fieldData :>> ', fieldData);
+  // console.log('fieldData?.data?.[fieldData?.name] :>> ', fieldData?.data?.[fieldData?.name]);
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
 
@@ -18,10 +21,10 @@ const InputField = ({ fieldData, ansIndex, subjectName, er }) => {
 
   const inputType = fieldData?.type === 'password' && showPassword ? 'text' : fieldData?.type;
 
-  
   if(fieldData?.type === 'radio'){
     return <RadioBtn ansIndex={ansIndex} fieldData={fieldData} />
   }
+
 
   return (
     <div className='flex flex-col gap-2 mt-[10px]'>
@@ -30,7 +33,7 @@ const InputField = ({ fieldData, ansIndex, subjectName, er }) => {
         type={inputType}
         id={fieldData?.id}
         name={fieldData?.name}
-        value={fieldData?.name === 'subjectName' ? subjectName : fieldData?.data?.[fieldData?.name]}
+        value={fieldData?.name === 'subjectName' ? subjectName  : fieldData?.data?.[fieldData?.name]}
         disabled={fieldData?.disable}
         variant="outlined"
         placeholder={fieldData?.label}
@@ -50,16 +53,22 @@ const InputField = ({ fieldData, ansIndex, subjectName, er }) => {
               ans: fieldData?.data?.[fieldData.id],
               ansIndex: fieldData?.ansIndex
             };
+            console.log('fieldData :>> ', fieldData);
+            console.log('fieldData?.optionArr:>> ', fieldData?.optionArr);
+            console.log('e?.target?.value :>> ', e?.target?.value);
 
             if(fieldData?.optionArr?.includes(e?.target?.value)) {
+              console.log('true');
               dispatch(fieldData.updateData(data));
               dispatch(handleError({ [fieldData.name]: 'Option is already present' }));
-              return;
+            }else{
+              console.log('false');
+              dispatch(fieldData.updateData(data));
+              console.log('fieldData?.optionArr :>> ', fieldData?.optionArr);
+              console.log('fieldData.name :>> ', fieldData.name);
+              dispatch(handleError({ [fieldData.name]: '' }));
             }
-
-            dispatch(handleError({ [fieldData.name]: '' }));
-          
-            dispatch(fieldData.updateData(data));
+            // dispatch(fieldData.updateData(data));
           }
         }
         InputProps={{
@@ -80,3 +89,5 @@ const InputField = ({ fieldData, ansIndex, subjectName, er }) => {
 }
 
 export default InputField;
+
+

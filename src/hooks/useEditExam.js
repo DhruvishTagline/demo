@@ -9,7 +9,7 @@ import { VIEW_EXAM } from '../utils/constant';
 import { toast } from 'react-toastify';
 
 
-const useEditExam = (id) => {
+const useEditExam = (id,subjectName) => {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -202,8 +202,9 @@ const useEditExam = (id) => {
 
       const handleEditExam = async()=>{
         try{
+
           if(!edited){
-            navigate(-1);
+            navigate(VIEW_EXAM);
             return;
           }
           if((sameQuestions.includes(validateExamData.question) && 
@@ -212,7 +213,7 @@ const useEditExam = (id) => {
           {
             validateExamData.questions = sameQuestions;
           }
-
+         
           const error =validateField(validateExamData,validate);
           if(Object.keys(error).length !== 0)
           {
@@ -224,10 +225,14 @@ const useEditExam = (id) => {
             return;
           }
           
+          var data = {...examData, subjectName: 'BAC'}
+         
+          data.subjectName=subjectName;
+          console.log('data :>> ', data);
           const config ={
             method:'put',
             url:'dashboard/Teachers/editExam',
-            data:examData,
+            data:data,
             headers:{"access-token":getCurrUserData().token},
             params:{id}
           }
@@ -242,7 +247,7 @@ const useEditExam = (id) => {
           dispatch(handleEdited());
           navigate(VIEW_EXAM);
         }catch(error){
-          console.log("error",error);
+          toast("error",error);
         }
       }
 

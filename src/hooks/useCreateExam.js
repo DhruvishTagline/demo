@@ -17,7 +17,7 @@ export const useCreateExam = () => {
     const navigate = useNavigate();
 
     const examData = useSelector(state => state.teacher.createExam);
-    console.log('examData :>> ', examData);
+    // console.log('examData :>> ', examData);
     const [currQuestion,setCurrQuestion] = useState(0);
     const error = useSelector(state => state.teacher.error);
     const sameQuestions = useSelector(state => state.teacher.questions);
@@ -245,9 +245,8 @@ export const useCreateExam = () => {
         {
           console.log('sameOptionError :>> ', sameOptionError);
           console.log('same option error');
-          return;
+            return;
         }
-
         // if(Object.keys(sameOptionError).length !== 0){
         //   console.log('sameOptionError :>> ', sameOptionError);
         //   console.log('same option error');
@@ -283,11 +282,11 @@ export const useCreateExam = () => {
 
     const handleCancel = () => {
         dispatch(initiateExam(initiateConfig));
-        dispatch(handleSubject(""))
-        dispatch(initiateQuestions());
+        // dispatch(handleSubject(""))
+        // dispatch(initiateQuestions());
         dispatch(initiateAnsIndex([]));
         removeItemLocal('ansIndex')
-        removeItemLocal('createExam')
+        // removeItemLocal('createExam')
         setCurrQuestion(0);
     }
 

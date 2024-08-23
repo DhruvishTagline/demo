@@ -37,7 +37,7 @@ const AllStudent = () => {
         navigate('/login')  
         return;  
       }
-      toast(res?.payload?.message);
+      
       dispatch(loadAllStudentData(res?.payload?.data));
     }
 

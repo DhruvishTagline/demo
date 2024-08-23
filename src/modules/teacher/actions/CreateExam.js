@@ -10,6 +10,7 @@ const CreateExam = () => {
   const dispatch = useDispatch();
   const status = useSelector(state => state.api.status);
   const ansIndex = useSelector(state => state.teacher.ansIndex);
+  const createExam = useSelector(state=> state.teacher.createExam)
 
   const {
     createExamFields,
@@ -24,19 +25,20 @@ const CreateExam = () => {
     handleCancel
   } = useCreateExam();
 
+  // console.log('createExamFields :>> ', createExamFields);
+  // console.log('validateExamData :>> ', validateExamData);
+
 useEffect(() => {
   removeItemLocal('createExam');
   dispatch(initiateAnsIndex([]))
-  const createExamData = getItemLocal('createExam');
-  console.log('createExamData :>> ', createExamData);
-  console.log('createExamFields :>> ', createExamFields);
-  handleCancel();
 
-  if(!createExamData){
+  // handleCancel();
+
+  if(!createExam){
     dispatch(initiateExam(initiateConfig));
     dispatch(initiateAnsIndex([]));
   }else{  
-    dispatch(initiateExam(createExamData))
+    dispatch(initiateExam(createExam))
     if(ansIndex !== null){
       dispatch(initiateAnsIndex(ansIndex))
     }
@@ -54,6 +56,7 @@ useEffect(() => {
         validateExamData={validateExamData}
         validate={validate}
         Options={Options} 
+        subjectName={createExamFields[0].data.subjectName}
       />
 
       <div className='pt-2'>
@@ -69,7 +72,7 @@ useEffect(() => {
         <button
         onClick={handleCancel}
         className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ml-2`}
-        >Clear Question</button>
+        >Reset</button>
       </div>
     </div>
   )

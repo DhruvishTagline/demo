@@ -57,7 +57,8 @@ export default function BasicTable(props) {
                 {
                   btn && (
                     <td className="text-center py-3 px-4 border-b truncate max-w-[18rem] text-blue-500">
-                      <NavLink to={`/teacher/edit-exam?id=${row._id}&subjectName=${row.subjectName}`} replace style={{marginRight: '10px'}}>
+                      {/* {<NavLink to={`/teacher/edit-exam?id=${row._id}&subjectName=${row.subjectName}`}  style={{marginRight: '10px'}}>} */}
+                      <NavLink to={`/teacher/edit-exam/${row._id}/${row.subjectName}`}  style={{marginRight: '10px'}}>
                         Edit
                       </NavLink>
                     </td>
@@ -153,3 +154,19 @@ export default function BasicTable(props) {
 //     </div>
 //   );
 // }
+
+
+
+
+
+//  btn && (
+//   <td className="text-center py-3 px-4 border-b truncate max-w-[18rem] text-blue-500">
+//   <NavLink to={`/teacher/edit-exam?id=${row._id}&subjectName=${row.subjectName}`}  style={{marginRight: '10px'}}>
+//     Edit
+//   </NavLink>
+// </td>
+// )
+
+// in this i am passing searchParameters in url i want to pass data through the parameters how can i do that rewrite this piece of code
+
+

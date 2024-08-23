@@ -132,6 +132,8 @@ const ShowExam = ({
   totalQue
 }) => {
 
+  // console.log('createExamFields :>> ', createExamFields);
+  // console.log('subjectName :>> ', subjectName);
   const totalQuestion = totalQue || 15;
   const examData = useSelector((state) => state.teacher.createExam);
   const dispatch = useDispatch();
@@ -176,10 +178,13 @@ const ShowExam = ({
   };
 
   return (
+   
     <div>
-      {status === 'loading' ? (
-        <div className='spinner mt-20 mx-auto'></div>
-      ) : (
+      
+      {
+        
+          
+        
         <div>
           <div>
             {
@@ -212,7 +217,8 @@ const ShowExam = ({
 
           </div>
         </div>
-      )}
+      
+      }
     </div>
   );
 };
