@@ -225,7 +225,7 @@ const useEditExam = (id,subjectName) => {
             return;
           }
           
-          var data = {...examData, subjectName: 'BAC'}
+          var data = {...examData}
          
           data.subjectName=subjectName;
           console.log('data :>> ', data);

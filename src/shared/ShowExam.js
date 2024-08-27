@@ -129,7 +129,8 @@ const ShowExam = ({
   validateExamData,
   validate,
   subjectName,
-  totalQue
+  totalQue,
+  Options
 }) => {
 
   // console.log('createExamFields :>> ', createExamFields);
@@ -189,7 +190,7 @@ const ShowExam = ({
           <div>
             {
               createExamFields.map((field, i) => (
-              <InputField fieldData={field} subjectName={subjectName} er={error} key={i} />
+              <InputField fieldData={field} subjectName={subjectName} er={error} key={i} Options={Options}/>
               ))
             }
           </div>
