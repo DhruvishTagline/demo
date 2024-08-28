@@ -64,14 +64,14 @@ const ForgotPassword = () => {
         }
         const res =await dispatch(fetchData(config));
         if(res?.payload?.statusCode === 500){
-          toast(res?.payload?.message);
+          toast.error(res?.payload?.message);
           return;
         }
         if(res?.payload?.statusCode === 400){
-          toast(res?.payload?.message);
+          toast.error(res?.payload?.message);
           return;
         }
-        toast(res?.payload?.message)
+        toast.success(res?.payload?.message)
         navigate(LOGIN_PAGE);
         dispatch(initiateForgetPassword({}));
       }

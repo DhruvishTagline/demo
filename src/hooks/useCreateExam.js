@@ -268,10 +268,10 @@ export const useCreateExam = () => {
             dispatch(initiateQuestions());
             
             if(res?.payload?.statusCode !== 200){
-              toast(res?.payload?.message)
+              toast.error(res?.payload?.message)
               navigate(VIEW_EXAM);  
             }
-            toast(res?.payload?.message);
+            toast.sucess(res?.payload?.message);
 
           }catch(err){
             console.log('error', err);

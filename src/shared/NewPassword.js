@@ -89,15 +89,15 @@ const NewPassword = () => {
         }
         const res = await dispatch(fetchData(config));
         if(res?.payload?.statusCode===500){
-          toast(res?.payload?.message);
-          console.log('Password not match');
+          toast.error(res?.payload?.message);
+          
           return;
         }
         if(res?.payload?.statusCode===400){
-          console.log('Something Went Wrong');
+          toast.error(res?.payload?.message);
           return;
         }
-        toast('Password Changed Sucessfully');
+        toast.success('Password Changed Sucessfully');
         navigate(LOGIN_PAGE);
       }catch(error){
         console.log("error",error);

@@ -105,13 +105,15 @@ export const useSignupData = () => {
           
           const res = await dispatch(fetchData(config))
           if(res.payload.statusCode === 400){
-            toast('check once more something wrong');
+            toast.error('check once more something wrong');
             return;
           }
           if(res?.payload?.statusCode !== 200){
-            toast('Email Already Exist Please Login');
+            toast.error('Email Already Exist Please Login');
             return;
           }
+          toast.success(res?.payload?.message);
+          toast('Please Verify Your Email');
           dispatch(initiateSignupData());
          
           navigate(LOGIN_PAGE,{replace:true});

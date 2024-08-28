@@ -30,14 +30,14 @@ const AllExam = () => {
         headers:{ 'access-token':getCurrUserData().token }
       }
       const res = await dispatch(fetchData(config));
-      if(res?.payload?.statusCode === 401){
-        toast(res?.payload?.message)
+      if(res?.payload?.statusCode !== 200){
+        toast.error(res?.payload?.message)
         removeItemLocal('userData');
         setItemLocal('login',false);
         navigate('/login');
         return;
       }
-      toast(res?.payload?.message);
+      toast.success(res?.payload?.message);
       dispatch(loadAllExamData(res?.payload?.data))
     }
     if(allExamData.length === 0){

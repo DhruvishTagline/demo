@@ -180,12 +180,13 @@ export const useGiveExam = (id) => {
                     }
                     dispatch(loadAllExamData([]));
                     const res = await dispatch(fetchData(config));
-                    toast(res?.payload?.message)
-
                     if(res?.payload?.statusCode!==200){
-                      toast(res?.payload?.message);
+                      toast.error(res?.payload?.message);
                       return;
                     }
+                    
+                    toast.success(res?.payload?.message)
+
                     navigate(ALL_EXAM);
                 } catch(error) {
                     console.log("error",error);
@@ -194,7 +195,7 @@ export const useGiveExam = (id) => {
             submitExam();
         }
         else{
-            toast('please answer all question');
+            toast.warning('please answer all question');
         }
       }
 

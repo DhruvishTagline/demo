@@ -35,9 +35,11 @@ const VerifiedStudent = () => {
                 navigate('/login')
                 return;
             }
+            if(res?.payload?.statusCode !== 200){
+                toast(res?.payload?.message);
+                return;
+            }
 
-            if(res?.statusCode)
-            
             dispatch(loadVerifiedStudentData(res?.payload?.data));
         }
         if(verifiedStudentData.length === 0){

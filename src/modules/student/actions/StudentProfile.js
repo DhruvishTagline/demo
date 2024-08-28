@@ -33,8 +33,8 @@ const StudentProfile = () => {
           headers: { "access-token":getCurrUserData().token }
         }
         const res = await dispatch(fetchData(config));
-        if(res?.payload?.statusCode === 401){
-          toast(res?.payload?.message);
+        if(res?.payload?.statusCode !== 200){
+          toast.error(res?.payload?.message);
           removeItemLocal('userData');
           setItemLocal('login',false);
           navigate(LOGIN_PAGE)
@@ -43,7 +43,7 @@ const StudentProfile = () => {
         dispatch(loadStudentProfile(res.payload.data));
         setItemLocal('student',res.payload.data)
       }catch(error){
-       toast('error', error)
+       toast.error('error', error)
       }
     }
     const student = getItemLocal('student')
@@ -54,8 +54,6 @@ const StudentProfile = () => {
     }
     dispatch(handlePrevVisitedPage(1));
   },[dispatch,navigate]);
-
-  
 
    const handleCancel = () => {
     setDisable(true);

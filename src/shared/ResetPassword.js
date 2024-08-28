@@ -118,10 +118,10 @@ const ResetPassword = () => {
             }
             const res = await dispatch(fetchData(config));
             if(res.payload.statusCode !== 200){
-                toast(res?.payload?.message)
+                toast.error(res?.payload?.message)
                 return;
             }
-            toast(res?.payload?.message)
+            toast.success(res?.payload?.message)
             dispatch(initiateResetPassword());
             navigate(`/${role}/dashboard`);
         }catch(error){

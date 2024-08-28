@@ -16,11 +16,11 @@ const EditExam = (props) => {
  
   const { id,subjectName } = useParams();
 
-  // Use the id as needed
+
   console.log('Exam ID:', id);
   console.log('subjectName :>> ', subjectName);
 
-  const [searchParams,setSearchParams]=useSearchParams();
+  // const [searchParams,setSearchParams]=useSearchParams();
   // const id = searchParams.get('id');
   // const subjectName = searchParams.get('subjectName');
   const status =useSelector(state=>state.api.status)
@@ -53,11 +53,11 @@ const EditExam = (props) => {
       }
       const res =await dispatch(fetchData(config));
 
-      // if(res?.payload?.statusCode!==200)
-      // {
-      //   toast(res?.payload?.message);
-      //   // navigate(VIEW_EXAM)
-      // }
+      if(res?.payload?.statusCode!==200)
+      {
+        toast.error('No Such an Exam found');
+        navigate(VIEW_EXAM)
+      }
 
       dispatch(handleQuestions(res?.payload?.data?.questions));
       dispatch(setAnsIndex(res?.payload?.data?.questions[currQuestion].answer,currQuestion))

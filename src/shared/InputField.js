@@ -168,10 +168,13 @@ const InputField = ({ fieldData, ansIndex, subjectName,Options, er }) => {
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
   
-
-const opts =Object.values(Options);
-console.log('opts :>> ', opts);
-
+  // let opts =['','','','',''];
+  let opts=[];
+  if(Options){
+    opts =Object.values(Options);
+    console.log('opts :>> ', opts);
+  };
+  
   const handleClickShowPassword = () => {
     setShowPassword(prev => !prev);
     console.log('showPassword :>> ', showPassword);
@@ -182,7 +185,6 @@ console.log('opts :>> ', opts);
   if(fieldData?.type === 'radio'){
     return <RadioBtn ansIndex={ansIndex} fieldData={fieldData} />
   }
-
 
   return (
     <div className='flex flex-col gap-2 mt-[10px]'>
@@ -217,7 +219,7 @@ console.log('opts :>> ', opts);
             dispatch(fieldData.updateData(data));
             
             if (opts.includes(inputValue)) {
-
+                console.log('1');
                 const ke=fieldData.name;  
                 errorObj[ke]='Option is already Present';
 
@@ -228,7 +230,6 @@ console.log('opts :>> ', opts);
                     console.log('errorObj :>> ', errorObj);
                     dispatch(handleError({ ...errorObj })); 
                   }
-                 
                 });
             }
             else{
@@ -241,9 +242,13 @@ console.log('opts :>> ', opts);
                     console.log('errorObj :>> ', errorObj);
                     dispatch(handleError({ ...errorObj })); 
                   } 
-                  // else{
+                  // if(opt !== inputValue){
                   //   errorObj[`op${i+1}`]=''
                   // }
+                  if([...new Set(opts)]?.length === opts.length){
+                    console.log('ssssssssssssset');
+                    errorObj[`op${i+1}`]=''
+                  }
                 });
                 // console.log('errorObj :>> ', errorObj);
                 // dispatch(handleError({ ...errorObj }));
@@ -254,12 +259,10 @@ console.log('opts :>> ', opts);
                 //   errorObj['op4']=''
                 // }
                 // console.log('errorObj :>> ', errorObj);
-                dispatch(handleError({ ...errorObj }));
+                // dispatch(handleError({ ...errorObj }));
             }
             dispatch(handleError({ ...errorObj }));
             
-            
-  
             // if(fieldData?.optionArr?.includes(e?.target?.value)) {
             //   console.log('true');
             //   dispatch(fieldData.updateData(data));
@@ -293,3 +296,4 @@ console.log('opts :>> ', opts);
 
 export default InputField;
 
+// what part of boiled egg is better for dieat? fow weight loss

@@ -35,13 +35,13 @@ const ViewExam = () => {
       }
       const res = await dispatch(fetchData(config));
       if(res?.payload?.statusCode !== 200){
-        toast(res?.payload?.message);
+        toast.error(res?.payload?.message);
         removeItemLocal('userData');
         setItemLocal('login',false);
         navigate(LOGIN_PAGE)
         return;
       }
-      toast(res?.payload?.message);
+      // toast(res?.payload?.message);
       dispatch(loadViewExamData(res.payload.data));
       }catch(error){
         console.log('error', error)

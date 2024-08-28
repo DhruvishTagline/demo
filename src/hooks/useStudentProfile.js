@@ -78,14 +78,14 @@ const useStudentProfile = () => {
             const res= await dispatch(fetchData(config));
             setItemLocal('student',res.payload.data);
             if(res?.payload.statusCode !== 200){
-              toast(res?.payload?.message);
+              toast.error(res?.payload?.message);
               return;
             }
-            toast(res?.payload?.message);
+            toast.success(res?.payload?.message);
             
         setDisable(true);
         } catch (error) {
-            toast("error",error);
+            toast.error("error",error);
         }
       }
 

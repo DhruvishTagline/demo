@@ -238,16 +238,17 @@ const useEditExam = (id,subjectName) => {
           }
           dispatch(loadViewExamData([]));
           const res = await dispatch(fetchData(config));
+          
           if(res?.payload?.statusCode !== 200){
-            toast(res?.payload?.message);
+            toast.error(res?.payload?.message);
             return;
           }
-          toast(res?.payload?.message);
+          toast.success("AAAAA",res?.payload?.message);
           dispatch(initiateQuestions());
           dispatch(handleEdited());
           navigate(VIEW_EXAM);
         }catch(error){
-          toast("error",error);
+          toast.error("error",error);
         }
       }
 
@@ -266,10 +267,10 @@ const useEditExam = (id,subjectName) => {
             }
             const res =await dispatch(fetchData(config));
             if(res?.payload?.statusCode !== 200){
-              toast(res?.payload?.message);
+              toast.error(res?.payload?.message);
               return;
             }
-            toast(res?.payload?.message);
+            toast.success(res?.payload?.message);
             navigate(VIEW_EXAM);
           }
           deleteExam();

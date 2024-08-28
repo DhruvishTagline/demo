@@ -29,19 +29,19 @@ const ViewStudentDetail = () => {
                 }
                 const res = await dispatch(fetchData(config));
                 if(res?.payload?.statusCode === 401){
-                    toast(res?.payload?.message)
+                    toast.error(res?.payload?.message)
                     removeItemLocal('userData');
                     setItemLocal('login',false);
                     navigate('/login')
                     return;
                 }
                 if(res?.payload?.statusCode === 500){
-                    toast(res?.payload?.message)
+                    toast.error(res?.payload?.message)
                     navigate(ALL_STUDENT)
                     return;
                 }
                 if(res?.payload?.statusCode !== 200){
-                    toast(res?.payload?.message)
+                    toast.error(res?.payload?.message)
                     navigate(ALL_STUDENT);
                     return;
                 } 

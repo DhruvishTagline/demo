@@ -14,6 +14,10 @@ export const useLoginData = () => {
     const error = useSelector(state => state.user.error);
     const [disable,setDisable] = useState(false);
 
+    const [email,setEmail] = useState('');
+    const [password,setPassword] = useState('')
+
+
 
     const loginField = [
         {
@@ -72,21 +76,24 @@ export const useLoginData = () => {
           }
           const res = await dispatch(fetchData(config))
           
-          if(res.payload.statusCode === 500){
-            toast(res?.payload?.message)
+          if(res?.payload?.statusCode === 500){
+            toast.error(res?.payload?.message)
             console.log(res?.payload?.message);    
             setDisable(false);    
             return;    
           }    
-          if(res.payload.statusCode === 400){    
-            toast(res?.payload?.message);    
+          if(res?.payload?.statusCode === 400){    
+            toast.error(res?.payload?.message);    
             console.log(res?.payload?.message);    
             return;    
           }    
-          toast('LogIn Successfully')
+          toast.success(res?.payload?.message)
              
-          setItemLocal('userData',res.payload.data);    
-          setItemLocal('login',true)    
+          setItemLocal('userData',res?.payload?.data);    
+          if (res?.payload?.statusCode === 200) {
+            setItemLocal('userData', res?.payload?.data);
+          }
+          res?.payload?.statusCode !== 200 ? setItemLocal('login',false)  :setItemLocal('login',true)    ;
           dispatch(handleLogin(true));    
           dispatch(initiateLoginData());       
 
