@@ -135,11 +135,6 @@
 // export default InputField;
 
 
-// // i dont get desired output by using this condition please correct this logic 
-// // in this logic i want to dispatch an errorObj to redux 
-// // if i had value 'a' and i entered same value in next 'a' then it should set 'Option is already present' in both op1 and opt2
-// // write and add a condition before first if to check if fieldData?.optionArr?.includes(inputValue) then find the index of the matched value called fIndex and now use this index to set 'option already present' message on the key `opt${fIndex}` ;
-
 
 
 
@@ -156,25 +151,20 @@
 
 
 import {  TextField, IconButton } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { handleError, handleSubject } from '../redux-toolkit/slices/teacher';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import RadioBtn from './RadioBtn';
 
-const InputField = ({ fieldData, ansIndex, subjectName,Options, er }) => {
+const InputField = ({ fieldData, ansIndex, subjectName,Options,currQuestion }) => {
 
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
-  
-  // let opts =['','','','',''];
+
   let opts=[];
-  if(Options){
-    opts =Object.values(Options);
-    console.log('opts :>> ', opts);
-  };
-  
+ 
   const handleClickShowPassword = () => {
     setShowPassword(prev => !prev);
     console.log('showPassword :>> ', showPassword);
@@ -205,6 +195,7 @@ const InputField = ({ fieldData, ansIndex, subjectName,Options, er }) => {
             dispatch(handleSubject({ name, value }));
           } : (e) => {
             const { name, value } = e.target;
+            
             const data = {
               name: name,
               value: value,
@@ -213,68 +204,42 @@ const InputField = ({ fieldData, ansIndex, subjectName,Options, er }) => {
               ans: fieldData?.data?.[fieldData.id],
               ansIndex: fieldData?.ansIndex
             };
-          
-            const errorObj = {};
-            const inputValue = e?.target?.value;
-            dispatch(fieldData.updateData(data));
-            
-            if (opts.includes(inputValue)) {
-                console.log('1');
-                const ke=fieldData.name;  
-                errorObj[ke]='Option is already Present';
+            dispatch(fieldData.updateData(data)); 
 
-                dispatch(fieldData.updateData(data));
-                opts.forEach((opt, i) => {
-                  if (opt === inputValue) {
-                    errorObj[`op${i + 1}`] = 'Option is already present';
-                    console.log('errorObj :>> ', errorObj);
-                    dispatch(handleError({ ...errorObj })); 
+            let errorObj = {};
+            const inputValue = e?.target?.value;
+
+                if(Options){
+                  opts=Object.values(Options);
+                };
+                errorObj[fieldData.name]='';    // check it is necessary or not
+               
+                const index = /\d$/g.exec(fieldData.name)?.[0]
+                const updateOpt = opts?.map((opt, i) => i === index - 1 ? inputValue : opt);
+
+                updateOpt.forEach((opt, i, arr) => {
+                  
+                  let isDuplicate = false;
+                  arr.forEach((val, ind) => {
+
+                    if (ind === i) {
+                      return;
+                    }
+                    else if (val !== "" && opt === val) {
+                      isDuplicate = true;
+                    }
+                  })
+                  
+                  if (isDuplicate) {
+                    errorObj[`op${i + 1}`] = `Option is already present`;
+                  } else {
+                    errorObj[`op${i + 1}`] = ``;
                   }
+
                 });
-            }
-            else{
-                console.log('outer false');
-                errorObj[fieldData.name]='';
-                console.log('errorObj :>> ', errorObj);
-                opts.forEach((opt, i) => {
-                  if (opt === inputValue) {
-                    errorObj[`op${i + 1}`] = 'Option is already present';
-                    console.log('errorObj :>> ', errorObj);
-                    dispatch(handleError({ ...errorObj })); 
-                  } 
-                  // if(opt !== inputValue){
-                  //   errorObj[`op${i+1}`]=''
-                  // }
-                  if([...new Set(opts)]?.length === opts.length){
-                    console.log('ssssssssssssset');
-                    errorObj[`op${i+1}`]=''
-                  }
-                });
-                // console.log('errorObj :>> ', errorObj);
-                // dispatch(handleError({ ...errorObj }));
-                // if(!fieldData?.optionArr.includes(inputValue)) {
-                //   errorObj['op1']=''
-                //   errorObj['op2']=''
-                //   errorObj['op3']=''
-                //   errorObj['op4']=''
-                // }
-                // console.log('errorObj :>> ', errorObj);
-                // dispatch(handleError({ ...errorObj }));
-            }
-            dispatch(handleError({ ...errorObj }));
+                
+                dispatch(handleError(errorObj));
             
-            // if(fieldData?.optionArr?.includes(e?.target?.value)) {
-            //   console.log('true');
-            //   dispatch(fieldData.updateData(data));
-            //   dispatch(handleError({ [fieldData.name]: 'Option is already present' }));
-            // }else{
-            //   console.log('false');
-            //   dispatch(fieldData.updateData(data));
-            //   console.log('fieldData?.optionArr :>> ', fieldData?.optionArr);
-            //   console.log('fieldData.name :>> ', fieldData.name);
-            //   dispatch(handleError({ [fieldData.name]: '' }));
-            // }
-            // dispatch(fieldData.updateData(data));
           }
         }
         InputProps={{
@@ -296,4 +261,5 @@ const InputField = ({ fieldData, ansIndex, subjectName,Options, er }) => {
 
 export default InputField;
 
-// what part of boiled egg is better for dieat? fow weight loss
+
+

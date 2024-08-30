@@ -247,6 +247,7 @@ export const useCreateExam = () => {
           console.log('same option error');
             return;
         }
+        
         // if(Object.keys(sameOptionError).length !== 0){
         //   console.log('sameOptionError :>> ', sameOptionError);
         //   console.log('same option error');
@@ -271,7 +272,7 @@ export const useCreateExam = () => {
               toast.error(res?.payload?.message)
               navigate(VIEW_EXAM);  
             }
-            toast.sucess(res?.payload?.message);
+            toast.success(res?.payload?.message);
 
           }catch(err){
             console.log('error', err);

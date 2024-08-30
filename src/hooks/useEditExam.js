@@ -16,8 +16,7 @@ const useEditExam = (id,subjectName) => {
     const examData= useSelector(state=>state.teacher.createExam);
     const sameQuestions = useSelector(state=>state.teacher.questions);
     const [currQuestion,setCurrQuestion]=useState(0);
-    const error =useSelector(state=>state.teacher.error)
-    const sameOptionError=useSelector(state=>state.teacher.error);
+    const error =useSelector(state=>state.teacher.error);
     const edited =useSelector(state=>state.teacher.edited);
 
     const eData=useSelector(state=>state.teacher.createExam)
@@ -201,9 +200,11 @@ const useEditExam = (id,subjectName) => {
       }
 
       const handleEditExam = async()=>{
+        console.log('handleEdit called');
         try{
-
+         
           if(!edited){
+           
             navigate(VIEW_EXAM);
             return;
           }
@@ -211,19 +212,21 @@ const useEditExam = (id,subjectName) => {
             sameQuestions.length === currQuestion ) ||
             sameQuestions[currQuestion] !== validateExamData.question)
           {
+            
             validateExamData.questions = sameQuestions;
           }
          
           const error =validateField(validateExamData,validate);
           if(Object.keys(error).length !== 0)
           {
+            
             dispatch(handleError(error));
             return;
           }
-          if(Object.keys(sameOptionError).length !== 0)
-          {
-            return;
-          }
+          // if(Object.keys(sameOptionError).length !== 0)
+          // {
+          //   return;
+          // }
           
           var data = {...examData}
          
@@ -243,11 +246,12 @@ const useEditExam = (id,subjectName) => {
             toast.error(res?.payload?.message);
             return;
           }
-          toast.success("AAAAA",res?.payload?.message);
+          toast.success(res?.payload?.message);
           dispatch(initiateQuestions());
           dispatch(handleEdited());
           navigate(VIEW_EXAM);
         }catch(error){
+          
           toast.error("error",error);
         }
       }

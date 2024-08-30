@@ -6,10 +6,11 @@ import { RiLockPasswordFill } from "react-icons/ri";
 import { TbLogout } from "react-icons/tb";
 import { handleLogin, handleMenu } from '../redux-toolkit/slices/user';
 import { loadViewExamData } from '../redux-toolkit/slices/teacher';
-import { cleatItemLocal, setItemLocal } from '../utils/localStorageFunction';
+import { clearItemLocal, setItemLocal } from '../utils/localStorageFunction';
 import { LOGIN_PAGE } from '../utils/constant';
 
 const Navbar = ({ navItems }) => {
+  
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const location = useLocation()
@@ -17,7 +18,12 @@ const Navbar = ({ navItems }) => {
   const currUserRole = getCurrUserData().role;
 
   const handleLogout = () => {
-    cleatItemLocal()
+
+    const bool = window.confirm('are you sure you want to Log Out?');
+    if(bool === false){
+      return;
+    }
+    clearItemLocal()
     setItemLocal('login', false);
     dispatch(handleLogin(false))
     dispatch(loadViewExamData([]));
@@ -34,6 +40,7 @@ const Navbar = ({ navItems }) => {
                 <li key={i} onClick={() => dispatch(handleMenu())}>
                   <NavLink
                     to={item.path}
+                    replace
                     className={`flex gap-5 text-lg items-center p-3 text-gray-700 rounded-lg dark:text-gray-200 hover:bg-blue-200 dark:hover:bg-gray-700 transition-all
                       ${(item.path === 'view-exam' && edit === 'edit-exam') || 
                         (item.path === 'allstudent' && edit === 'view-student-detail') || 

@@ -37,7 +37,7 @@ const AllExam = () => {
         navigate('/login');
         return;
       }
-      toast.success(res?.payload?.message);
+      
       dispatch(loadAllExamData(res?.payload?.data))
     }
     if(allExamData.length === 0){

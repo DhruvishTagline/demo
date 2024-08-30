@@ -10,7 +10,7 @@ const CreateExam = () => {
   const dispatch = useDispatch();
   const status = useSelector(state => state.api.status);
   const ansIndex = useSelector(state => state.teacher.ansIndex);
-  const createExam = useSelector(state=> state.teacher.createExam)
+  const createExam = useSelector(state=> state.teacher.createExam);
 
   const {
     createExamFields,
@@ -25,24 +25,35 @@ const CreateExam = () => {
     handleCancel
   } = useCreateExam();
 
-  // console.log('createExamFields :>> ', createExamFields);
-  // console.log('validateExamData :>> ', validateExamData);
+
 
 useEffect(() => {
+  console.log('useEffect');
   removeItemLocal('createExam');
   dispatch(initiateAnsIndex([]))
 
   // handleCancel();
 
-  if(!createExam){
-    dispatch(initiateExam(initiateConfig));
-    dispatch(initiateAnsIndex([]));
-  }else{  
-    dispatch(initiateExam(createExam))
+  console.log('createExam :>> ', createExam);
+  if(createExam){
+    console.log('true');
+    dispatch(initiateExam(initiateConfig))
     if(ansIndex !== null){
       dispatch(initiateAnsIndex(ansIndex))
     }
   }
+
+  // if(!createExam){
+  //   console.log('true');
+  //   dispatch(initiateExam(initiateConfig));
+  //   dispatch(initiateAnsIndex([]));
+  // }else{  
+  //   console.log('false');
+  //   dispatch(initiateExam(createExam))
+  //   if(ansIndex !== null){
+  //     dispatch(initiateAnsIndex(ansIndex))
+  //   }
+  // }
 },[]);
 
   return (

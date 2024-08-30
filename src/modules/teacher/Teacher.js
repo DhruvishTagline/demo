@@ -34,6 +34,7 @@ const Teacher = () => {
       path:CREATE_EXAM,
       name:'CreateExam',
       icon:<PiExamFill style={{fontSize:25}}/>
+      
     },
     {
       path:VIEW_EXAM,

@@ -11,7 +11,7 @@ export const removeItemLocal = (key) => {
     localStorage.removeItem(key)
 }
 
-export const cleatItemLocal = () => {
+export const clearItemLocal = () => {
     localStorage.clear()
 }
 

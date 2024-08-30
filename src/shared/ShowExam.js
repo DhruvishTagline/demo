@@ -139,6 +139,8 @@ const ShowExam = ({
   const examData = useSelector((state) => state.teacher.createExam);
   const dispatch = useDispatch();
   const status = useSelector((state) => state.api.status);
+  // const Options = useSelector(state=>state.teacher.createExam.questions[currQuestion].options) ;
+  // console.log('OOOOOO :>> ', Options);
 
   const handlePrevQuestion = () => {
     dispatch(handleError({}));
@@ -190,7 +192,7 @@ const ShowExam = ({
           <div>
             {
               createExamFields.map((field, i) => (
-              <InputField fieldData={field} subjectName={subjectName} er={error} key={i} Options={Options}/>
+              <InputField fieldData={field} subjectName={subjectName} er={error} key={i} Options={Options} currQuestion={currQuestion}/>
               ))
             }
           </div>
