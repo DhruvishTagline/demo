@@ -11,6 +11,7 @@ const CreateExam = () => {
   const status = useSelector(state => state.api.status);
   const ansIndex = useSelector(state => state.teacher.ansIndex);
   const createExam = useSelector(state=> state.teacher.createExam);
+  
 
   const {
     createExamFields,
@@ -22,8 +23,10 @@ const CreateExam = () => {
     setCurrQuestion,
     handleCreateExam,
     initiateConfig,
-    handleCancel
+    handleCancel,
+    questions
   } = useCreateExam();
+  console.log('questions :>> ', questions);
 
 
 
@@ -68,6 +71,7 @@ useEffect(() => {
         validate={validate}
         Options={Options} 
         subjectName={createExamFields[0].data.subjectName}
+        questions={questions}
       />
 
       <div className='pt-2'>

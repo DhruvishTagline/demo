@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { getCurrUserData} from '../../../Current User/currentUser';
+
 import { fetchData } from '../../../redux-toolkit/slices/api';
 import { useDispatch, useSelector } from 'react-redux';
 import {  loadViewExamData, updateFilteredData, updateSearchQuery } from '../../../redux-toolkit/slices/teacher';
@@ -10,6 +10,7 @@ import { removeItemLocal, setItemLocal } from '../../../utils/localStorageFuncti
 import { LOGIN_PAGE } from '../../../utils/constant';
 import FilterFeild from '../../../shared/FilterFeild';
 import { toast } from 'react-toastify';
+import { getCurrUserData } from '../../../utils/currentUser';
 
 const ViewExam = () => {
 

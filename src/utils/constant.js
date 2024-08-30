@@ -34,7 +34,7 @@ export const STUDENT_DASHBOARD = '/student/dashboard'
 
 export const ALL_EXAM = '/student/all-exam'
 
-export const GIVE_EXAM = '/student/give-exam'
+export const GIVE_EXAM = '/student/give-exam/:id/:subjectName'
 
 export const STUDENT_PROFILE = '/student/student-profile'
 

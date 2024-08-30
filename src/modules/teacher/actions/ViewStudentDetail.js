@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
-import { getCurrUserData} from '../../../Current User/currentUser';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchData } from '../../../redux-toolkit/slices/api';
 import { loadCurrStudentDetail } from '../../../redux-toolkit/slices/teacher';
@@ -8,6 +8,7 @@ import CurrStudentDetail from '../../../shared/CurrStudentDetail';
 import { ALL_STUDENT } from '../../../utils/constant';
 import { removeItemLocal, setItemLocal } from '../../../utils/localStorageFunction';
 import { toast } from 'react-toastify';
+import { getCurrUserData } from '../../../utils/currentUser';
 
 const ViewStudentDetail = () => {
 

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import useStudentProfile from '../../../hooks/useStudentProfile'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
-import { getCurrUserData } from '../../../Current User/currentUser';
+
 import { fetchData } from '../../../redux-toolkit/slices/api';
 import { getItemLocal, removeItemLocal, setItemLocal } from '../../../utils/localStorageFunction';
 import { loadStudentProfile } from '../../../redux-toolkit/slices/student';
@@ -10,6 +10,7 @@ import { handlePrevVisitedPage } from '../../../redux-toolkit/slices/user';
 import InputField from '../../../shared/InputField';
 import { LOGIN_PAGE } from '../../../utils/constant';
 import { toast } from 'react-toastify';
+import { getCurrUserData } from '../../../utils/currentUser';
 
 const StudentProfile = () => {
 

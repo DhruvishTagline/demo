@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router';
-import { getCurrUserData } from '../../../Current User/currentUser';
+
 import { fetchData } from '../../../redux-toolkit/slices/api';
 import { removeItemLocal, setItemLocal } from '../../../utils/localStorageFunction';
 import { handlePrevVisitedPage } from '../../../redux-toolkit/slices/user';
@@ -10,6 +10,7 @@ import { loadAllExamData } from '../../../redux-toolkit/slices/student';
 import { updateFilteredData } from '../../../redux-toolkit/slices/teacher';
 import FilterFeild from '../../../shared/FilterFeild';
 import { toast } from 'react-toastify';
+import { getCurrUserData } from '../../../utils/currentUser';
 
 
 const AllExam = () => {

@@ -3,10 +3,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router';
 import { handleAns, handleEdited, handleError, handleOptions, handleQuestion, handleSubject, initiateExam, initiateQuestions, loadViewExamData } from '../redux-toolkit/slices/teacher';
 import { validateField } from '../Validation/validation';
-import { getCurrUserData } from '../Current User/currentUser';
+
 import { fetchData } from '../redux-toolkit/slices/api';
 import { VIEW_EXAM } from '../utils/constant';
 import { toast } from 'react-toastify';
+import { getCurrUserData } from '../utils/currentUser';
 
 
 const useEditExam = (id,subjectName) => {
@@ -314,6 +315,7 @@ const useEditExam = (id,subjectName) => {
       validate,
       examData,
       error,
+      Options,
       setCurrQuestion,
       handleEditExam,
       handleDeleteExam,

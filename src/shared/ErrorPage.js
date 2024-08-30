@@ -1,8 +1,9 @@
 import React from 'react';
 import { useNavigate } from 'react-router';
-import { getCurrUserData } from '../Current User/currentUser';
+
 import { getItemLocal } from '../utils/localStorageFunction';
 import { LOGIN_PAGE } from '../utils/constant';
+import { getCurrUserData } from '../utils/currentUser';
 
 const ErrorPage = () => {
   const navigate = useNavigate();

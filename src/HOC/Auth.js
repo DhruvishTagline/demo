@@ -1,6 +1,7 @@
 import React from 'react'
 import { Navigate, Outlet, useLocation } from 'react-router-dom'
-import { getCurrUserData } from '../Current User/currentUser';
+import { getCurrUserData } from '../utils/currentUser';
+
 
 const Auth = ({role}) => {
   const location = useLocation();

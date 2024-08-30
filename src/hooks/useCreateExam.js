@@ -3,12 +3,13 @@ import { useDispatch, useSelector } from "react-redux"
 import { handleAns, handleError, handleOptions, handleQuestion, handleSubject, initiateAnsIndex, initiateExam, initiateQuestions } from "../redux-toolkit/slices/teacher";
 import { useState } from "react";
 import { fetchData } from "../redux-toolkit/slices/api";
-import { getCurrUserData } from "../Current User/currentUser";
+
 import { useNavigate } from "react-router";
 import { validateField } from "../Validation/validation";
 import { removeItemLocal } from "../utils/localStorageFunction";
 import { VIEW_EXAM } from "../utils/constant";
 import { toast } from "react-toastify";
+import { getCurrUserData } from "../utils/currentUser";
 
 
 export const useCreateExam = () => {
@@ -20,9 +21,19 @@ export const useCreateExam = () => {
     // console.log('examData :>> ', examData);
     const [currQuestion,setCurrQuestion] = useState(0);
     const error = useSelector(state => state.teacher.error);
-    const sameQuestions = useSelector(state => state.teacher.questions);
+    // const sameQuestions = useSelector(state => state.teacher.createExam.questions);
+    const sameQuestions=[
+      {question: 'q1', options: Array(4), answer: 'a'},
+      {question: 'q1', options: Array(4), answer: 'a'},
+      {question: 'q2', options: Array(4), answer: 'a'},
+      {question: 'q3', options: Array(4), answer: 'a'},
+      {question: 'q4', options: Array(4), answer: 'a'},
+    ]
+    
+    console.log('sameQuestions :>> ', sameQuestions);
     // const totalQuestion = 14;
     const sameOptionError = useSelector(state => state.teacher.error);
+    
 
     const validateExamData = {
         subjectName:examData?.subjectName,
@@ -230,10 +241,18 @@ export const useCreateExam = () => {
 
     const handleCreateExam = () => {
 
-        if( (sameQuestions.includes(validateExamData.question) && sameQuestions.length === currQuestion ) || 
-        sameQuestions[currQuestion] !== validateExamData.question )
-        {
-          validateExamData.question = sameQuestions;
+        const checkForDuplicateQuestions = (questions) => {
+            const questionTexts = questions.map(q => q.question);
+            const duplicateQuestions = questionTexts.filter((item, index) => 
+                questionTexts.indexOf(item) !== index
+            );
+            return [...new Set(duplicateQuestions)]; 
+        };
+
+        const duplicates = checkForDuplicateQuestions(sameQuestions);
+        if (duplicates.length > 0) {  
+            toast.warn(`Duplicate questions detected`);
+            return; 
         }
 
         const error = validateField(validateExamData,validate);
@@ -247,13 +266,7 @@ export const useCreateExam = () => {
           console.log('same option error');
             return;
         }
-        
-        // if(Object.keys(sameOptionError).length !== 0){
-        //   console.log('sameOptionError :>> ', sameOptionError);
-        //   console.log('same option error');
-        //   return;
-        // }
-     
+          
         const createExam = async() => {
           console.log('createExam');
           try{
@@ -281,6 +294,67 @@ export const useCreateExam = () => {
         createExam();
     }
 
+  //   const handleCreateExam = () => {
+      
+  //     const currentQuestionText = validateExamData.question;
+  
+      
+  //     const hasDuplicateQuestion = sameQuestions.some(q => q === currentQuestionText);
+  
+  //     if (hasDuplicateQuestion) {
+          
+  //         toast.warn('Duplicate question detected. Please make sure each question is unique.');
+  //         return; 
+  //     }
+  
+  //     // Validate form data
+  //     const validationErrors = validateField(validateExamData, validate);
+  //     if (Object.keys(validationErrors).length !== 0) {
+  //         // Dispatch errors if validation fails
+  //         dispatch(handleError(validationErrors));
+  //         return;
+  //     }
+  
+    
+  //     if (Object.values(sameOptionError).some(error => error !== '')) {
+  //         console.log('Option errors:', sameOptionError);
+  //         return;
+  //     }
+  
+    
+  //     const createExam = async () => {
+  //         console.log('Creating exam...');
+  //         try {
+  //             const config = {
+  //                 method: 'post',
+  //                 url: 'dashboard/Teachers/Exam',
+  //                 data: examData,
+  //                 headers: { "access-token": getCurrUserData().token }
+  //             };
+  
+             
+  //             const response = await dispatch(fetchData(config));
+  
+            
+  //             setCurrQuestion(0);
+  //             dispatch(initiateQuestions());
+  
+  //             if (response?.payload?.statusCode !== 200) {
+  //                 toast.error(response?.payload?.message);
+  //                 navigate(VIEW_EXAM);
+  //             } else {
+  //                 toast.success(response?.payload?.message);
+  //             }
+  //         } catch (error) {
+  //             console.error('Error creating exam:', error);
+  //         }
+  //     };
+  
+     
+  //     createExam();
+  // };
+  
+    
     const handleCancel = () => {
         dispatch(initiateExam(initiateConfig));
         // dispatch(handleSubject(""))
@@ -300,6 +374,7 @@ export const useCreateExam = () => {
         Options,
         examData,
         initiateConfig,
+        
         setCurrQuestion,
         handleCreateExam,
         handleCancel
@@ -309,5 +384,82 @@ export const useCreateExam = () => {
 
 
 
+const sameQuestions=[
+  {question: 'q1', options: Array(4), answer: 'a'},
+  {question: 'q1', options: Array(4), answer: 'a'},
+  {question: 'q2', options: Array(4), answer: 'a'},
+  {question: 'q3', options: Array(4), answer: 'a'},
+  {question: 'q4', options: Array(4), answer: 'a'},
+]
 
 
+
+
+// const handleCreateExam = () => {
+//   // Extract question text of the current question
+//   const currentQuestionText = validateExamData.question;
+
+//   // Function to check for duplicate questions
+//   const checkForDuplicateQuestions = (questions) => {
+//       const questionTexts = questions.map(q => q.question);
+//       const duplicateQuestions = questionTexts.filter((item, index) => 
+//           questionTexts.indexOf(item) !== index
+//       );
+//       return [...new Set(duplicateQuestions)]; // Return unique duplicates
+//   };
+
+//   // Check for duplicate questions
+//   const duplicates = checkForDuplicateQuestions(sameQuestions);
+
+//   if (duplicates.length > 0) {
+//       // Show a toast message if duplicates are found
+//       toast.warn(`Duplicate questions detected: ${duplicates.join(', ')}`);
+//       return; // Exit the function to prevent further execution
+//   }
+
+//   // Validate form data
+//   const validationErrors = validateField(validateExamData, validate);
+//   if (Object.keys(validationErrors).length > 0) {
+//       // Dispatch errors if validation fails
+//       dispatch(handleError(validationErrors));
+//       return; // Exit if there are validation errors
+//   }
+
+//   // Check for errors in options
+//   if (Object.values(sameOptionError).some(error => error !== '')) {
+//       console.log('Option errors:', sameOptionError);
+//       return; // Exit if there are errors in options
+//   }
+
+//   // Function to create the exam
+//   const createExam = async () => {
+//       console.log('Creating exam...');
+//       try {
+//           const config = {
+//               method: 'post',
+//               url: 'dashboard/Teachers/Exam',
+//               data: examData,
+//               headers: { "access-token": getCurrUserData().token }
+//           };
+
+//           // Dispatch API request
+//           const response = await dispatch(fetchData(config));
+
+//           // Reset state and handle API response
+//           setCurrQuestion(0);
+//           dispatch(initiateQuestions());
+
+//           if (response?.payload?.statusCode !== 200) {
+//               toast.error(response?.payload?.message);
+//               navigate(VIEW_EXAM);
+//           } else {
+//               toast.success(response?.payload?.message);
+//           }
+//       } catch (error) {
+//           console.error('Error creating exam:', error);
+//       }
+//   };
+
+//   // Call the function to create the exam
+//   createExam();
+// };

@@ -1,13 +1,14 @@
 import React, { useEffect } from 'react'
 import {useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCurrUserData } from '../../../Current User/currentUser';
+
 import { fetchData } from '../../../redux-toolkit/slices/api';
 import {  handleQuestions, setAnsIndex } from '../../../redux-toolkit/slices/teacher';
 import ShowExam from '../../../shared/ShowExam';
 import useEditExam from '../../../hooks/useEditExam';
 import { toast } from 'react-toastify';
 import { VIEW_EXAM } from '../../../utils/constant';
+import { getCurrUserData } from '../../../utils/currentUser';
 
 
 const EditExam = (props) => {
@@ -34,13 +35,14 @@ const EditExam = (props) => {
     edited,
     examData,
     error,
+    Options,
     setCurrQuestion,
     handleEditExam,
     handleDeleteExam,
     handleCancel
   } = useEditExam(id,subjectName);
  
-
+  
   console.log('createExamFields :>> ', createExamFields);
   useEffect(()=>{
     const getExamDetails=async()=>{
@@ -82,6 +84,7 @@ const EditExam = (props) => {
                 eData={eData} 
                 subjectName = {subjectName} 
                 error={error}
+                Options={Options}
                 />
                 
                 <div>

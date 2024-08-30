@@ -8,7 +8,7 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import RadioBtn from './RadioBtn';
 
-const InputField = ({ fieldData, ansIndex, subjectName,Options,currQuestion }) => {
+const InputField = ({ fieldData, ansIndex, subjectName,Options }) => {
 
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);

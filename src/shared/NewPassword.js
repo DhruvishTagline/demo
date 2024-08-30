@@ -3,13 +3,14 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, useNavigate,  useSearchParams } from 'react-router-dom'
 import { getItemLocal } from '../utils/localStorageFunction';
-import { getCurrUserData } from '../Current User/currentUser';
+
 import { handleError, handleNewPassword } from '../redux-toolkit/slices/user';
 import { validateField } from '../Validation/validation';
 import { fetchData } from '../redux-toolkit/slices/api';
 import { LOGIN_PAGE } from '../utils/constant';
 import InputField from './InputField';
 import { toast } from 'react-toastify';
+import { getCurrUserData } from '../utils/currentUser';
 
 const NewPassword = () => {
 

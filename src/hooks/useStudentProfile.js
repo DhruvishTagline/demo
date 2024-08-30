@@ -4,8 +4,9 @@ import { getItemLocal, setItemLocal } from '../utils/localStorageFunction';
 import {  handleStudentError, loadStudentProfile, updateProfile } from '../redux-toolkit/slices/student';
 import { validateField } from '../Validation/validation';
 import { fetchData } from '../redux-toolkit/slices/api';
-import { getCurrUserData } from '../Current User/currentUser';
+
 import { toast } from 'react-toastify';
+import { getCurrUserData } from '../utils/currentUser';
 
 const useStudentProfile = () => {
     const dispatch =useDispatch();

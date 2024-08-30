@@ -1,6 +1,6 @@
 import React from 'react'
 import { NavLink, useLocation, useNavigate } from 'react-router-dom'
-import { getCurrUserData } from '../Current User/currentUser';
+import { getCurrUserData } from '../utils/currentUser';
 import { useDispatch } from 'react-redux';
 import { RiLockPasswordFill } from "react-icons/ri";
 import { TbLogout } from "react-icons/tb";

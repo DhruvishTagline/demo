@@ -1,13 +1,14 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchData } from '../../../redux-toolkit/slices/api';
-import { getCurrUserData } from '../../../Current User/currentUser';
+
 import Pagination from '../../../shared/Pagination';
 import {  loadVerifiedStudentData, updateFilteredData, updateSearchQuery } from '../../../redux-toolkit/slices/teacher';
 import { useNavigate } from 'react-router';
 import { removeItemLocal, setItemLocal } from '../../../utils/localStorageFunction';
 import FilterFeild from '../../../shared/FilterFeild';
 import { toast } from 'react-toastify';
+import { getCurrUserData } from '../../../utils/currentUser';
 
 const VerifiedStudent = () => {
 

@@ -4,12 +4,13 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, useNavigate } from 'react-router';
 import { handleError, handleForgetPassword, initiateForgetPassword } from '../redux-toolkit/slices/user';
-import { getCurrUserData } from '../Current User/currentUser';
+
 import { validateField } from '../Validation/validation';
 import { fetchData } from '../redux-toolkit/slices/api';
 import { LOGIN_PAGE } from '../utils/constant';
 import InputField from './InputField'
 import { toast } from 'react-toastify';
+import { getCurrUserData } from '../utils/currentUser';
 
 const ForgotPassword = () => {
 

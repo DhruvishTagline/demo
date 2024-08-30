@@ -67,7 +67,7 @@ export default function BasicTable(props) {
                 {
                   studentBtn && (
                     <td className="text-center py-3 px-4 border-b truncate max-w-[18rem] text-blue-500">
-                      <NavLink to={`/student/give-exam?id=${row._id}&subjectName=${row.subjectName}`} style={{marginRight: '10px'}}>
+                      <NavLink to={`/student/give-exam/${row._id}/${row.subjectName}`} style={{marginRight: '10px'}}>
                         GiveExam
                       </NavLink>
                     </td>

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
-import { useNavigate, useSearchParams } from 'react-router-dom'
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
-import { getCurrUserData } from '../../../Current User/currentUser';
+import { getCurrUserData } from '../../../utils/currentUser';
 import { fetchData } from '../../../redux-toolkit/slices/api';
 import { getItemLocal, removeItemLocal, setItemLocal } from '../../../utils/localStorageFunction';
 import { ALL_EXAM, EXAM_RESTRICTION_PAGE, LOGIN_PAGE } from '../../../utils/constant';
@@ -12,16 +12,14 @@ import { useGiveExam } from '../../../hooks/useGiveExam';
 
 const GiveExam = () => {
 
-  
-  const [searchParams,setSearchParams] = useSearchParams();
-  const id = searchParams.get('id');
-  const subjectName = searchParams.get('subjectName');
+  const {id,subjectName}=useParams();
+  console.log('id :>> ', id);
+  console.log('subjectName :>> ', subjectName);
   const navigate =useNavigate();
   const dispatch = useDispatch();
   const examData = useSelector(state => state.student.examPaper);
   const ansIndex=useSelector(state => state.teacher.ansIndex);
   const status = useSelector(state => state.api.status);
-
 
   const { 
     createExamFields,
@@ -45,7 +43,6 @@ const GiveExam = () => {
         params:{id}
       }
       
-
       const res = await dispatch(fetchData(config));
       if(res?.payload?.statusCode===401){
         removeItemLocal('userData');
@@ -78,22 +75,23 @@ const GiveExam = () => {
     else{
       fetchExamPaper();
     }  
-  },[])
+  },[]);
 
   useEffect(()=>{
     const handleStorageChange = ()=>{
       const examPaper = getItemLocal('examPaper');
       if(examPaper){
-        dispatch(loadExamPaper(getItemLocal('examPaper')));
+      
+        dispatch(loadExamPaper(examPaper));
         const ansIndexLocal =getItemLocal(ansIndex);
         if(ansIndexLocal && ansIndex.length === 0){
           dispatch(initiateAnsIndex(ansIndexLocal))
         }
-        else{
-          dispatch(initiateExamPaper({}));
-          dispatch(initiateAnsIndex(ansIndex))
-          navigate(ALL_EXAM);
-        }
+        // else{
+        //   dispatch(initiateExamPaper({}));
+        //   dispatch(initiateAnsIndex(ansIndex))
+        //   navigate(ALL_EXAM);
+        // }
       }
     }
     handleStorageChange();
@@ -103,7 +101,6 @@ const GiveExam = () => {
   },[])
 
   
-
   return (
     <div className='flex justify-center mt-[70px] '>
         {         
@@ -112,15 +109,15 @@ const GiveExam = () => {
           <div>
             <p className='text-center text-4xl mb-6'>Give Exam</p>
             <ShowExam
-            createExamFields={createExamFields} 
-            setCurrQuestion={setCurrQuestion} 
-            currQuestion={currQuestion}
-            validateExamData={validateExamData}
-            totalQue={examData?.questions?.length }
-            validate={validate}
-            error={error}
-            role={'student'}
-            subjectName={subjectName}
+              createExamFields={createExamFields} 
+              setCurrQuestion={setCurrQuestion} 
+              currQuestion={currQuestion}
+              validateExamData={validateExamData}
+              totalQue={examData?.questions?.length }
+              validate={validate}
+              error={error}
+              role={'student'}
+              subjectName={subjectName}
             />
 
             <div className='flex justify-center mt-2'>

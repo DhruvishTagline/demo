@@ -5,7 +5,8 @@ import { handleError, handleSignupData, initiateSignupData } from '../../redux-t
 import DropDown from '../../shared/DropDown'
 import { Link, Navigate } from 'react-router-dom'
 import { useSignupData } from '../../hooks/useSignupData'
-import { getCurrUserData } from '../../Current User/currentUser'
+import { getCurrUserData } from '../../utils/currentUser'
+
 
 const SignUp = () => {
 

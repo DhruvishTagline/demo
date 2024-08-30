@@ -1,11 +1,12 @@
 import React from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
-import { getCurrUserData } from '../Current User/currentUser';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { handleMenu } from '../redux-toolkit/slices/user';
 import { getItemLocal } from '../utils/localStorageFunction';
 import { LOGIN_PAGE, SIGNUP_PAGE } from '../utils/constant';
 import ViewSidebarIcon from '@mui/icons-material/ViewSidebar';
+import { getCurrUserData } from '../utils/currentUser';
 
 const Header = () => {
     const dispatch = useDispatch();

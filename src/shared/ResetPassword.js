@@ -2,11 +2,12 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { handleError, handlePrevVisitedPage, handleResetPassword, initiateResetPassword } from '../redux-toolkit/slices/user';
 import InputField from './InputField';
-import { getCurrUserData } from '../Current User/currentUser';
+
 import { fetchData } from '../redux-toolkit/slices/api';
 import { validateField } from '../Validation/validation';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { getCurrUserData } from '../utils/currentUser';
 
 const ResetPassword = () => {
 

@@ -2,16 +2,17 @@ import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router';
 import { cancelExam, handleStudentAns, loadAllExamData } from '../redux-toolkit/slices/student';
-import { getCurrUserData } from '../Current User/currentUser';
+
 import { fetchData } from '../redux-toolkit/slices/api';
 import { ALL_EXAM } from '../utils/constant';
 import { initiateAnsIndex } from '../redux-toolkit/slices/teacher';
 import { removeItemLocal } from '../utils/localStorageFunction';
 import { toast } from 'react-toastify';
+import { getCurrUserData } from '../utils/currentUser';
 
 export const useGiveExam = (id) => {
     
-
+   
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -186,6 +187,7 @@ export const useGiveExam = (id) => {
                     }
                     
                     toast.success(res?.payload?.message)
+                    removeItemLocal('ansIndex')
 
                     navigate(ALL_EXAM);
                 } catch(error) {
@@ -206,6 +208,8 @@ export const useGiveExam = (id) => {
         removeItemLocal('examPaper');
         navigate(ALL_EXAM)
       }
+
+     
 
       return {
         createExamFields,
