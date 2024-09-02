@@ -14,11 +14,11 @@ const Auth = ({role}) => {
     return <Navigate to={`${currUserRole}/dashboard`}/>
   }
   return (
-        <div>
-            {
-              role.includes(currUserRole) && <Outlet/>
-            }
-        </div> 
+    <div>
+      {
+        role.includes(currUserRole) && <Outlet/>
+      }
+    </div> 
   )
 }
 

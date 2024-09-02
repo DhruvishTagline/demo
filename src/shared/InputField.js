@@ -1,5 +1,3 @@
-
-
 import {  TextField, IconButton } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -78,6 +76,7 @@ const InputField = ({ fieldData, ansIndex, subjectName,Options }) => {
                     else if (val !== "" && opt === val) {
                       isDuplicate = true;
                     }
+
                   })
                   
                   if (isDuplicate) {
@@ -85,7 +84,7 @@ const InputField = ({ fieldData, ansIndex, subjectName,Options }) => {
                   } else {
                     errorObj[`op${i + 1}`] = ``;
                   }
-
+                  
                 });
                 
                 dispatch(handleError(errorObj));

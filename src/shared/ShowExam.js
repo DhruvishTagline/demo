@@ -37,19 +37,16 @@ const ShowExam = ({
     const validationErrors = validateField(validateExamData, validate);
   
     dispatch(handleError(validationErrors));
-  
 
     const e = Object.values(error).some(element => element !== '');
-    
-
     // const hasErrors =  Object.keys(error).length > 0 && Object.keys(validationErrors).length > 0;
     // const hasErrors =  Object.values(validationErrors).length > 0 || Object.values(error).length > 0;
     const hasErrors =  Object.values(validationErrors).length > 0 || e ;
     
     if (hasErrors) {
       dispatch(handleError(validationErrors));
-      toast.error('Answer Required Please ')
-      return
+      toast.error('Answer Required Please');
+      return;
     };
 
     if (currQuestion < totalQuestion - 1) { 
@@ -68,7 +65,6 @@ const ShowExam = ({
   };
 
   return (
-
     <div>     
       {
         <div>     
@@ -81,7 +77,6 @@ const ShowExam = ({
           {error?.sameOption && <span className='text-red-500 text-sm'>{error.sameOption}</span>}
 
           <div className='mt-2 ml-[28px]'>
-            
             <button
               onClick={handlePrevQuestion}
               disabled={currQuestion === 0}

@@ -155,7 +155,7 @@ export const useGiveExam = (id) => {
         }
       ]
 
-      const ansArr =examData?.questions?.reduce((acc,curr)=>{
+    const ansArr =examData?.questions?.reduce((acc,curr)=>{
        
         const obj ={
             question:curr._id,
@@ -166,7 +166,7 @@ export const useGiveExam = (id) => {
             acc.push(obj)
         }
         return acc;
-      },[])
+    },[])
       
       const handleSubmitExam =()=>{
         if(ansArr.length === 7){
@@ -185,9 +185,8 @@ export const useGiveExam = (id) => {
                       toast.error(res?.payload?.message);
                       return;
                     }
-                    
                     toast.success(res?.payload?.message)
-                    removeItemLocal('ansIndex')
+                    removeItemLocal('ansIndex');
 
                     navigate(ALL_EXAM);
                 } catch(error) {
@@ -202,14 +201,12 @@ export const useGiveExam = (id) => {
       }
 
       const handleCancel =()=>{
-        dispatch(cancelExam());
-        dispatch(initiateAnsIndex([]));
-        removeItemLocal('ansIndex');
-        removeItemLocal('examPaper');
-        navigate(ALL_EXAM)
+          dispatch(cancelExam());
+          dispatch(initiateAnsIndex([]));
+          removeItemLocal('ansIndex');
+          removeItemLocal('examPaper');
+          navigate(ALL_EXAM)
       }
-
-     
 
       return {
         createExamFields,
