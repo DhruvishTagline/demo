@@ -7,7 +7,7 @@ import { AiFillEye } from "react-icons/ai";
 import { MdVerified } from "react-icons/md";
 import { RiDashboardHorizontalFill } from "react-icons/ri"
 import { useSelector } from 'react-redux';
-import { ALL_STUDENT, CREATE_EXAM, VERIFIED_STUDENT, VIEW_EXAM } from '../../utils/constant';
+import { ALL_STUDENT, CREATE_EXAM, TEACHER_DASHBOARD, VERIFIED_STUDENT, VIEW_EXAM } from '../../utils/constant';
 
 const Teacher = () => {
 
@@ -16,7 +16,7 @@ const Teacher = () => {
 
   const teacherRoutes = [
     {
-      path:'/teacher/dashboard',
+      path:TEACHER_DASHBOARD,
       name:'Dashboard',
       icon:<RiDashboardHorizontalFill style={{fontSize:25}}/>
     },
@@ -33,8 +33,7 @@ const Teacher = () => {
     {
       path:CREATE_EXAM,
       name:'CreateExam',
-      icon:<PiExamFill style={{fontSize:25}}/>
-      
+      icon:<PiExamFill style={{fontSize:25}}/>     
     },
     {
       path:VIEW_EXAM,

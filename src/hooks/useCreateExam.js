@@ -251,7 +251,7 @@ export const useCreateExam = () => {
 
         const duplicates = checkForDuplicateQuestions(sameQuestions);
         if (duplicates.length > 0) {  
-            toast.warn(`Duplicate questions detected`);
+            toast.warn(`Duplicate Questions Detected Please Check`);
             return; 
         }
 

@@ -46,17 +46,6 @@ useEffect(() => {
     }
   }
 
-  // if(!createExam){
-  //   console.log('true');
-  //   dispatch(initiateExam(initiateConfig));
-  //   dispatch(initiateAnsIndex([]));
-  // }else{  
-  //   console.log('false');
-  //   dispatch(initiateExam(createExam))
-  //   if(ansIndex !== null){
-  //     dispatch(initiateAnsIndex(ansIndex))
-  //   }
-  // }
 },[]);
 
   return (
@@ -78,7 +67,8 @@ useEffect(() => {
         <button 
           disabled={status === 'loading' || currQuestion !== 14}
           onClick={handleCreateExam}
-          className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ${status === 'loading' || currQuestion !== 14 ? 'opacity-50 cursor-not-allowed':''}`}
+          className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline 
+            ${status === 'loading' || currQuestion !== 14 ? 'opacity-50 cursor-not-allowed':''}`}
         >
         {
           status === 'loading' ? <span>Loading...</span> : <span>Create Exam</span>
@@ -87,7 +77,7 @@ useEffect(() => {
         <button
         onClick={handleCancel}
         className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ml-2`}
-        >Reset</button>
+        >Reset Exam</button>
       </div>
     </div>
   )

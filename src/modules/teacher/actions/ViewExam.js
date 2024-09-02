@@ -42,10 +42,10 @@ const ViewExam = () => {
         navigate(LOGIN_PAGE)
         return;
       }
-      // toast(res?.payload?.message);
+     
       dispatch(loadViewExamData(res.payload.data));
       }catch(error){
-        console.log('error', error)
+        toast('error', error)
       }
     }
     if(viewExam.length === 0){
@@ -71,8 +71,7 @@ const ViewExam = () => {
                   <p className='text-center text-4xl mb-4'>View Exams</p>
                   <FilterFeild searchQuery={searchQuery}/>
                   <Pagination 
-                    data={filteredData} 
-                    recodesPerPage={10} 
+                    data={filteredData}  
                     btn={btn}
                     viewPath={`/teacher/view-exam`}
                   />

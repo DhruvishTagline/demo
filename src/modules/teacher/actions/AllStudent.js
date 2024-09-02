@@ -55,7 +55,7 @@ const AllStudent = () => {
       student.email.toLowerCase().includes(searchQuery.toLowerCase())
     );
     dispatch(updateFilteredData(filtered));
-  }, [searchQuery, allStudentData, dispatch]);
+  }, [searchQuery, allStudentData, dispatch]);  
 
   return (
     <div className='flex items-center flex-col mt-4'>
@@ -65,7 +65,7 @@ const AllStudent = () => {
             <div className='spinner mt-20 mx-auto'></div> :
             <div>
               <p className='text-center text-4xl mb-4'>All Students</p>
-              <FilterFeild searchQuery={searchQuery}/>
+              <FilterFeild searchQuery={searchQuery} placeholder='Search by email and name...'/>
               <Pagination
                 data={filteredData}
                 recodesPerPage={10}

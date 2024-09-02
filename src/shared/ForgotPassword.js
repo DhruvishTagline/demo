@@ -72,6 +72,11 @@ const ForgotPassword = () => {
           toast.error(res?.payload?.message);
           return;
         }
+        if(res?.payload.statusCode !== 200){
+          toast.error(res?.payload?.message);
+          return;
+        }
+
         toast.success(res?.payload?.message)
         navigate(LOGIN_PAGE);
         dispatch(initiateForgetPassword({}));

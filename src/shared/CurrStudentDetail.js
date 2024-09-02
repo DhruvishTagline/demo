@@ -1,6 +1,6 @@
 import React from 'react'
 import Pagination from './Pagination'
-import { Navigate, useNavigate } from 'react-router';
+import { useNavigate } from 'react-router';
 
 
 const CurrStudentDetail = ({currStudentDetail}) => {
@@ -8,7 +8,7 @@ const CurrStudentDetail = ({currStudentDetail}) => {
   const navigate = useNavigate();
   const goBack = () => {
     navigate('/teacher/allstudent');
-}
+  }
 
   return (
     <div className='flex flex-col text-xl max-[350px]:text-lg'>

@@ -76,15 +76,15 @@ const EditExam = (props) => {
               <>
               <p className='text-center mb-4 text-4xl'>Edit Exam</p>
                 <ShowExam 
-                createExamFields={createExamFields} 
-                setCurrQuestion={setCurrQuestion} 
-                currQuestion={currQuestion}
-                validateExamData={validateExamData}
-                validate={validate}   
-                eData={eData} 
-                subjectName = {subjectName} 
-                error={error}
-                Options={Options}
+                  createExamFields={createExamFields} 
+                  setCurrQuestion={setCurrQuestion} 
+                  currQuestion={currQuestion}
+                  validateExamData={validateExamData}
+                  validate={validate}   
+                  eData={eData} 
+                  subjectName = {subjectName} 
+                  error={error}
+                  Options={Options}
                 />
                 
                 <div>

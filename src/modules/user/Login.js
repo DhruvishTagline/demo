@@ -6,7 +6,7 @@ import { Link, Navigate } from 'react-router-dom';
 import { useLoginData } from '../../hooks/useLoginData';
 import { handleError, initiateLoginData } from '../../redux-toolkit/slices/user';
 
-import { toast } from "react-toastify";
+
 import { getCurrUserData } from '../../utils/currentUser';
 
 const Login = () => {

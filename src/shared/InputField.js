@@ -36,14 +36,14 @@ const InputField = ({ fieldData, ansIndex, subjectName,Options }) => {
         variant="outlined"
         placeholder={fieldData?.label}
         InputLabelProps={{ shrink: true }}
+        style={{width:'20rem'}}
         required
         onChange={
           fieldData?.name === 'subjectName' ? (e) => {
             const { name, value } = e.target;
             dispatch(handleSubject({ name, value }));
           } : (e) => {
-            const { name, value } = e.target;
-            
+            const { name, value } = e.target;            
             const data = {
               name: name,
               value: value,
@@ -60,8 +60,8 @@ const InputField = ({ fieldData, ansIndex, subjectName,Options }) => {
                 if(Options){
                   opts=Object.values(Options);
                 };
-                errorObj[fieldData.name]='';    // check it is necessary or not
-               
+                // errorObj[fieldData.name]='';    // check it is necessary or not
+                
                 const index = /\d$/g.exec(fieldData.name)?.[0]
                 const updateOpt = opts?.map((opt, i) => i === index - 1 ? inputValue : opt);
 
@@ -75,10 +75,9 @@ const InputField = ({ fieldData, ansIndex, subjectName,Options }) => {
                     }
                     else if (val !== "" && opt === val) {
                       isDuplicate = true;
-                    }
-
+                    }                    
                   })
-                  
+                   
                   if (isDuplicate) {
                     errorObj[`op${i + 1}`] = `Option is already present`;
                   } else {

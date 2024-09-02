@@ -28,7 +28,7 @@ const VerifiedStudent = () => {
                 url:'dashboard/Teachers/StudentForExam',
                 headers: { "access-token":getCurrUserData()?.token }
             }
-            const res = await dispatch(fetchData(config))
+            const res = await dispatch(fetchData(config));
             if(res?.payload?.statusCode === 401){
                 toast(res?.payload?.message);
                 removeItemLocal('userData');
@@ -69,13 +69,11 @@ const VerifiedStudent = () => {
                     <FilterFeild searchQuery={searchQuery}/>
                     <Pagination 
                         data={filteredData} 
-                        recodesPerPage={10} 
                         viewPath={`/teacher/view-student-detail`} 
                         lastVisitedPage={lastVisitedPage}
                     />
                 </div>         
-            }
-        
+            }     
    </div>
    </>
   )

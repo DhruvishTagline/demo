@@ -65,7 +65,7 @@ const ResetPassword = () => {
             },
             {
                 length:6,
-                message:'Password Must be contain atleast 6 charbe containe atleast 6 char'
+                message:'Password Must be contain atleast 6 char'
             },
             {
                 pattern:/^[a-zA-Z0-9!@#$%^&*]{6,16}$/,
@@ -79,7 +79,7 @@ const ResetPassword = () => {
             },
             {
                 length:6,
-                message:'Password Must be contain atleast 6 charbe containe atleast 6 char'
+                message:'Password Must be contain atleast 6 char'
             },
             {
                 pattern:/^[a-zA-Z0-9!@#$%^&*]{6,16}$/,
@@ -93,7 +93,7 @@ const ResetPassword = () => {
             },
             {
                 length:6,
-                message:'Password Must be contain atleast 6 charbe containe atleast 6 char'
+                message:'Password Must be contain atleast 6 char'
             },
             {
                 match:true,

@@ -1,6 +1,6 @@
 import React, { Suspense, lazy } from 'react';
 
-import { ALL_EXAM, ALL_STUDENT, CREATE_EXAM, EDIT_EXAM, EXAM_RESTRICTION_PAGE, FORGET_PASSWORD, GIVE_EXAM, HOME_PAGE, LOGIN_PAGE, NEW_PASSWORD, SHOW_RESULT, SIGNUP_PAGE, STUDENT, STUDENT_DASHBOARD, STUDENT_DETAIL, STUDENT_PROFILE, TEACHER, TEACHER_DASHBOARD, VERIFIED_STUDENT, VIEW_EXAM } from '../utils/constant';
+import { ALL_EXAM, ALL_STUDENT, CREATE_EXAM, EDIT_EXAM, EXAM_RESTRICTION_PAGE, FORGET_PASSWORD, GIVE_EXAM, HOME_PAGE, LOGIN_PAGE, NEW_PASSWORD, RESET_PASSWORD, SHOW_RESULT, SIGNUP_PAGE, STUDENT, STUDENT_DASHBOARD, STUDENT_DETAIL, STUDENT_PROFILE, TEACHER, TEACHER_DASHBOARD, VERIFIED_STUDENT, VIEW_EXAM } from '../utils/constant';
 import ErrorPage from '../shared/ErrorPage';
 import Auth from '../HOC/Auth';
 import ExamRestrictionPage from '../shared/ExamRestrictionPage';
@@ -158,7 +158,7 @@ export const routes = [
                 )
               },
               {
-                path: 'reset-password',
+                path: RESET_PASSWORD,
                 element: (
                   <Suspense fallback={<Loading />}>
                     <ResetPassword />
@@ -217,7 +217,7 @@ export const routes = [
                 )
               },
               {
-                path: 'reset-password',
+                path: RESET_PASSWORD,
                 element: (
                   <Suspense fallback={<Loading />}>
                     <ResetPassword />

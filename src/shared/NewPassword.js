@@ -55,8 +55,8 @@ const NewPassword = () => {
           message:'Password length must be greater than 6'
         },
         {
-          pattern:/^[a-zA-Z0-9!@#$%^&*]{6,16}$/,
-          message:'Enter Valid Password'
+          pattern:/^(?=.*[A-Z])(?=.*\d)[A-Za-z\d@$!%*?&]{6,25}$/,
+          message:'Password must be contain atleast 1 UpperCase, atleast 1 digit'
         }
       ],
       ConfirmPassword:[
@@ -66,7 +66,7 @@ const NewPassword = () => {
         },
         {
           length:6,
-          message:'Password Must be contain atleast 6 charbe containe atleast 6 char'
+          message:'Password Must be contain atleast 6 char'
         },
         {
           match:true,
@@ -90,8 +90,7 @@ const NewPassword = () => {
         }
         const res = await dispatch(fetchData(config));
         if(res?.payload?.statusCode===500){
-          toast.error(res?.payload?.message);
-          
+          toast.error(res?.payload?.message);       
           return;
         }
         if(res?.payload?.statusCode===400){

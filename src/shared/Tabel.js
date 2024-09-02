@@ -44,7 +44,7 @@ export default function BasicTable(props) {
                         </td>
                       );
                     }
-                  })
+                  }) 
                 }
                 {
                   path !== '/teacher/view-student-detail' ? '' :

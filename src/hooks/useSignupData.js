@@ -73,12 +73,13 @@ export const useSignupData = () => {
           },
           {
             length:6,
-            message:'Password Must be contain atleast 6 charbe containe atleast 6 char'
+            message:'Password Must be contain atleast 6 char'
           },
           {
             pattern:/^(?=.*[A-Z])(?=.*\d)[A-Za-z\d@$!%*?&]{6,25}$/,
-            message:'Enter Valid Password'
+            message:'Password must be contain atleast 1 UpperCase, atleast 1 digit'
           }
+          
         ],
         role:[
           {

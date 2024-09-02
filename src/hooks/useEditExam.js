@@ -205,22 +205,19 @@ const useEditExam = (id,subjectName) => {
         try{
          
           if(!edited){
-           
             navigate(VIEW_EXAM);
             return;
           }
-          if((sameQuestions.includes(validateExamData.question) && 
-            sameQuestions.length === currQuestion ) ||
-            sameQuestions[currQuestion] !== validateExamData.question)
-          {
-            
-            validateExamData.questions = sameQuestions;
-          }
+          // if((sameQuestions.includes(validateExamData.question) && 
+          //   sameQuestions.length === currQuestion ) ||
+          //   sameQuestions[currQuestion] !== validateExamData.question)
+          // {  
+          //   validateExamData.questions = sameQuestions;
+          // }
          
           const error =validateField(validateExamData,validate);
           if(Object.keys(error).length !== 0)
-          {
-            
+          {           
             dispatch(handleError(error));
             return;
           }
@@ -252,7 +249,6 @@ const useEditExam = (id,subjectName) => {
           dispatch(handleEdited());
           navigate(VIEW_EXAM);
         }catch(error){
-          
           toast.error("error",error);
         }
       }

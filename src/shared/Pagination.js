@@ -128,7 +128,7 @@ const Pagination = ({ data, viewPath, lastVisitedPage, btn, studentBtn }) => {
   const [pageNumberLimit] = useState(5);
   const [maxPageNumberLimit, setMaxPageNumberLimit] = useState(5);
   const [minPageNumberLimit, setMinPageNumberLimit] = useState(0);
-   const [renderPageNumbers, setRenderPageNumbers] = useState([]);
+  const [renderPageNumbers, setRenderPageNumbers] = useState([]);
 
   useEffect(() => {
     setCurrPage(1);
@@ -142,7 +142,6 @@ const Pagination = ({ data, viewPath, lastVisitedPage, btn, studentBtn }) => {
       pages.push(i);
     }
 
-    // Generate page numbers with ellipsis if necessary
     const renderPageNumbers = pages.map((number) => {
       if (totalPage <= 5 || (number >= minPageNumberLimit && number <= maxPageNumberLimit)) {
         return (

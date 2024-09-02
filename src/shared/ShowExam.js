@@ -45,7 +45,7 @@ const ShowExam = ({
     
     if (hasErrors) {
       dispatch(handleError(validationErrors));
-      toast.error('Answer Required Please');
+      toast.error('Please Check all Options and Select Right Answer');
       return;
     };
 
