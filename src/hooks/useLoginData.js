@@ -56,6 +56,10 @@ export const useLoginData = () => {
             required:true,
             message:'Please Enter Password'
           },
+          {
+            length:6,
+            message:'Password Must be contain atleast 6 char'
+          },
           
         ],
     }
@@ -74,17 +78,16 @@ export const useLoginData = () => {
             url:'users/Login',
             data:loginData 
           }
-          const res = await dispatch(fetchData(config))
+          const res = await dispatch(fetchData(config));
+          console.log('res :>> ', res);
           
           if(res?.payload?.statusCode === 500){
-            toast.error(res?.payload?.message)
-            console.log(res?.payload?.message);    
+            toast.error(res?.payload?.message)   
             setDisable(false);    
             return;    
           }    
           if(res?.payload?.statusCode === 400){    
-            toast.error(res?.payload?.message);    
-            console.log(res?.payload?.message);    
+            toast.error(res?.payload?.message);       
             return;    
           }    
           toast.success(res?.payload?.message)

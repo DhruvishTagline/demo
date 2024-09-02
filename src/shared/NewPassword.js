@@ -66,7 +66,7 @@ const NewPassword = () => {
         },
         {
           length:6,
-          message:'Password Must be 6 char'
+          message:'Password Must be contain atleast 6 charbe containe atleast 6 char'
         },
         {
           match:true,

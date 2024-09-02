@@ -73,7 +73,7 @@ export const useSignupData = () => {
           },
           {
             length:6,
-            message:'Password Must be 6 char'
+            message:'Password Must be contain atleast 6 charbe containe atleast 6 char'
           },
           {
             pattern:/^(?=.*[A-Z])(?=.*\d)[A-Za-z\d@$!%*?&]{6,25}$/,

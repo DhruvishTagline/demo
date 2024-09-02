@@ -25,12 +25,12 @@ export const userSlice = createSlice({
         handleLoginData:(state,action) => {
             const {name,value} = action.payload;
             state.error = {};
-            state.loginData[name] = value;
+            state.loginData[name] = value.trim();
         },
         handleSignupData:(state,action) => {
             const {name,value} = action.payload;
             state.error = {};
-            state.signupData[name] = value;
+            state.signupData[name] = value.trim();
         },
         handleError:(state,action) => {
             state.error = action.payload;
@@ -41,7 +41,7 @@ export const userSlice = createSlice({
         handleResetPassword:(state,action) => {
             const {name,value} = action.payload;
             state.error = {};
-            state.resetPassword[name] = value;
+            state.resetPassword[name] = value.trim();
         },
 
         initiateLoginData:(state,action) => {
@@ -71,12 +71,12 @@ export const userSlice = createSlice({
         handleForgetPassword:(state,action) => {
             const {name,value} = action.payload;
             state.error = {};
-            state.forgetPassword[name] = value;
+            state.forgetPassword[name] = value.trim();
         },
         handleNewPassword:(state,action) => {
             const {name,value} = action.payload;
             state.error = {};
-            state.newPassword[name] = value;
+            state.newPassword[name] = value.trim();
         },
         
     }
