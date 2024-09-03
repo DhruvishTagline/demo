@@ -201,7 +201,7 @@ const useEditExam = (id,subjectName) => {
       }
 
       const handleEditExam = async()=>{
-        console.log('handleEdit called');
+        
         try{
          
           if(!edited){
@@ -229,7 +229,7 @@ const useEditExam = (id,subjectName) => {
           var data = {...examData}
          
           data.subjectName=subjectName;
-          console.log('data :>> ', data);
+         
           const config ={
             method:'put',
             url:'dashboard/Teachers/editExam',

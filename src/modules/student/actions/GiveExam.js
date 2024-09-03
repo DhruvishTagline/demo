@@ -13,8 +13,6 @@ import { useGiveExam } from '../../../hooks/useGiveExam';
 const GiveExam = () => {
 
   const {id,subjectName}=useParams();
-  console.log('id :>> ', id);
-  console.log('subjectName :>> ', subjectName);
   const navigate =useNavigate();
   const dispatch = useDispatch();
   const examData = useSelector(state => state.student.examPaper);

@@ -21,6 +21,7 @@ const apiSlice = createSlice({
     initialState : initialState,
     
     extraReducers: (builder) => {
+        
         builder
             .addCase(fetchData.pending, (state,action) => {
                 state.status = 'loading'
@@ -33,7 +34,6 @@ const apiSlice = createSlice({
                 state.status = 'error';
                 state.error = action.payload || 'Something went Wrong'
             })
-
     }
 })
 

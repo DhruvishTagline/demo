@@ -12,7 +12,6 @@ import { getCurrUserData } from '../utils/currentUser';
 
 export const useGiveExam = (id) => {
     
-   
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -187,7 +186,6 @@ export const useGiveExam = (id) => {
                     }
                     toast.success(res?.payload?.message)
                     removeItemLocal('ansIndex');
-
                     navigate(ALL_EXAM);
                 } catch(error) {
                     console.log("error",error);

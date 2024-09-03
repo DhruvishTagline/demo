@@ -16,15 +16,7 @@ const EditExam = (props) => {
   const navigate = useNavigate();
  
   const { id,subjectName } = useParams();
-
-
-  console.log('Exam ID:', id);
-  console.log('subjectName :>> ', subjectName);
-
-  // const [searchParams,setSearchParams]=useSearchParams();
-  // const id = searchParams.get('id');
-  // const subjectName = searchParams.get('subjectName');
-  const status =useSelector(state=>state.api.status)
+  const status =useSelector(state=>state.api.status);
 
   const {
     eData,
@@ -42,8 +34,6 @@ const EditExam = (props) => {
     handleCancel
   } = useEditExam(id,subjectName);
  
-  
-  console.log('createExamFields :>> ', createExamFields);
   useEffect(()=>{
     const getExamDetails=async()=>{
       

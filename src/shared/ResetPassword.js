@@ -139,7 +139,6 @@ const ResetPassword = () => {
         
     }
 
-
   return (
     <div className='flex items-center flex-col mt-[70px]'>
         <p className='text-center mb-4 text-4xl'>Reset Password</p>

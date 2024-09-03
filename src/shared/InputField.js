@@ -15,7 +15,7 @@ const InputField = ({ fieldData, ansIndex, subjectName,Options }) => {
  
   const handleClickShowPassword = () => {
     setShowPassword(prev => !prev);
-    console.log('showPassword :>> ', showPassword);
+    
   }
 
   const inputType = fieldData?.type === 'password' && showPassword ? 'text' : fieldData?.type;

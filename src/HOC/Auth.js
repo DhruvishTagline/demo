@@ -6,7 +6,7 @@ import { getCurrUserData } from '../utils/currentUser';
 const Auth = ({role}) => {
   const location = useLocation();
   const accessRole = location.pathname.split('/')[1];
-  console.log('accessRole :>> ', accessRole);
+  
   const currUserRole = getCurrUserData().role;
   if(!getCurrUserData().token){
     return <Navigate to={'/login'}/>

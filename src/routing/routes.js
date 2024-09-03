@@ -4,8 +4,8 @@ import { ALL_EXAM, ALL_STUDENT, CREATE_EXAM, EDIT_EXAM, EXAM_RESTRICTION_PAGE, F
 import ErrorPage from '../shared/ErrorPage';
 import Auth from '../HOC/Auth';
 import ExamRestrictionPage from '../shared/ExamRestrictionPage';
+import Loader from '../shared/Loader';
 
-const Loading = () => <div>Loading...</div>;
 const App = lazy(() => import("../App"));
 const Home = lazy(() => import("../shared/Home"));
 const Teacher = lazy(() => import("../modules/teacher/Teacher"));
@@ -32,7 +32,7 @@ export const routes = [
   {
     path: HOME_PAGE,
     element: (
-      <Suspense fallback={<Loading />}>
+      <Suspense fallback={<Loader />}>
         <App />
       </Suspense>
     ),
@@ -43,7 +43,7 @@ export const routes = [
       {
         index: true,
         element: (
-          <Suspense fallback={<Loading />}>
+          <Suspense fallback={<Loader />}>
             <Home />
           </Suspense>
         )
@@ -51,7 +51,7 @@ export const routes = [
       {
         path: LOGIN_PAGE,
         element: (
-          <Suspense fallback={<Loading />}>
+          <Suspense fallback={<Loader />}>
             <Login />
           </Suspense>
         )
@@ -59,7 +59,7 @@ export const routes = [
       {
         path: SIGNUP_PAGE,
         element: (
-          <Suspense fallback={<Loading />}>
+          <Suspense fallback={<Loader />}>
             <SignUp />
           </Suspense>
         )
@@ -67,7 +67,7 @@ export const routes = [
       {
         path: FORGET_PASSWORD,
         element: (
-          <Suspense fallback={<Loading />}>
+          <Suspense fallback={<Loader />}>
             <ForgotPassword />
           </Suspense>
         )
@@ -75,7 +75,7 @@ export const routes = [
       {
         path: NEW_PASSWORD,
         element: (
-          <Suspense fallback={<Loading />}>
+          <Suspense fallback={<Loader />}>
             <NewPassword />
           </Suspense>
         )
@@ -88,7 +88,7 @@ export const routes = [
       },
       {
         element: (
-          <Suspense fallback={<Loading />}>
+          <Suspense fallback={<Loader />}>
             <Auth role={["teacher"]} />
           </Suspense>
         ),
@@ -96,7 +96,7 @@ export const routes = [
           {
             path: TEACHER,
             element: (
-              <Suspense fallback={<Loading />}>
+              <Suspense fallback={<Loader />}>
                 <Teacher />
               </Suspense>
             ),
@@ -104,7 +104,7 @@ export const routes = [
               {
                 path: TEACHER_DASHBOARD,
                 element: (
-                  <Suspense fallback={<Loading />}>
+                  <Suspense fallback={<Loader />}>
                     <TeacherDashboard />
                   </Suspense>
                 )
@@ -112,7 +112,7 @@ export const routes = [
               {
                 path: ALL_STUDENT,
                 element: (
-                  <Suspense fallback={<Loading />}>
+                  <Suspense fallback={<Loader />}>
                     <AllStudent />
                   </Suspense>
                 )
@@ -120,7 +120,7 @@ export const routes = [
               {
                 path: VERIFIED_STUDENT,
                 element: (
-                  <Suspense fallback={<Loading />}>
+                  <Suspense fallback={<Loader />}>
                     <VerifiedStudent />
                   </Suspense>
                 )
@@ -128,7 +128,7 @@ export const routes = [
               {
                 path: STUDENT_DETAIL,
                 element: (
-                  <Suspense fallback={<Loading />}>
+                  <Suspense fallback={<Loader />}>
                     <ViewStudentDetail />
                   </Suspense>
                 )
@@ -136,7 +136,7 @@ export const routes = [
               {
                 path: CREATE_EXAM,
                 element: (
-                  <Suspense fallback={<Loading />}>
+                  <Suspense fallback={<Loader />}>
                     <CreateExam />
                   </Suspense>
                 )
@@ -144,7 +144,7 @@ export const routes = [
               {
                 path: VIEW_EXAM,
                 element: (
-                  <Suspense fallback={<Loading />}>
+                  <Suspense fallback={<Loader />}>
                     <ViewExam />
                   </Suspense>
                 )
@@ -152,7 +152,7 @@ export const routes = [
               {
                 path: EDIT_EXAM,
                 element: (
-                  <Suspense fallback={<Loading />}>
+                  <Suspense fallback={<Loader />}>
                     <EditExam />
                   </Suspense>
                 )
@@ -160,7 +160,7 @@ export const routes = [
               {
                 path: RESET_PASSWORD,
                 element: (
-                  <Suspense fallback={<Loading />}>
+                  <Suspense fallback={<Loader />}>
                     <ResetPassword />
                   </Suspense>
                 )
@@ -171,7 +171,7 @@ export const routes = [
       },
       {
         element: (
-          <Suspense fallback={<Loading />}>
+          <Suspense fallback={<Loader />}>
             <Auth role={['student']} />
           </Suspense>
         ),
@@ -179,7 +179,7 @@ export const routes = [
           {
             path: STUDENT,
             element: (
-              <Suspense fallback={<Loading />}>
+              <Suspense fallback={<Loader />}>
                 <Student />
               </Suspense>
             ),
@@ -187,7 +187,7 @@ export const routes = [
               {
                 path: STUDENT_DASHBOARD,
                 element: (
-                  <Suspense fallback={<Loading />}>
+                  <Suspense fallback={<Loader />}>
                     <StudentDashboard />
                   </Suspense>
                 )
@@ -195,7 +195,7 @@ export const routes = [
               {
                 path: ALL_EXAM,
                 element: (
-                  <Suspense fallback={<Loading />}>
+                  <Suspense fallback={<Loader />}>
                     <AllExam />
                   </Suspense>
                 )
@@ -203,7 +203,7 @@ export const routes = [
               {
                 path: GIVE_EXAM,
                 element: (
-                  <Suspense fallback={<Loading />}>
+                  <Suspense fallback={<Loader />}>
                     <GiveExam />
                   </Suspense>
                 )
@@ -211,7 +211,7 @@ export const routes = [
               {
                 path: STUDENT_PROFILE,
                 element: (
-                  <Suspense fallback={<Loading />}>
+                  <Suspense fallback={<Loader />}>
                     <StudentProfile />
                   </Suspense>
                 )
@@ -219,7 +219,7 @@ export const routes = [
               {
                 path: RESET_PASSWORD,
                 element: (
-                  <Suspense fallback={<Loading />}>
+                  <Suspense fallback={<Loader />}>
                     <ResetPassword />
                   </Suspense>
                 )

@@ -2,7 +2,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchData } from '../../../redux-toolkit/slices/api';
-
 import { loadAllStudentData, updateSearchQuery, updateFilteredData } from '../../../redux-toolkit/slices/teacher';
 import Pagination from '../../../shared/Pagination';
 import { useNavigate } from 'react-router';
@@ -35,7 +34,7 @@ const AllStudent = () => {
         toast.error(res?.payload?.message);
         removeItemLocal('userData');  
         setItemLocal('login', false);  
-        navigate('/login')  
+        navigate('/login');  
         return;  
       }
       

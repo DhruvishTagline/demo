@@ -26,27 +26,20 @@ const CreateExam = () => {
     handleCancel,
     questions
   } = useCreateExam();
-  console.log('questions :>> ', questions);
 
+  useEffect(() => {
+   
+    removeItemLocal('createExam');
+    dispatch(initiateAnsIndex([]))
 
-
-useEffect(() => {
-  console.log('useEffect');
-  removeItemLocal('createExam');
-  dispatch(initiateAnsIndex([]))
-
-  // handleCancel();
-
-  console.log('createExam :>> ', createExam);
-  if(createExam){
-    console.log('true');
-    dispatch(initiateExam(initiateConfig))
-    if(ansIndex !== null){
-      dispatch(initiateAnsIndex(ansIndex))
+    if(createExam){
+      dispatch(initiateExam(initiateConfig))
+      if(ansIndex !== null){
+        dispatch(initiateAnsIndex(ansIndex))
+      }
     }
-  }
 
-},[]);
+  },[]);
 
   return (
     <div className='flex items-center flex-col mt-[10px]'>
@@ -75,8 +68,8 @@ useEffect(() => {
         }
         </button> 
         <button
-        onClick={handleCancel}
-        className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ml-2`}
+          onClick={handleCancel}
+          className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ml-2`}
         >Reset Exam</button>
       </div>
     </div>

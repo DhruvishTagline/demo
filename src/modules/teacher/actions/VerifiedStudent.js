@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchData } from '../../../redux-toolkit/slices/api';
-
 import Pagination from '../../../shared/Pagination';
 import {  loadVerifiedStudentData, updateFilteredData, updateSearchQuery } from '../../../redux-toolkit/slices/teacher';
 import { useNavigate } from 'react-router';
@@ -66,7 +65,7 @@ const VerifiedStudent = () => {
                 </div> :
                 <div className='min-w-[70%]'>
                     <p className='text-center text-4xl mb-4'>Verified Students</p>
-                    <FilterFeild searchQuery={searchQuery}/>
+                    <FilterFeild searchQuery={searchQuery} placeholder='Search by email and name...'/>
                     <Pagination 
                         data={filteredData} 
                         viewPath={`/teacher/view-student-detail`} 
