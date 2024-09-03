@@ -53,9 +53,8 @@ const Pagination = ({ data, viewPath, lastVisitedPage, btn, studentBtn }) => {
         if (currPage > 3) {
           pageNumbers.push(
             <li
-              key={1}
-              onClick={() => setCurrPage(1)}
-              className={`cursor-pointer p-2 ${currPage === 1 ? 'bg-blue-500 text-white' : 'bg-gray-300'} rounded-lg mx-1`}
+              key={1} 
+              className={` p-2 ${currPage === 1 ? 'bg-blue-500 text-white' : 'bg-gray-300'} rounded-lg mx-1`}
             >
               1
             </li>
@@ -70,14 +69,12 @@ const Pagination = ({ data, viewPath, lastVisitedPage, btn, studentBtn }) => {
           pageNumbers.push(
             <li
               key={ totalPage }
-              onClick={() => setCurrPage(totalPage)}
-              className={`cursor-pointer p-2 ${currPage === totalPage ? 'bg-blue-500 text-white' : 'bg-gray-300'} rounded-lg mx-1`}
+              className={` p-2 ${currPage === totalPage ? 'bg-blue-500 text-white' : 'bg-gray-300'} rounded-lg mx-1`}
             >
               { totalPage }
             </li>
           );
         }
-
         return pageNumbers;
       }
       return renderPageNumbers;

@@ -97,9 +97,7 @@ export const teacherSlice = createSlice({
             state.error = {};
             state.ansIndex=[];
             state.createExam['subjectName'] = ''; 
-            
-            state['createExam'] = action.payload;
-            
+            state['createExam'] = action.payload;        
         },
         initiateAnsIndex:(state, action) => {
             state.ansIndex = action.payload;

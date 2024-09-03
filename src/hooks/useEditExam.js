@@ -15,7 +15,9 @@ const useEditExam = (id,subjectName) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const examData= useSelector(state=>state.teacher.createExam);
-    const sameQuestions = useSelector(state=>state.teacher.questions);
+    const Questions = useSelector(state => state.teacher.createExam.questions);
+    const sameOptionError = useSelector(state => state.teacher.error);
+
     const [currQuestion,setCurrQuestion]=useState(0);
     const error =useSelector(state=>state.teacher.error);
     const edited =useSelector(state=>state.teacher.edited);
@@ -201,6 +203,32 @@ const useEditExam = (id,subjectName) => {
       }
 
       const handleEditExam = async()=>{
+
+        const checkForDuplicateQuestions = (questions) => {
+          const questionTexts = questions.map(q => q.question);
+          const duplicateQuestions = questionTexts.filter((item, index) => 
+              questionTexts.indexOf(item) !== index
+          );
+          
+          return [...new Set(duplicateQuestions)]; 
+        };
+
+        const duplicates = checkForDuplicateQuestions(Questions);
+        
+        if (duplicates.length > 0) {  
+            toast.warn(`Duplicate Questions Detected Please Check`);
+            return; 
+        }
+
+        const error = validateField(validateExamData,validate);
+        if(Object.keys(error).length !== 0){
+          dispatch(handleError(error));
+          return;
+        }
+        if(Object.values(sameOptionError).some(element => element !== ''))
+        {
+            return;
+        }
         
         try{
          
@@ -208,28 +236,18 @@ const useEditExam = (id,subjectName) => {
             navigate(VIEW_EXAM);
             return;
           }
-          // if((sameQuestions.includes(validateExamData.question) && 
-          //   sameQuestions.length === currQuestion ) ||
-          //   sameQuestions[currQuestion] !== validateExamData.question)
-          // {  
-          //   validateExamData.questions = sameQuestions;
-          // }
-         
+          
           const error =validateField(validateExamData,validate);
           if(Object.keys(error).length !== 0)
           {           
             dispatch(handleError(error));
             return;
           }
-          // if(Object.keys(sameOptionError).length !== 0)
-          // {
-          //   return;
-          // }
-          
+        
           var data = {...examData}
-         
+          
           data.subjectName=subjectName;
-         
+          
           const config ={
             method:'put',
             url:'dashboard/Teachers/editExam',
