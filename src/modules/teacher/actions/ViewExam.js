@@ -40,8 +40,7 @@ const ViewExam = () => {
           setItemLocal('login',false);
           navigate(LOGIN_PAGE);
           return;
-        }
-      
+        }     
         dispatch(loadViewExamData(res.payload.data));
       }catch(error){
         toast('error', error)
@@ -57,7 +56,7 @@ const ViewExam = () => {
     const filtered = viewExam.filter(exam=>
       exam.subjectName.toLowerCase().includes(searchQuery.toLowerCase())
     );
-    dispatch(updateFilteredData(filtered))
+    dispatch(updateFilteredData(filtered));
   },[searchQuery,viewExam,dispatch]);
 
   return (

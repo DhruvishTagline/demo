@@ -13,15 +13,15 @@ const Header = () => {
     const Login = getItemLocal('login');
     const location = useLocation();
     const role = getCurrUserData().role;
-  
+    
     return (
         <div className='h-16 text-gray-100 flex justify-between items-center bg-blue-700 shadow-lg'>
             <div className='ml-4 gap-4 flex items-center'>
                 {   
                     Login && location.pathname !== '/' &&
                         <button 
-                        className='menu-btn p-2 rounded-md hover:bg-blue-300 transition'
-                        onClick={() => dispatch(handleMenu())}
+                            className='menu-btn p-2 rounded-md hover:bg-blue-300 transition'
+                            onClick={() => dispatch(handleMenu())}
                         >
                         <ViewSidebarIcon style={{fontSize: 28}} />
                         </button>

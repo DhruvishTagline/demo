@@ -263,7 +263,7 @@ const useEditExam = (id,subjectName) => {
             return;
           }
           toast.success(res?.payload?.message);
-          dispatch(initiateQuestions());
+          // dispatch(initiateQuestions());
           dispatch(handleEdited());
           navigate(VIEW_EXAM);
         }catch(error){
@@ -313,9 +313,9 @@ const useEditExam = (id,subjectName) => {
               ]
             }
           ],
-          notes:['test notes'],
+          notes:['test note'],
         }
-        dispatch(initiateQuestions());
+        // dispatch(initiateQuestions());
         dispatch(initiateExam(initiateConfig));
         navigate(VIEW_EXAM);
       }

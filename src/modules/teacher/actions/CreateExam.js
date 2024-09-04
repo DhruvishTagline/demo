@@ -11,7 +11,6 @@ const CreateExam = () => {
   const status = useSelector(state => state.api.status);
   const ansIndex = useSelector(state => state.teacher.ansIndex);
   const createExam = useSelector(state=> state.teacher.createExam);
-  
 
   const {
     createExamFields,
@@ -30,7 +29,7 @@ const CreateExam = () => {
   useEffect(() => {
    
     removeItemLocal('createExam');
-    dispatch(initiateAnsIndex([]))
+    dispatch(initiateAnsIndex([]));
 
     if(createExam){
       dispatch(initiateExam(initiateConfig))

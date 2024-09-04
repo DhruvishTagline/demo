@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router';
 
 const CurrStudentDetail = ({currStudentDetail}) => {
 
+
   const navigate = useNavigate();
   const goBack = () => {
     navigate('/teacher/allstudent');

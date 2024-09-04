@@ -8,7 +8,7 @@ import { removeItemLocal } from "../utils/localStorageFunction";
 import { VIEW_EXAM } from "../utils/constant";
 import { toast } from "react-toastify";
 import { getCurrUserData } from "../utils/currentUser";
-
+import { checkForDuplicateQuestions } from "../utils/functions";
 
 export const useCreateExam = () => {
 
@@ -18,7 +18,7 @@ export const useCreateExam = () => {
     const examData = useSelector(state => state.teacher.createExam);
     const [currQuestion,setCurrQuestion] = useState(0);
     const error = useSelector(state => state.teacher.error);
-    const Questions = useSelector(state => state.teacher.createExam.questions);
+    const examQuestions = useSelector(state => state.teacher.createExam.questions);
     const sameOptionError = useSelector(state => state.teacher.error);
     
     const validateExamData = {
@@ -43,36 +43,31 @@ export const useCreateExam = () => {
           {
             required:true,
             message:'Please Enter Question'
-          },
-          
+          },         
         ],
         op1:[
           {
             required:true,
             message:'Option Required please'
-          },
-          
+          },   
         ],
         op2:[
           {
             required:true,
             message:'Option Required please'
-          },
-          
+          },         
         ],
         op3:[
           {
             required:true,
             message:'Option Required please'
-          },
-          
+          },          
         ],
         op4:[
           {
             required:true,
             message:'Option Required please'
-          },
-          
+          },         
         ],
         answer:[
           {
@@ -116,7 +111,6 @@ export const useCreateExam = () => {
         name:'ans',
         id:'op1',
         data:Options,
-        examData:examData,
         updateData:handleAns,
         currQuestion:currQuestion,
         ans:examData?.questions?.[currQuestion]?.answer,
@@ -129,7 +123,7 @@ export const useCreateExam = () => {
         name:'op1',
         label:'Option 1',
         data:Options,
-        optionArr:optionArr,
+        // optionArr:optionArr,
         updateData:handleOptions,
         currQuestion:currQuestion,
         opIndex:0,
@@ -140,7 +134,6 @@ export const useCreateExam = () => {
         name:'ans',
         id:'op2',
         data:Options,
-        examData:examData,
         updateData:handleAns,
         currQuestion:currQuestion,
         ans:examData?.questions?.[currQuestion]?.answer,
@@ -164,7 +157,6 @@ export const useCreateExam = () => {
         name:'ans',
         id:'op3',
         data:Options,
-        examData:examData,
         updateData:handleAns,
         currQuestion:currQuestion,
         ans:examData?.questions?.[currQuestion]?.answer,
@@ -188,7 +180,6 @@ export const useCreateExam = () => {
         name:'ans',
         id:'op4',
         data:Options,
-        examData:examData,
         updateData:handleAns,
         currQuestion:currQuestion,
         ans:examData?.questions?.[currQuestion]?.answer,
@@ -227,18 +218,10 @@ export const useCreateExam = () => {
 
     const handleCreateExam = () => {
 
-        const checkForDuplicateQuestions = (questions) => {
-            const questionTexts = questions.map(q => q.question);
-            const duplicateQuestions = questionTexts.filter((item, index) => 
-                questionTexts.indexOf(item) !== index
-            );
-            return [...new Set(duplicateQuestions)]; 
-        };
-
-        const duplicates = checkForDuplicateQuestions(Questions);
+        const duplicates = checkForDuplicateQuestions(examQuestions);
         if (duplicates.length > 0) {  
             toast.warn(`Duplicate Questions Detected Please Check`);
-            return; 
+            return;
         }
   
         const error = validateField(validateExamData,validate);
@@ -251,8 +234,7 @@ export const useCreateExam = () => {
             return;
         }
         
-        const createExam = async() => {
-         
+        const createExam = async() => {   
           try{
             const config = {  
               method:'post',  
@@ -263,14 +245,13 @@ export const useCreateExam = () => {
             const res = await dispatch(fetchData(config));
            
             setCurrQuestion(0);
-            dispatch(initiateQuestions());
+            // dispatch(initiateQuestions());
             
             if(res?.payload?.statusCode !== 200){
               toast.error(res?.payload?.message)
               navigate(VIEW_EXAM);  
             }
             toast.success(res?.payload?.message);
-
           }catch(err){
             console.log('error', err);
           }

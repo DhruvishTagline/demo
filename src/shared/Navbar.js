@@ -13,8 +13,6 @@ const Navbar = ({ navItems }) => {
   
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const location = useLocation()
-  const edit = location.pathname.split('/')[2]
   const currUserRole = getCurrUserData().role;
 
   const handleLogout = () => {
@@ -23,7 +21,7 @@ const Navbar = ({ navItems }) => {
     if(bool === false){
       return;
     }
-    clearItemLocal()
+    clearItemLocal()  
     setItemLocal('login', false);
     dispatch(handleLogin(false))
     dispatch(loadViewExamData([]));
@@ -41,10 +39,7 @@ const Navbar = ({ navItems }) => {
                   <NavLink
                     to={item.path}
                     replace
-                    className={`flex gap-5 text-lg items-center p-3 text-gray-700 rounded-lg dark:text-gray-200 hover:bg-blue-200 dark:hover:bg-gray-700 transition-all
-                      ${(item.path === 'view-exam' && edit === 'edit-exam') || 
-                        (item.path === 'allstudent' && edit === 'view-student-detail') || 
-                        (item.path === 'all-exam' && (edit === 'give-exam' || edit === 'show-result')) ? 'bg-blue-400 dark:bg-gray-700' : ''}`}
+                    className={`flex gap-5 text-lg items-center p-3 text-gray-700 rounded-lg dark:text-gray-200 hover:bg-blue-200 dark:hover:bg-gray-700 transition-all`}
                   >
                     {item.icon} {item.name}
                   </NavLink>

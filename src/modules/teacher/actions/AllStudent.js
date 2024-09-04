@@ -67,7 +67,7 @@ const AllStudent = () => {
               <FilterFeild searchQuery={searchQuery} placeholder='Search by email and name...'/>
               <Pagination
                 data={filteredData}
-                recodesPerPage={10}
+                // recodesPerPage={10}
                 viewPath={`/teacher/view-student-detail`}
                 lastVisitedPage={lastVisitedPage}
               />

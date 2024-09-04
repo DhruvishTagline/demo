@@ -85,7 +85,7 @@ export const useLoginData = () => {
           }    
           toast.success(res?.payload?.message)
              
-          setItemLocal('userData',res?.payload?.data);    
+          // setItemLocal('userData',res?.payload?.data);    
           if (res?.payload?.statusCode === 200) {
             setItemLocal('userData', res?.payload?.data);
           }

@@ -21,9 +21,8 @@ const initialState = {
                 answer:""
             }
         ],
-        notes:['test notes']
+        notes:['test note']
     },
-    questions:[],
     edited:false,
     ansIndex:[],
     searchQuery:'',
@@ -102,10 +101,7 @@ export const teacherSlice = createSlice({
         initiateAnsIndex:(state, action) => {
             state.ansIndex = action.payload;
         },
-        initiateQuestions:(state, action) => {
-            state.questions = [];
-        },
-
+        
         updateSearchQuery:(state, action) => {
             state.searchQuery = action.payload.trim();
         },
@@ -137,7 +133,6 @@ export const {
     handleQuestion,
     handleQuestions,
     handleSubject,
-    initiateQuestions,
     handleOptions,
     handleAnsIndexes,
     handleEdited,

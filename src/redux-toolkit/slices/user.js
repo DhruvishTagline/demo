@@ -3,13 +3,12 @@ import { createSlice } from "@reduxjs/toolkit"
 const initialState = {
     loginData:{},
     signupData:{
-        name:'',
-        email:'',
-        password:'',
-        role:'',
+        // name:'',
+        // email:'',
+        // password:'',
+        // role:'',
     },
     login:false,
-    focused:false,
     menu:false,
     forgetPassword:{},
     newPassword:{},
@@ -49,10 +48,10 @@ export const userSlice = createSlice({
         },
         initiateSignupData:(state,action) => {
             state.signupData = {
-                name:'',
-                email:'',
-                password:'',
-                role:'student',
+                // name:'',
+                // email:'',
+                // password:'',
+                // role:'student',
             };
         },
         initiateForgetPassword:(state,action) => {

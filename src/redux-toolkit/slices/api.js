@@ -19,20 +19,19 @@ export const fetchData = createAsyncThunk('data/fetchData', async(config) => {
 const apiSlice = createSlice({
     name:'api',
     initialState : initialState,
-    
     extraReducers: (builder) => {
         
         builder
             .addCase(fetchData.pending, (state,action) => {
-                state.status = 'loading'
+                state.status = 'loading';
             })
             .addCase(fetchData.fulfilled, (state,action) => {
                 state.status = 'ideal';
-                state.data = action.payload
+                state.data = action.payload;
             })
             .addCase(fetchData.rejected, (state,action) => {
                 state.status = 'error';
-                state.error = action.payload || 'Something went Wrong'
+                state.error = action.payload || 'Something went Wrong';
             })
     }
 })

@@ -55,7 +55,6 @@ const VerifiedStudent = () => {
         dispatch(updateFilteredData(filtered))
     },[searchQuery,verifiedStudentData,dispatch])
 
-
   return (
    <>
     <div className='h-[100vh] flex items-center flex-col mt-[10px]'>
@@ -73,7 +72,7 @@ const VerifiedStudent = () => {
                     />
                 </div>         
             }     
-   </div>
+    </div>
    </>
   )
 }
