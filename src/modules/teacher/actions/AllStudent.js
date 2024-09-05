@@ -5,7 +5,6 @@ import { fetchData } from '../../../redux-toolkit/slices/api';
 import { loadAllStudentData, updateSearchQuery, updateFilteredData } from '../../../redux-toolkit/slices/teacher';
 import Pagination from '../../../shared/Pagination';
 import { useNavigate } from 'react-router';
-import { handlePrevVisitedPage } from '../../../redux-toolkit/slices/user';
 import { removeItemLocal, setItemLocal } from '../../../utils/localStorageFunction';
 import FilterFeild from '../../../shared/FilterFeild';
 import { toast } from 'react-toastify';
@@ -40,11 +39,8 @@ const AllStudent = () => {
       
       dispatch(loadAllStudentData(res?.payload?.data));
     }
-
-    if (allStudentData?.length === 0) {
-      dispatch(handlePrevVisitedPage(1));
+  
       fetchAllStudentData();
-    }
     
   }, [allStudentData?.length, dispatch, navigate]);
 
@@ -67,7 +63,6 @@ const AllStudent = () => {
               <FilterFeild searchQuery={searchQuery} placeholder='Search by email and name...'/>
               <Pagination
                 data={filteredData}
-                // recodesPerPage={10}
                 viewPath={`/teacher/view-student-detail`}
                 lastVisitedPage={lastVisitedPage}
               />
@@ -79,4 +74,5 @@ const AllStudent = () => {
 }
 
 export default AllStudent;
+
 

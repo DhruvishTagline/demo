@@ -17,7 +17,7 @@ const Auth = ({role}) => {
   return (
     <div>
       {
-        role.includes(currUserRole) && <Outlet/>
+        role.includes(currUserRole) && <Outlet />
       }
     </div> 
   )

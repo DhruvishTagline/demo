@@ -42,9 +42,9 @@ const VerifiedStudent = () => {
 
             dispatch(loadVerifiedStudentData(res?.payload?.data));
         }
-        if(verifiedStudentData.length === 0){
+       
             fetchAllStudentData();
-        }
+        
     },[dispatch,navigate]);
 
     useEffect(()=>{

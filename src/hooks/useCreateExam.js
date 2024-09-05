@@ -123,7 +123,6 @@ export const useCreateExam = () => {
         name:'op1',
         label:'Option 1',
         data:Options,
-        // optionArr:optionArr,
         updateData:handleOptions,
         currQuestion:currQuestion,
         opIndex:0,
@@ -146,7 +145,7 @@ export const useCreateExam = () => {
         name:'op2',
         label:'Option 2',
         data:Options,
-        optionArr:optionArr,
+        
         updateData:handleOptions,
         currQuestion:currQuestion,
         opIndex:1,
@@ -169,7 +168,7 @@ export const useCreateExam = () => {
         name:'op3',
         label:'Option 3',
         data:Options,
-        optionArr:optionArr,
+       
         updateData:handleOptions,
         currQuestion:currQuestion,
         opIndex:2,
@@ -192,7 +191,7 @@ export const useCreateExam = () => {
         name:'op4',
         label:'Option 4',
         data:Options,
-        optionArr:optionArr,
+       
         updateData:handleOptions,
         currQuestion:currQuestion,
         opIndex:3,
@@ -245,13 +244,14 @@ export const useCreateExam = () => {
             const res = await dispatch(fetchData(config));
            
             setCurrQuestion(0);
-            // dispatch(initiateQuestions());
+          
             
             if(res?.payload?.statusCode !== 200){
               toast.error(res?.payload?.message)
               navigate(VIEW_EXAM);  
             }
             toast.success(res?.payload?.message);
+            navigate(VIEW_EXAM);
           }catch(err){
             console.log('error', err);
           }

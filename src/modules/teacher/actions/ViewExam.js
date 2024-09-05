@@ -46,9 +46,9 @@ const ViewExam = () => {
         toast('error', error)
       }
     }
-    if(viewExam.length === 0){
+    
       fetchViewExamData();
-    }
+    
     dispatch(handlePrevVisitedPage(1));
   },[dispatch,navigate]);
 

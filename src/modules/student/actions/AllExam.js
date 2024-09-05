@@ -1,17 +1,14 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router';
-
 import { fetchData } from '../../../redux-toolkit/slices/api';
 import { removeItemLocal, setItemLocal } from '../../../utils/localStorageFunction';
-import { handlePrevVisitedPage } from '../../../redux-toolkit/slices/user';
 import Pagination from '../../../shared/Pagination';
 import { loadAllExamData } from '../../../redux-toolkit/slices/student';
 import { updateFilteredData } from '../../../redux-toolkit/slices/teacher';
 import FilterFeild from '../../../shared/FilterFeild';
 import { toast } from 'react-toastify';
 import { getCurrUserData } from '../../../utils/currentUser';
-
 
 const AllExam = () => {
 
@@ -38,14 +35,10 @@ const AllExam = () => {
         navigate('/login');
         return;
       }
-      
       dispatch(loadAllExamData(res?.payload?.data))
     }
-    if(allExamData.length === 0){
-      dispatch(handlePrevVisitedPage(1));
       fetchAllExam();
-    }
-  },[navigate,dispatch,allExamData.length]);
+  },[navigate,dispatch]);
 
 
   useEffect(() => {

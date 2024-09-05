@@ -8,14 +8,13 @@ import RadioBtn from './RadioBtn';
 
 const InputField = ({ fieldData, ansIndex, subjectName,Options }) => {
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch(); 
   const [showPassword, setShowPassword] = useState(false);
 
   let opts=[];
  
   const handleClickShowPassword = () => {
     setShowPassword(prev => !prev);
-    
   }
 
   const inputType = fieldData?.type === 'password' && showPassword ? 'text' : fieldData?.type;
