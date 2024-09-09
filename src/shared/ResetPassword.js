@@ -68,7 +68,7 @@ const ResetPassword = () => {
                 message:'Password Must be contain atleast 6 char'
             },
             {
-                pattern:/^[a-zA-Z0-9!@#$%^&*]{6,16}$/,
+                pattern:/[a-zA-Z0-9]{6,30}/,
                 message:'Enter Valid Password'
             }
         ],
@@ -82,8 +82,8 @@ const ResetPassword = () => {
                 message:'Password Must be contain atleast 6 char'
             },
             {
-                pattern:/^[a-zA-Z0-9!@#$%^&*]{6,16}$/,
-                message:'Enter Valid Password'
+                pattern:/[a-zA-Z0-9]{6,30}/,
+                message:'Password contains only UpperCase,lowerCase and Digit'
             }
         ],
         ConfirmPassword:[

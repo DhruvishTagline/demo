@@ -39,8 +39,6 @@ const ShowExam = ({
     dispatch(handleError(validationErrors));
 
     const e = Object.values(error).some(element => element !== '');
-    // const hasErrors =  Object.keys(error).length > 0 && Object.keys(validationErrors).length > 0;
-    // const hasErrors =  Object.values(validationErrors).length > 0 || Object.values(error).length > 0;
     const hasErrors =  Object.values(validationErrors).length > 0 || e ;
     
     if (hasErrors) {

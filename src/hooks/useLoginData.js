@@ -76,20 +76,19 @@ export const useLoginData = () => {
       
           if(res?.payload?.statusCode === 500){
             toast.error(res?.payload?.message)   
-            setDisable(false);    
+            setDisable(false); 
             return;    
           }    
           if(res?.payload?.statusCode === 400){    
             toast.error(res?.payload?.message);       
             return;    
-          }    
+          }
           toast.success(res?.payload?.message)
              
-          // setItemLocal('userData',res?.payload?.data);    
           if (res?.payload?.statusCode === 200) {
             setItemLocal('userData', res?.payload?.data);
           }
-          res?.payload?.statusCode !== 200 ? setItemLocal('login',false)  :setItemLocal('login',true)    ;
+          res?.payload?.statusCode !== 200 ? setItemLocal('login',false)  :setItemLocal('login',true);
           dispatch(handleLogin(true));    
           dispatch(initiateLoginData());       
 

@@ -2,12 +2,7 @@ import { createSlice } from "@reduxjs/toolkit"
 
 const initialState = {
     loginData:{},
-    signupData:{
-        // name:'',
-        // email:'',
-        // password:'',
-        // role:'',
-    },
+    signupData:{},
     login:false,
     menu:false,
     forgetPassword:{},
@@ -47,12 +42,7 @@ export const userSlice = createSlice({
             state.loginData = {};
         },
         initiateSignupData:(state,action) => {
-            state.signupData = {
-                // name:'',
-                // email:'',
-                // password:'',
-                // role:'student',
-            };
+            state.signupData = {};
         },
         initiateForgetPassword:(state,action) => {
             state.forgetPassword = action.payload

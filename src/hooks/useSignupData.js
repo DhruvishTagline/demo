@@ -76,8 +76,8 @@ export const useSignupData = () => {
             message:'Password Must be contain atleast 6 char'
           },
           {
-            pattern:/^(?=.*[A-Z])(?=.*\d)[A-Za-z\d@$!%*?&]{6,25}$/,
-            message:'Password must be contain atleast 1 UpperCase, atleast 1 digit'
+            pattern:/[a-zA-Z0-9]{6,30}/,
+            message:'Password contains only UpperCase,lowerCase and Digit'
           }
           
         ],
@@ -104,9 +104,10 @@ export const useSignupData = () => {
             data:signupData
           }
           
-          const res = await dispatch(fetchData(config))
+          const res = await dispatch(fetchData(config));
+        
           if(res.payload.statusCode === 400){
-            toast.error('check once more something wrong');
+            toast.error('check once more something went wrong');
             return;
           }
           if(res?.payload?.statusCode !== 200){

@@ -12,15 +12,20 @@ export const fetchData = createAsyncThunk('data/fetchData', async(config) => {
         const data = await axiosInstance(config);
         return data.data;
     }catch (e){
-        throw new Error(e);
+        console.log('e :>> ', e);
+        console.log('e.response.data.details.body.map(item=>item.message) :>> ', e.response.data.details.body.map(item=>item.context.label));
+        const res={      
+            statusCode: e.response.data.statusCode,
+            message: e.response.data.message
+        }
+        return res; 
     }
-})
+});
 
 const apiSlice = createSlice({
     name:'api',
     initialState : initialState,
-    extraReducers: (builder) => {
-        
+    extraReducers: (builder) => {        
         builder
             .addCase(fetchData.pending, (state,action) => {
                 state.status = 'loading';

@@ -53,7 +53,7 @@ const ViewExam = () => {
   },[dispatch,navigate]);
 
   useEffect(()=>{
-    const filtered = viewExam.filter(exam=>
+    const filtered = viewExam.filter(exam =>
       exam.subjectName.toLowerCase().includes(searchQuery.toLowerCase())
     );
     dispatch(updateFilteredData(filtered));

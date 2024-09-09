@@ -83,8 +83,6 @@ export const useCreateExam = () => {
         op3:examData?.questions?.[currQuestion]?.options?.[2],
         op4:examData?.questions?.[currQuestion]?.options?.[3],
     }
-
-    const optionArr = examData?.questions?.[currQuestion]?.options;
     
     const createExamFields = [
       {
@@ -242,10 +240,9 @@ export const useCreateExam = () => {
               headers: { "access-token":getCurrUserData().token }
             }
             const res = await dispatch(fetchData(config));
-           
-            setCurrQuestion(0);
           
-            
+            setCurrQuestion(0);
+ 
             if(res?.payload?.statusCode !== 200){
               toast.error(res?.payload?.message)
               navigate(VIEW_EXAM);  

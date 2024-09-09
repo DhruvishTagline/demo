@@ -55,8 +55,8 @@ const NewPassword = () => {
           message:'Password length must be greater than 6'
         },
         {
-          pattern:/^(?=.*[A-Z])(?=.*\d)[A-Za-z\d@$!%*?&]{6,25}$/,
-          message:'Password must be contain atleast 1 UpperCase, atleast 1 digit'
+          pattern:/[a-zA-Z0-9]{6,30}/,
+          message:'Password contains only UpperCase,lowerCase and Digit'
         }
       ],
       ConfirmPassword:[

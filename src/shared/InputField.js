@@ -1,26 +1,25 @@
-import {  TextField, IconButton } from '@mui/material';
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { TextField, IconButton } from '@mui/material';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { handleError, handleSubject } from '../redux-toolkit/slices/teacher';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import RadioBtn from './RadioBtn';
 
-const InputField = ({ fieldData, ansIndex, subjectName,Options }) => {
-
-  const dispatch = useDispatch(); 
+const InputField = ({ fieldData, ansIndex, subjectName, Options }) => {
+  const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
 
-  let opts=[];
- 
+  let opts = [];
+
   const handleClickShowPassword = () => {
     setShowPassword(prev => !prev);
-  }
+  };
 
   const inputType = fieldData?.type === 'password' && showPassword ? 'text' : fieldData?.type;
 
-  if(fieldData?.type === 'radio'){
-    return <RadioBtn ansIndex={ansIndex} fieldData={fieldData} />
+  if (fieldData?.type === 'radio') {
+    return <RadioBtn ansIndex={ansIndex} fieldData={fieldData} />;
   }
 
   return (
@@ -30,19 +29,19 @@ const InputField = ({ fieldData, ansIndex, subjectName,Options }) => {
         type={inputType}
         id={fieldData?.id}
         name={fieldData?.name}
-        value={fieldData?.name === 'subjectName' ? subjectName  : fieldData?.data?.[fieldData?.name]}
+        value={fieldData?.name === 'subjectName' ? subjectName : fieldData?.data?.[fieldData?.name]}
         disabled={fieldData?.disable}
         variant="outlined"
         placeholder={fieldData?.label}
         InputLabelProps={{ shrink: true }}
-        style={{width:'20rem'}}
+        style={{ width: '20rem', fontSize: '1.3rem' }} 
         required
         onChange={
           fieldData?.name === 'subjectName' ? (e) => {
             const { name, value } = e.target;
             dispatch(handleSubject({ name, value }));
           } : (e) => {
-            const { name, value } = e.target;            
+            const { name, value } = e.target;
             const data = {
               name: name,
               value: value,
@@ -51,42 +50,36 @@ const InputField = ({ fieldData, ansIndex, subjectName,Options }) => {
               ans: fieldData?.data?.[fieldData.id],
               ansIndex: fieldData?.ansIndex
             };
-            dispatch(fieldData.updateData(data)); 
+            dispatch(fieldData.updateData(data));
 
             let errorObj = {};
             const inputValue = e?.target?.value;
 
-                if(Options){
-                  opts=Object.values(Options);
-                };
-                // errorObj[fieldData.name]='';    // check it is necessary or not
-                
-                const index = /\d$/g.exec(fieldData.name)?.[0]
-                const updateOpt = opts?.map((opt, i) => i === index - 1 ? inputValue : opt);
+            if (Options) {
+              opts = Object.values(Options);
+            }
 
-                updateOpt.forEach((opt, i, arr) => {
-                  
-                  let isDuplicate = false;
-                  arr.forEach((val, ind) => {
+            const index = /\d$/g.exec(fieldData.name)?.[0];
+            const updateOpt = opts?.map((opt, i) => i === index - 1 ? inputValue : opt);
 
-                    if (ind === i) {
-                      return;
-                    }
-                    else if (val !== "" && opt === val) {
-                      isDuplicate = true;
-                    }                    
-                  })
-                   
-                  if (isDuplicate) {
-                    errorObj[`op${i + 1}`] = `Option is already present`;
-                  } else {
-                    errorObj[`op${i + 1}`] = ``;
-                  }
-                  
-                });
-                
-                dispatch(handleError(errorObj));
-            
+            updateOpt.forEach((opt, i, arr) => {
+              let isDuplicate = false;
+              arr.forEach((val, ind) => {
+                if (ind === i) {
+                  return;
+                } else if (val !== "" && opt === val) {
+                  isDuplicate = true;
+                }
+              });
+
+              if (isDuplicate) {
+                errorObj[`op${i + 1}`] = `Option is already present`;
+              } else {
+                errorObj[`op${i + 1}`] = ``;
+              }
+            });
+
+            dispatch(handleError(errorObj));
           }
         }
         InputProps={{
@@ -104,9 +97,6 @@ const InputField = ({ fieldData, ansIndex, subjectName,Options }) => {
       {fieldData?.error ? <span className='text-red-500 text-sm'>{fieldData?.error?.[fieldData?.name]}</span> : null}
     </div>
   );
-}
+};
 
 export default InputField;
-
-
-

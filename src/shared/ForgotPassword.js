@@ -45,7 +45,7 @@ const ForgotPassword = () => {
           message:'Please Enter Email'
         },
         {
-          pattern:/^[a-zA-Z0-9]+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/,
+          pattern:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
           message:'enter Valid email.'
         }
       ]

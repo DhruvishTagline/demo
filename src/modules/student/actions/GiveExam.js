@@ -85,11 +85,6 @@ const GiveExam = () => {
         if(ansIndexLocal && ansIndex.length === 0){
           dispatch(initiateAnsIndex(ansIndexLocal))
         }
-        // else{
-        //   dispatch(initiateExamPaper({}));
-        //   dispatch(initiateAnsIndex(ansIndex))
-        //   navigate(ALL_EXAM);
-        // }
       }
     }
     handleStorageChange();

@@ -23,7 +23,6 @@ export const CREATE_EXAM = '/teacher/create-exam'
 
 export const VIEW_EXAM = '/teacher/view-exam'
     
-// export const EDIT_EXAM = '/teacher/edit-exam'
 export const EDIT_EXAM = '/teacher/edit-exam/:id/:subjectName'
 
 export const RESET_PASSWORD= 'reset-password'

@@ -39,10 +39,8 @@ const AllStudent = () => {
       
       dispatch(loadAllStudentData(res?.payload?.data));
     }
-  
       fetchAllStudentData();
-    
-  }, [allStudentData?.length, dispatch, navigate]);
+  }, [ dispatch, navigate]);
 
   useEffect(() => {
     const filtered = allStudentData?.filter(student =>
