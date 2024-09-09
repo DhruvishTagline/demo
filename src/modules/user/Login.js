@@ -17,7 +17,7 @@ const Login = () => {
     return () => {
       dispatch(initiateLoginData());
     };
-  }, [dispatch]);
+  }, [dispatch]); 
 
   const { loginField, handleSubmit } = useLoginData();
   let status = useSelector((state) => state.api.status);
@@ -27,7 +27,7 @@ const Login = () => {
   if (Login) {
     return <Navigate to={`/${role}/dashboard`} />;
   }
-
+  
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="bg-white shadow-md rounded-lg p-8 max-w-sm w-full">
