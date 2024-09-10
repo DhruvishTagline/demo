@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 const DropDown = ({ dropDownOptions, name, updateData }) => {
   const dispatch = useDispatch();
   const error = useSelector(state => state.user.error);
+  const role =useSelector(state=>state.user.signupData.role)
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -19,6 +20,7 @@ const DropDown = ({ dropDownOptions, name, updateData }) => {
           labelId={`${name}-select-label`}
           id={name}
           name={name}
+          value={role}
           label={name.charAt(0).toUpperCase() + name.slice(1)}
           onChange={handleChange}
         >

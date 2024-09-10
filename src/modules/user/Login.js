@@ -33,7 +33,6 @@ const Login = () => {
       <div className="bg-white shadow-md rounded-lg p-8 max-w-sm w-full">
         <h1 className="text-3xl font-bold text-center text-gray-800 mb-6">Login</h1>
 
-
         <div className="space-y-4">
           {loginField.map((field, i) => (
             <InputField fieldData={field} key={i} />

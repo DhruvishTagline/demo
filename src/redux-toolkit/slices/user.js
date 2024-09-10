@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit"
 
 const initialState = {
-    loginData:{},
-    signupData:{},
+    loginData:{email:'',password:''},
+    signupData:{name:'',email:'',password:'',role:''},
     login:false,
     menu:false,
     forgetPassword:{},

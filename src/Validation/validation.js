@@ -15,8 +15,17 @@ export const validateField = (data, validate) => {
                 error[key] = field.message;
                 break;
             }
+            if (field.matchOldPassword && data[key] === field.oldPassword) {
+                error[key] = field.message;
+                break;
+            }
+            if (field.match && data[key] !== field.comKey) {
+                error[key] = field.message;
+                break;
+            }
         }
     }
 
     return error;
 };
+

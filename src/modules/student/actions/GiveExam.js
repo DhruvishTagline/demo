@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react'
-import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import { getCurrUserData } from '../../../utils/currentUser';
 import { fetchData } from '../../../redux-toolkit/slices/api';
 import { getItemLocal, removeItemLocal, setItemLocal } from '../../../utils/localStorageFunction';
-import { ALL_EXAM, EXAM_RESTRICTION_PAGE, LOGIN_PAGE } from '../../../utils/constant';
-import { initiateExamPaper, loadExamPaper } from '../../../redux-toolkit/slices/student';
+import { EXAM_RESTRICTION_PAGE, LOGIN_PAGE } from '../../../utils/constant';
+import { loadExamPaper } from '../../../redux-toolkit/slices/student';
 import { initiateAnsIndex } from '../../../redux-toolkit/slices/teacher';
 import ShowExam from '../../../shared/ShowExam';
 import { useGiveExam } from '../../../hooks/useGiveExam';
@@ -31,6 +31,8 @@ const GiveExam = () => {
   } = useGiveExam(id);
  
   useEffect(()=>{
+    removeItemLocal('examPaper');
+    removeItemLocal('ansIndex');
     
     const fetchExamPaper = async()=>{
       
@@ -76,14 +78,16 @@ const GiveExam = () => {
   },[]);
 
   useEffect(()=>{
+
     const handleStorageChange = ()=>{
       const examPaper = getItemLocal('examPaper');
+      console.log('examPaper :>> ', examPaper);
       if(examPaper){
-      
+        
         dispatch(loadExamPaper(examPaper));
         const ansIndexLocal =getItemLocal(ansIndex);
         if(ansIndexLocal && ansIndex.length === 0){
-          dispatch(initiateAnsIndex(ansIndexLocal))
+          dispatch(initiateAnsIndex([]))
         }
       }
     }
@@ -95,7 +99,7 @@ const GiveExam = () => {
 
   
   return (
-    <div className='flex justify-center mt-[70px] '>
+    <div className='flex justify-center mt-[10px] '>
         {         
           status === 'loading' ?
           <div className='spinner mt-20 mx-auto'></div> :            
@@ -125,7 +129,6 @@ const GiveExam = () => {
             </div>
           </div>      
         }
-
     </div>
   )
 }

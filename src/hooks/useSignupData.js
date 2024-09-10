@@ -14,7 +14,7 @@ export const useSignupData = () => {
     const signupData = useSelector(state => state.user.signupData);
     const error = useSelector(state => state.user.error);
     const [disable,setDisable] = useState(false);
-
+    
     const signupField = [
         {
           type:'text',
@@ -23,7 +23,8 @@ export const useSignupData = () => {
           label:'Enter Name',
           data:signupData,
           error:error,
-          updateData:handleSignupData
+          updateData:handleSignupData,
+          disable:disable
         },
         {
           type:'email',
@@ -32,7 +33,8 @@ export const useSignupData = () => {
           label:'Enter Email',
           data:signupData,
           error:error,
-          updateData:handleSignupData
+          updateData:handleSignupData,
+          disable:disable
         },
         {
           type:'password',
@@ -41,7 +43,8 @@ export const useSignupData = () => {
           label:'Enter Password',
           data:signupData,
           error:error,
-          updateData:handleSignupData
+          updateData:handleSignupData,
+          disable:disable
         }
       ]
     
@@ -69,7 +72,7 @@ export const useSignupData = () => {
         password:[
           {
             required:true,
-            message:'Please Enter Password'
+            message:'Please, Enter Password'
           },
           {
             length:6,
@@ -96,8 +99,7 @@ export const useSignupData = () => {
             dispatch(handleError(error));
             return;
           }
-          setDisable(!disable);
-         
+          
           const config = {
             method:'post',
             url:'users/SignUp',
@@ -108,23 +110,29 @@ export const useSignupData = () => {
         
           if(res.payload.statusCode === 400){
             toast.error('check once more something went wrong');
+            setDisable(false);
             return;
           }
           if(res?.payload?.statusCode !== 200){
             toast.error('Email Already Exist Please Login');
+            setDisable(false);
             return;
           }
+          setImmediate(true);
           toast.success(res?.payload?.message);
+          
           toast('Please Verify Your Email');
           dispatch(initiateSignupData());
          
           navigate(LOGIN_PAGE,{replace:true});
+       
         }catch(error){
           setDisable(false);
           console.log('error', error)
         }
       }
-
+      
+      
     return {
         signupField,
         disable,

@@ -79,7 +79,6 @@ const Pagination = ({ data, viewPath, lastVisitedPage, btn, studentBtn }) => {
       }
       return renderPageNumbers;
     };
-
     setRenderPageNumbers(pageNumberList());
   }, [currPage, maxPageNumberLimit, minPageNumberLimit, totalPage]);
 

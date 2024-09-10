@@ -69,8 +69,9 @@ const NewPassword = () => {
           message:'Password Must be contain atleast 6 char'
         },
         {
-          match:true,
-          comKey:newPassword.Password
+          match: true,
+          comKey: newPassword?.Password,
+          message: 'Password and Confirm Password Do not Match'
         }
       ]
     }
@@ -94,6 +95,10 @@ const NewPassword = () => {
           return;
         }
         if(res?.payload?.statusCode===400){
+          toast.error(res?.payload?.message);
+          return;
+        }
+        if(res?.payload?.statusCode!==200){
           toast.error(res?.payload?.message);
           return;
         }

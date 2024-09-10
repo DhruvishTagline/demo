@@ -143,7 +143,6 @@ export const useCreateExam = () => {
         name:'op2',
         label:'Option 2',
         data:Options,
-        
         updateData:handleOptions,
         currQuestion:currQuestion,
         opIndex:1,
@@ -165,8 +164,7 @@ export const useCreateExam = () => {
         id:'op3',
         name:'op3',
         label:'Option 3',
-        data:Options,
-       
+        data:Options,       
         updateData:handleOptions,
         currQuestion:currQuestion,
         opIndex:2,
@@ -188,8 +186,7 @@ export const useCreateExam = () => {
         id:'op4',
         name:'op4',
         label:'Option 4',
-        data:Options,
-       
+        data:Options,      
         updateData:handleOptions,
         currQuestion:currQuestion,
         opIndex:3,
@@ -222,8 +219,10 @@ export const useCreateExam = () => {
         }
   
         const error = validateField(validateExamData,validate);
+        
         if(Object.keys(error).length !== 0){
           dispatch(handleError(error));
+          toast.error('Please Check all Options and Select Right Answer');
           return;
         }
         if(Object.values(sameOptionError).some(element => element !== ''))

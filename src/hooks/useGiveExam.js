@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router';
 import { cancelExam, handleStudentAns, loadAllExamData } from '../redux-toolkit/slices/student';
-
 import { fetchData } from '../redux-toolkit/slices/api';
 import { ALL_EXAM } from '../utils/constant';
 import { initiateAnsIndex } from '../redux-toolkit/slices/teacher';
@@ -170,7 +169,7 @@ export const useGiveExam = (id) => {
       const handleSubmitExam =()=>{
         if(ansArr.length === 7){
             const submitExam = async ()=>{
-                try {
+                try{
                     const config = {
                         method:'post',
                         url:'student/giveExam',
@@ -187,7 +186,7 @@ export const useGiveExam = (id) => {
                     toast.success(res?.payload?.message)
                     removeItemLocal('ansIndex');
                     navigate(ALL_EXAM);
-                } catch(error) {
+                }catch(error){
                     console.log("error",error);
                 }
             }

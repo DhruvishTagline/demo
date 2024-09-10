@@ -1,6 +1,3 @@
-
-
-
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addNewQuestion, handleError } from '../redux-toolkit/slices/teacher';
@@ -20,12 +17,9 @@ const ShowExam = ({
   Options
 }) => {
 
-
   const totalQuestion = totalQue || 15;
   const examData = useSelector((state) => state.teacher.createExam);
   const dispatch = useDispatch();
-  const status = useSelector((state) => state.api.status);
- 
 
   const handlePrevQuestion = () => {
     dispatch(handleError({}));
@@ -35,7 +29,6 @@ const ShowExam = ({
   const handleNextQuestion = () => {
   
     const validationErrors = validateField(validateExamData, validate);
-  
     dispatch(handleError(validationErrors));
 
     const e = Object.values(error).some(element => element !== '');
@@ -48,14 +41,13 @@ const ShowExam = ({
     };
 
     if (currQuestion < totalQuestion - 1) { 
-
       const newQuestion = {
         question: '',
         answer: '',
         options: ['', '', '', '']
       };
        
-      if (examData.questions.length < totalQuestion) {
+      if (examData?.questions?.length < totalQuestion) {
         dispatch(addNewQuestion(newQuestion));
       }
       setCurrQuestion(currQuestion + 1);
@@ -74,7 +66,7 @@ const ShowExam = ({
           {error?.answer && <span className='text-red-500 text-sm'>{error.answer}</span>}
           {error?.sameOption && <span className='text-red-500 text-sm'>{error.sameOption}</span>}
 
-          <div className='mt-2 ml-[28px]'>
+          <div className='flex justify-center mt-2 ml-[auto]'>
             <button
               onClick={handlePrevQuestion}
               disabled={currQuestion === 0}
@@ -99,3 +91,4 @@ const ShowExam = ({
 
 export default ShowExam;
 
+// i want to center this 2 button in given div using tailwind css classname rewrite div code

@@ -22,7 +22,8 @@ export const useLoginData = () => {
           label:`Enter Email`,
           data:loginData,
           error:error,
-          updateData:handleLoginData
+          updateData:handleLoginData,
+          disable:disable
         },
         {
           type:'password',
@@ -31,7 +32,8 @@ export const useLoginData = () => {
           label:'Enter Password',
           data:loginData,
           error:error,
-          updateData:handleLoginData
+          updateData:handleLoginData,
+          disable:disable
         }
       ]
     
@@ -80,7 +82,8 @@ export const useLoginData = () => {
             return;    
           }    
           if(res?.payload?.statusCode === 400){    
-            toast.error(res?.payload?.message);       
+            toast.error(res?.payload?.message);   
+            setDisable(false);     
             return;    
           }
           toast.success(res?.payload?.message)
@@ -93,6 +96,7 @@ export const useLoginData = () => {
           dispatch(initiateLoginData());       
 
           navigate(`/${res.payload.data.role}/dashboard`,{replace:true});
+          
         }catch(error){
           setDisable(false);
           console.log('error', error);

@@ -208,8 +208,7 @@ const useEditExam = (id,subjectName) => {
           const questionTexts = questions.map(q => q.question);
           const duplicateQuestions = questionTexts.filter((item, index) => 
               questionTexts.indexOf(item) !== index
-          );
-          
+          );         
           return [...new Set(duplicateQuestions)]; 
         };
 
