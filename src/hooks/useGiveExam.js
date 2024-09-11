@@ -46,7 +46,8 @@ export const useGiveExam = (id) => {
           label:'Subject Name',
           data:examData,
           disable:true,
-          error:error
+          error:error,
+          required:true
         },
         {
           type:'text',
@@ -56,7 +57,8 @@ export const useGiveExam = (id) => {
           data:examData?.questions?.[currQuestion],
           disable:true,
           currQuestion:currQuestion,
-          error:error
+          error:error,
+          required:true
         },
         {
           type:'radio',
@@ -80,7 +82,8 @@ export const useGiveExam = (id) => {
           disable:true,
           currQuestion:currQuestion,
           opIndex:0,
-          error:error
+          error:error,
+          required:true
         },
         {
           type:'radio',
@@ -103,7 +106,8 @@ export const useGiveExam = (id) => {
           disable:true,
           currQuestion:currQuestion,
           opIndex:1,
-          error:error
+          error:error,
+          required:true
         },
         {
           type:'radio',
@@ -126,7 +130,8 @@ export const useGiveExam = (id) => {
           disable:true,
           currQuestion:currQuestion,
           opIndex:2,
-          error:error
+          error:error,
+          required:true
         },
         {
           type:'radio',
@@ -149,7 +154,8 @@ export const useGiveExam = (id) => {
           disable:true,
           currQuestion:currQuestion,
           opIndex:3,
-          error:error
+          error:error,
+          required:true
         }
       ]
 

@@ -6,7 +6,7 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import RadioBtn from './RadioBtn';
 
-const InputField = ({ fieldData, ansIndex, subjectName, Options }) => {
+const InputField = ({ fieldData, ansIndex, subjectName, Options,flag }) => {
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
 
@@ -26,16 +26,16 @@ const InputField = ({ fieldData, ansIndex, subjectName, Options }) => {
     <div className='flex flex-col gap-2 mt-[10px]'>
       <TextField
         label={fieldData?.label}
-        type={inputType}
+        type={flag ?'text':inputType}
         id={fieldData?.id}
         name={fieldData?.name}
         value={fieldData?.name === 'subjectName' ? subjectName : fieldData?.data?.[fieldData?.name]}
         disabled={fieldData?.disable}
-        variant="outlined"
+        variant={flag?"standard":"outlined"}
         placeholder={fieldData?.label}
         InputLabelProps={{ shrink: true }}
         style={{ width: '20rem', fontSize: '1.3rem' }} 
-        required
+        required={fieldData?.required}
         onChange={
           fieldData?.name === 'subjectName' ? (e) => {
             const { name, value } = e.target;

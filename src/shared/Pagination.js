@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { handlePrevVisitedPage } from '../redux-toolkit/slices/user';
 import BasicTable from './Tabel';
 
-const Pagination = ({ data, viewPath, lastVisitedPage, btn, studentBtn }) => {
+const Pagination = ({ data, viewPath, lastVisitedPage, btn, studentBtn,handleDeleteExam }) => {
   const dispatch = useDispatch();
   const [currPage, setCurrPage] = useState(lastVisitedPage || 1);
   const recordsPerPage = 9;
@@ -106,7 +106,7 @@ const Pagination = ({ data, viewPath, lastVisitedPage, btn, studentBtn }) => {
         <p className='text-2xl text-red-400'>No data found ...</p>
       ) : (
         <div>
-          <BasicTable data={currentItems} btn={btn} path={viewPath} studentBtn={studentBtn} />
+          <BasicTable data={currentItems} btn={btn} path={viewPath} studentBtn={studentBtn} handleDeleteExam={handleDeleteExam} />
           <div className='flex justify-between items-center mt-4'>
             <span className='text-gray-700'>{currPage} page of {totalPage}</span>
             {data?.length > recordsPerPage && (

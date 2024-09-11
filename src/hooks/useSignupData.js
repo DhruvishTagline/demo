@@ -72,7 +72,7 @@ export const useSignupData = () => {
         password:[
           {
             required:true,
-            message:'Please, Enter Password'
+            message:'Please Enter Password'
           },
           {
             length:6,
@@ -105,30 +105,25 @@ export const useSignupData = () => {
             url:'users/SignUp',
             data:signupData
           }
-          
+          setDisable(true);
           const res = await dispatch(fetchData(config));
-        
           if(res.payload.statusCode === 400){
             toast.error('check once more something went wrong');
-            setDisable(false);
             return;
           }
           if(res?.payload?.statusCode !== 200){
             toast.error('Email Already Exist Please Login');
-            setDisable(false);
             return;
           }
-          setImmediate(true);
           toast.success(res?.payload?.message);
-          
           toast('Please Verify Your Email');
           dispatch(initiateSignupData());
-         
           navigate(LOGIN_PAGE,{replace:true});
        
         }catch(error){
-          setDisable(false);
           console.log('error', error)
+        } finally {
+          setDisable(false);
         }
       }
       

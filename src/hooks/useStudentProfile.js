@@ -25,7 +25,8 @@ const useStudentProfile = () => {
           data:studentProfile,
           updateData:updateProfile,
           disable:disable,
-          error:error
+          error:error,
+          required:true
         },
         {
           type:'text',

@@ -6,7 +6,7 @@ import Pagination from '../../../shared/Pagination';
 import { useNavigate } from 'react-router';
 import { handlePrevVisitedPage } from '../../../redux-toolkit/slices/user';
 import { removeItemLocal, setItemLocal } from '../../../utils/localStorageFunction';
-import { LOGIN_PAGE } from '../../../utils/constant';
+import { LOGIN_PAGE, VIEW_EXAM } from '../../../utils/constant';
 import FilterFeild from '../../../shared/FilterFeild';
 import { toast } from 'react-toastify';
 import { getCurrUserData } from '../../../utils/currentUser';
@@ -24,28 +24,76 @@ const ViewExam = () => {
     editBtn:'/teacher/edit-exam',
   }
 
-  useEffect(() => {
-    dispatch(updateSearchQuery(''))  
-    const fetchViewExamData = async() => {
-      try{
-        const config = {
-          method:'get',
-          url:'dashboard/Teachers/viewExam',
-          headers: { "access-token":getCurrUserData().token }
+  const fetchViewExamData = async() => {
+    try{
+      const config = {
+        method:'get',
+        url:'dashboard/Teachers/viewExam',
+        headers: { "access-token":getCurrUserData().token }
+      }
+      const res = await dispatch(fetchData(config));
+      if(res?.payload?.statusCode !== 200){
+        toast.error(res?.payload?.message);
+        removeItemLocal('userData');
+        setItemLocal('login',false);
+        navigate(LOGIN_PAGE);
+        return;
+      }     
+      dispatch(loadViewExamData(res.payload.data));
+    }catch(error){
+      toast('error', error)
+    }
+  }
+  const handleDeleteExam=(id)=>{
+    try{
+      const bool = window.confirm('are you sure you want to delete exam ?');
+      if(bool === false){
+        return
+      }
+      const deleteExam =async()=>{
+        const config={
+          method:'delete',
+          url:'dashboard/Teachers/deleteExam',
+          headers:{"access-token":getCurrUserData().token},
+          params:{id}
         }
-        const res = await dispatch(fetchData(config));
+        const res =await dispatch(fetchData(config));
         if(res?.payload?.statusCode !== 200){
           toast.error(res?.payload?.message);
-          removeItemLocal('userData');
-          setItemLocal('login',false);
-          navigate(LOGIN_PAGE);
           return;
-        }     
-        dispatch(loadViewExamData(res.payload.data));
-      }catch(error){
-        toast('error', error)
+        }
+        toast.success(res?.payload?.message);
+        fetchViewExamData();
       }
+      deleteExam();
     }
+    catch(error){
+      console.log("error",error);
+    }
+  }
+
+  useEffect(() => {
+    dispatch(updateSearchQuery(''))  
+    // const fetchViewExamData = async() => {
+    //   try{
+    //     const config = {
+    //       method:'get',
+    //       url:'dashboard/Teachers/viewExam',
+    //       headers: { "access-token":getCurrUserData().token }
+    //     }
+    //     const res = await dispatch(fetchData(config));
+    //     if(res?.payload?.statusCode !== 200){
+    //       toast.error(res?.payload?.message);
+    //       removeItemLocal('userData');
+    //       setItemLocal('login',false);
+    //       navigate(LOGIN_PAGE);
+    //       return;
+    //     }     
+    //     dispatch(loadViewExamData(res.payload.data));
+    //   }catch(error){
+    //     toast('error', error)
+    //   }
+    // }
     
       fetchViewExamData();
     
@@ -72,6 +120,7 @@ const ViewExam = () => {
                     data={filteredData}  
                     btn={btn}
                     viewPath={`/teacher/view-exam`}
+                    handleDeleteExam={handleDeleteExam}
                   />
               </div> 
             }

@@ -92,7 +92,8 @@ export const useCreateExam = () => {
         label:'Subject Name',
         data:examData,
         updateData:handleSubject,
-        error:error
+        error:error,
+        required:true
       },
       {
         type:'text',
@@ -102,7 +103,8 @@ export const useCreateExam = () => {
         data:examData?.questions?.[currQuestion],
         updateData:handleQuestion,
         currQuestion:currQuestion,
-        error:error
+        error:error,
+        required:true
       },
       {
         type:'radio',
@@ -113,7 +115,7 @@ export const useCreateExam = () => {
         currQuestion:currQuestion,
         ans:examData?.questions?.[currQuestion]?.answer,
         opIndex:0,
-        error:error
+        error:error,
       },
       {
         type:'text',
@@ -124,7 +126,8 @@ export const useCreateExam = () => {
         updateData:handleOptions,
         currQuestion:currQuestion,
         opIndex:0,
-        error:error
+        error:error,
+        required:true
       },
       {
         type:'radio',
@@ -146,7 +149,8 @@ export const useCreateExam = () => {
         updateData:handleOptions,
         currQuestion:currQuestion,
         opIndex:1,
-        error:error
+        error:error,
+        required:true
       },
       {
         type:'radio',
@@ -157,7 +161,8 @@ export const useCreateExam = () => {
         currQuestion:currQuestion,
         ans:examData?.questions?.[currQuestion]?.answer,
         opIndex:2,
-        error:error
+        error:error,
+        
       },
       {
         type:'text',
@@ -179,7 +184,8 @@ export const useCreateExam = () => {
         currQuestion:currQuestion,
         ans:examData?.questions?.[currQuestion]?.answer,
         opIndex:3,
-        error:error
+        error:error,
+       
       },
       {
         type:'text',
@@ -190,7 +196,8 @@ export const useCreateExam = () => {
         updateData:handleOptions,
         currQuestion:currQuestion,
         opIndex:3,
-        error:error
+        error:error,
+        required:true
       }
     ]
 

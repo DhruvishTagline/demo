@@ -65,6 +65,7 @@ const AllExam = () => {
                   data={filteredData} 
                   studentBtn={btn}  
                   lastVisitedPage={lastVisitedPage}
+                  viewPath='All-Exam'
                 />
               </div>                     
             }

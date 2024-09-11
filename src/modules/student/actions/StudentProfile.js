@@ -2,7 +2,6 @@ import React, { useEffect } from 'react'
 import useStudentProfile from '../../../hooks/useStudentProfile'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
-
 import { fetchData } from '../../../redux-toolkit/slices/api';
 import { getItemLocal, removeItemLocal, setItemLocal } from '../../../utils/localStorageFunction';
 import { loadStudentProfile } from '../../../redux-toolkit/slices/student';
@@ -25,6 +24,10 @@ const StudentProfile = () => {
     setDisable
 } = useStudentProfile();
 
+
+  const studentProfile = useSelector(state=>state.student.studentProfile);
+  
+ 
   useEffect(() => {
     const fetchStudentDetail = async() => {
       try{
@@ -70,7 +73,10 @@ const StudentProfile = () => {
           <div>
           <p className='text-center text-4xl mb-4'>Your Profile</p>
           {
-            createStudentFields.map((field,i) => <InputField fieldData={field} key={i}/>)
+            !disable? createStudentFields.map((field,i) => <InputField fieldData={field} key={i}/>): <div className=' border-solid border-2 border-black-900 '>
+             <div className='flex justify-center'> <label className='text-2xl'>Name :</label><p className='text-2xl ml-5'>{studentProfile.name}</p> </div>
+             <div className='flex justify-center'> <label className='text-2xl'>Email :</label><p className='text-2xl ml-5'>{studentProfile.email}</p> </div>
+            </div>
           }
           <div className='flex justify-center mt-2'>
             {

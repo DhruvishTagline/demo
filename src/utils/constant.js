@@ -37,6 +37,6 @@ export const GIVE_EXAM = '/student/give-exam/:id/:subjectName'
 
 export const STUDENT_PROFILE = '/student/student-profile'
 
-export const EXAM_RESTRICTION_PAGE= '/exam-restriction-page'
+export const EXAM_RESTRICTION_PAGE= '/student/exam-restriction-page'
 
 

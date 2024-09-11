@@ -4,9 +4,7 @@ import { capitalizeFirstChar } from '../utils/functions';
 import { NavLink } from 'react-router-dom';
 
 export default function BasicTable(props) {
-  const { data: dataList, path, btn, studentBtn } = props;
-
-  
+  const { data: dataList, path, btn, studentBtn,handleDeleteExam } = props;
   const keys = Object.keys(dataList[0] || {});
 
   return (
@@ -17,7 +15,7 @@ export default function BasicTable(props) {
             <th className="text-center py-3 px-4 border-b">Sr No</th>
             {
               keys?.map((item, index) => {
-                if (item !== '_id' && item !== '__v' && item !== 'studentAnswer' && item !== 'studentId')
+                if (item !== '_id' && item !== '__v' && item !== 'studentAnswer' && item !== 'studentId' && item !== 'Result')
                   return (
                     <th className="text-center py-3 px-4 border-b" key={index}>
                       {capitalizeFirstChar(item)}
@@ -58,22 +56,34 @@ export default function BasicTable(props) {
                 {
                   btn && (
                     <td className="text-center py-3 px-4 border-b truncate max-w-[18rem] text-blue-500">
-                      {/* {<NavLink to={`/teacher/edit-exam?id=${row._id}&subjectName=${row.subjectName}`}  style={{marginRight: '10px'}}>} */}
                       <NavLink to={`/teacher/edit-exam/${row._id}/${row.subjectName}`}  style={{marginRight: '10px'}}>
                         Edit
                       </NavLink>
+                      <button onClick={()=>handleDeleteExam(row._id)}>
+                        Delete
+                      </button>
                     </td>
+                    
                   )
                 }
                 {
                   studentBtn && (
                     <td className="text-center py-3 px-4 border-b truncate max-w-[18rem] text-blue-500">
-                      <NavLink to={`/student/give-exam/${row._id}/${row.subjectName}`} style={{marginRight: '10px'}}>
-                        GiveExam
-                      </NavLink>
+                      {!row?.Result?.length > 0 ? (
+                        <NavLink 
+                          to={`/student/give-exam/${row._id}/${row.subjectName}`} 
+                          style={{ marginRight: '10px' }}
+                        >
+                          Give-Exam
+                        </NavLink>
+                      ) : (
+                        <span style={{ marginRight: '10px', color: 'gray' }}>
+                          Already Given
+                        </span>
+                      )}
                     </td>
                   )
-                }      
+                }    
               </tr>
             ))
           }    
@@ -82,3 +92,6 @@ export default function BasicTable(props) {
     </div>
   );
 }
+
+
+
