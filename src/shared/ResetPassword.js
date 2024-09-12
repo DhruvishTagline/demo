@@ -113,7 +113,6 @@ const ResetPassword = () => {
     const handleReset = async () => {
         try {
             const error = validateField(resetPassword, validate);
-            console.log('error :>> ', error);
             if (Object.keys(error).length !== 0) {
                 dispatch(handleError(error));
                 return;

@@ -4,7 +4,6 @@ import { getItemLocal, setItemLocal } from '../utils/localStorageFunction';
 import {  handleStudentError, loadStudentProfile, updateProfile } from '../redux-toolkit/slices/student';
 import { validateField } from '../Validation/validation';
 import { fetchData } from '../redux-toolkit/slices/api';
-
 import { toast } from 'react-toastify';
 import { getCurrUserData } from '../utils/currentUser';
 import { STUDENT_STUDENT_PROFILE_END_POINT } from '../utils/constant';
@@ -75,7 +74,7 @@ const useStudentProfile = () => {
                 method:'put',
                 url:STUDENT_STUDENT_PROFILE_END_POINT,
                 data:updatedData,
-                headers: { "access-token":getCurrUserData().token }
+                //  headers: { "access-token":getCurrUserData().token }
             }
 
             const res= await dispatch(fetchData(config));

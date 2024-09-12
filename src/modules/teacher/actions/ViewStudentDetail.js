@@ -24,7 +24,7 @@ const ViewStudentDetail = () => {
                 const config = {
                     method:'get',
                     url:TEACHER_VIEW_STUDENT_DETAIL_END_POINT,
-                    headers: { "access-token":getCurrUserData().token },
+                    // headers: { "access-token":getCurrUserData().token },
                     params:{id}
                 }
                 const res = await dispatch(fetchData(config));

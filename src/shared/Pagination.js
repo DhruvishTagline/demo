@@ -54,7 +54,7 @@ const Pagination = ({ data, viewPath, lastVisitedPage, btn, studentBtn,handleDel
           pageNumbers.push(
             <li
               key={1} 
-              className={`cursor-pointer p-2 ${currPage === 1 ? 'bg-blue-500 text-white' : 'bg-gray-100'} rounded-lg mx-1`}
+              className={`cursor-default p-2 ${currPage === 1 ? 'bg-blue-500 text-white' : 'bg-gray-100'} rounded-lg mx-1`}
             >
               1
             </li>
@@ -69,7 +69,7 @@ const Pagination = ({ data, viewPath, lastVisitedPage, btn, studentBtn,handleDel
           pageNumbers.push(
             <li
               key={ totalPage }
-              className={`cursor-pointer p-2 ${currPage === totalPage ? 'bg-blue-500 text-white' : 'bg-gray-100'} rounded-lg mx-1`}
+              className={`cursor-default p-2 ${currPage === totalPage ? 'bg-blue-500 text-white' : 'bg-gray-100'} rounded-lg mx-1`}
             >
               { totalPage }
             </li>

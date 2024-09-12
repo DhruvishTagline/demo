@@ -10,6 +10,7 @@ const initialState = {
 export const fetchData = createAsyncThunk('data/fetchData', async(config) => {
     try{
         const data = await axiosInstance(config);
+        console.log('data :>> ', data);
         return data.data;
     }catch (e){
         console.log('e :>> ', e);

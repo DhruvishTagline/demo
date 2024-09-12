@@ -238,13 +238,13 @@ export const useCreateExam = () => {
               method:'post',  
               url:TEACHER_CREATE_EXAM_END_POINT,
               data:examData,
-              headers: { "access-token":getCurrUserData().token }
+              // headers: { "access-token":getCurrUserData().token }
             }
             const res = await dispatch(fetchData(config));
             setCurrQuestion(0);
             if(res?.payload?.statusCode !== 200){
               toast.error(res?.payload?.message);
-              navigate(VIEW_EXAM);  
+              navigate(VIEW_EXAM);   
             }
             toast.success(res?.payload?.message);
             navigate(VIEW_EXAM);

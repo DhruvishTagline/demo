@@ -24,17 +24,15 @@ const StudentProfile = () => {
     setDisable
 } = useStudentProfile();
 
-
   const studentProfile = useSelector(state=>state.student.studentProfile);
   
- 
   useEffect(() => {
     const fetchStudentDetail = async() => {
       try{
         const config = {
           method:'get',
           url:STUDENT_STUDENT_DETAILS_END_POINTS,
-          headers: { "access-token":getCurrUserData().token }
+          // headers: { "access-token":getCurrUserData().token }
         }
         const res = await dispatch(fetchData(config));
         if(res?.payload?.statusCode !== 200){
@@ -63,7 +61,7 @@ const StudentProfile = () => {
     setDisable(true);
     dispatch(loadStudentProfile(getItemLocal('student')));
   }
-  
+   
   return (
     status === 'loading' ?
     <div className='spinner mt-20 mx-auto'></div> :  

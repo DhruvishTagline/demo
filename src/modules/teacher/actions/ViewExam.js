@@ -29,7 +29,7 @@ const ViewExam = () => {
       const config = {
         method:'get',
         url:TEACHER_VIEW_EXAM_END_POINT,
-        headers: { "access-token":getCurrUserData().token }
+        // headers: { "access-token":getCurrUserData().token }
       }
       const res = await dispatch(fetchData(config));
       if(res?.payload?.statusCode !== 200){
