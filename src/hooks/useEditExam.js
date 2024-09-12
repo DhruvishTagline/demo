@@ -230,12 +230,10 @@ const useEditExam = (id,subjectName) => {
         }
         
         try{
-         
           if(!edited){
             navigate(VIEW_EXAM);
             return;
           }
-          
           const error =validateField(validateExamData,validate);
           if(Object.keys(error).length !== 0)
           {           

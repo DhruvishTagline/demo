@@ -1,8 +1,28 @@
 import React, { Suspense, lazy } from 'react';
-
-import { ALL_EXAM, ALL_STUDENT, CREATE_EXAM, EDIT_EXAM, EXAM_RESTRICTION_PAGE, FORGET_PASSWORD, GIVE_EXAM, HOME_PAGE, LOGIN_PAGE, NEW_PASSWORD, RESET_PASSWORD, SHOW_RESULT, SIGNUP_PAGE, STUDENT, STUDENT_DASHBOARD, STUDENT_DETAIL, STUDENT_PROFILE, TEACHER, TEACHER_DASHBOARD, VERIFIED_STUDENT, VIEW_EXAM } from '../utils/constant';
 import Auth from '../HOC/Auth';
 import Loader from '../shared/Loader';
+import { 
+  ALL_EXAM, 
+  ALL_STUDENT, 
+  CREATE_EXAM, 
+  EDIT_EXAM, 
+  EXAM_RESTRICTION_PAGE, 
+  FORGET_PASSWORD, 
+  GIVE_EXAM, 
+  HOME_PAGE, 
+  LOGIN_PAGE, 
+  NEW_PASSWORD, 
+  RESET_PASSWORD, 
+  SIGNUP_PAGE, 
+  STUDENT, 
+  STUDENT_DASHBOARD, 
+  STUDENT_DETAIL, 
+  STUDENT_PROFILE, 
+  TEACHER, 
+  TEACHER_DASHBOARD, 
+  VERIFIED_STUDENT, 
+  VIEW_EXAM 
+} from '../utils/constant';
 
 
 const App = lazy(() => import("../App"));
@@ -27,63 +47,6 @@ const GiveExam = lazy(() => import("../modules/student/actions/GiveExam"));
 const StudentProfile = lazy(() => import("../modules/student/actions/StudentProfile"));
 const ExamRestrictionPage = lazy(()=>import("../shared/ExamRestrictionPage"));
 const ErrorPage = lazy(()=>import("../shared/ErrorPage"))
-
-const tPaths = [
-  TEACHER_DASHBOARD,
-  ALL_STUDENT,
-  VERIFIED_STUDENT,
-  STUDENT_DETAIL,
-  CREATE_EXAM,
-  VIEW_EXAM,
-  EDIT_EXAM,
-  RESET_PASSWORD
-];
-
-const tComponents = [
-  <TeacherDashboard />,
-  <AllStudent />,
-  <VerifiedStudent />,
-  <ViewStudentDetail />,
-  <CreateExam />,
-  <ViewExam />,
-  <EditExam />,
-  <ResetPassword />
-];
-
-const tChildren = tPaths.map((path, index) => ({
-  path,
-  element: (
-    <Suspense fallback={<Loader />} key={path}>
-      {tComponents[index]}
-    </Suspense>
-  )
-}));
-
-const sPaths = [ 
-  STUDENT_DASHBOARD, 
-  ALL_EXAM, 
-  GIVE_EXAM, 
-  STUDENT_PROFILE, 
-  RESET_PASSWORD,
-  EXAM_RESTRICTION_PAGE
-];
-const sComponents = [ 
-  <StudentDashboard/>, 
-  <AllExam/>, 
-  <GiveExam/>, 
-  <StudentProfile/>,
-  <ResetPassword/>,
-  <ExamRestrictionPage/>
-];
-const sChildren = sPaths.map((path, index) => ({
-  path,
-  element: (
-    <Suspense fallback={<Loader />} key={path}>
-      {sComponents[index]}
-    </Suspense>
-  )
-}));
-
 
 export const routes = [
   {
@@ -149,73 +112,73 @@ export const routes = [
                 <Teacher />
               </Suspense>
             ),
-            // children: [
-            //   {
-            //     path: TEACHER_DASHBOARD,
-            //     element: (
-            //       <Suspense fallback={<Loader />}>
-            //         <TeacherDashboard />
-            //       </Suspense>
-            //     )
-            //   },
-            //   {
-            //     path: ALL_STUDENT,
-            //     element: (
-            //       <Suspense fallback={<Loader />}>
-            //         <AllStudent />
-            //       </Suspense>
-            //     )
-            //   },
-            //   {
-            //     path: VERIFIED_STUDENT,
-            //     element: (
-            //       <Suspense fallback={<Loader />}>
-            //         <VerifiedStudent />
-            //       </Suspense>
-            //     )
-            //   },
-            //   {
-            //     path: STUDENT_DETAIL,
-            //     element: (
-            //       <Suspense fallback={<Loader />}>
-            //         <ViewStudentDetail />
-            //       </Suspense>
-            //     )
-            //   },
-            //   {
-            //     path: CREATE_EXAM,
-            //     element: (
-            //       <Suspense fallback={<Loader />}>
-            //         <CreateExam />
-            //       </Suspense>
-            //     )
-            //   },
-            //   {
-            //     path: VIEW_EXAM,
-            //     element: (
-            //       <Suspense fallback={<Loader />}>
-            //         <ViewExam />
-            //       </Suspense>
-            //     )
-            //   },
-            //   {
-            //     path: EDIT_EXAM,
-            //     element: (
-            //       <Suspense fallback={<Loader />}>
-            //         <EditExam />
-            //       </Suspense>
-            //     )
-            //   },
-            //   {
-            //     path: RESET_PASSWORD,
-            //     element: (
-            //       <Suspense fallback={<Loader />}>
-            //         <ResetPassword />
-            //       </Suspense>
-            //     )
-            //   }
-            // ]
-            children:tChildren
+            children: [
+              {
+                path: TEACHER_DASHBOARD,
+                element: (
+                  <Suspense fallback={<Loader />}> 
+                    <TeacherDashboard />
+                  </Suspense>
+                )
+              },
+              {
+                path: ALL_STUDENT,
+                element: (
+                  <Suspense fallback={<Loader />}>
+                    <AllStudent />
+                  </Suspense>
+                )
+              },
+              {
+                path: VERIFIED_STUDENT,
+                element: (
+                  <Suspense fallback={<Loader />}>
+                    <VerifiedStudent />
+                  </Suspense>
+                )
+              },
+              {
+                path: STUDENT_DETAIL,
+                element: (
+                  <Suspense fallback={<Loader />}>
+                    <ViewStudentDetail />
+                  </Suspense>
+                )
+              },
+              {
+                path: CREATE_EXAM,
+                element: (
+                  <Suspense fallback={<Loader />}>
+                    <CreateExam />
+                  </Suspense>
+                )
+              },
+              {
+                path: VIEW_EXAM,
+                element: (
+                  <Suspense fallback={<Loader />}>
+                    <ViewExam />
+                  </Suspense>
+                )
+              },
+              {
+                path: EDIT_EXAM,
+                element: (
+                  <Suspense fallback={<Loader />}>
+                    <EditExam />
+                  </Suspense>
+                )
+              },
+              {
+                path: RESET_PASSWORD,
+                element: (
+                  <Suspense fallback={<Loader />}>
+                    <ResetPassword />
+                  </Suspense>
+                )
+              }
+            ]
+            
           }
         ]
       },
@@ -233,50 +196,57 @@ export const routes = [
                 <Student />
               </Suspense>
             ),
-            // children: [
-            //   {
-            //     path: STUDENT_DASHBOARD,
-            //     element: (
-            //       <Suspense fallback={<Loader />}>
-            //         <StudentDashboard />
-            //       </Suspense>
-            //     )
-            //   },
-            //   {
-            //     path: ALL_EXAM,
-            //     element: (
-            //       <Suspense fallback={<Loader />}>
-            //         <AllExam />
-            //       </Suspense>
-            //     )
-            //   },
-            //   {
-            //     path: GIVE_EXAM,
-            //     element: (
-            //       <Suspense fallback={<Loader />}>
-            //         <GiveExam />
-            //       </Suspense>
-            //     )
-            //   },
-            //   {
-            //     path: STUDENT_PROFILE,
-            //     element: (
-            //       <Suspense fallback={<Loader />}>
-            //         <StudentProfile />
-            //       </Suspense>
-            //     )
-            //   },
-            //   {
-            //     path: RESET_PASSWORD,
-            //     element: (
-            //       <Suspense fallback={<Loader />}>
-            //         <ResetPassword />
-            //       </Suspense>
-            //     )
-            //   },
-              
-            // ]
-            children:sChildren
+            children: [
+              {
+                path: STUDENT_DASHBOARD,
+                element: (
+                  <Suspense fallback={<Loader />}>
+                    <StudentDashboard />
+                  </Suspense>
+                )
+              },
+              {
+                path: ALL_EXAM,
+                element: (
+                  <Suspense fallback={<Loader />}>
+                    <AllExam />
+                  </Suspense>
+                )
+              },
+              {
+                path: GIVE_EXAM,
+                element: (
+                  <Suspense fallback={<Loader />}>
+                    <GiveExam />
+                  </Suspense>
+                )
+              },
+              {
+                path: STUDENT_PROFILE,
+                element: (
+                  <Suspense fallback={<Loader />}>
+                    <StudentProfile />
+                  </Suspense>
+                )
+              },
+              {
+                path: RESET_PASSWORD,
+                element: (
+                  <Suspense fallback={<Loader />}>
+                    <ResetPassword />
+                  </Suspense>
+                )
+              },
+              {
+                path: EXAM_RESTRICTION_PAGE,
+                element: (
+                  <Suspense fallback={<Loader />}>
+                    <ExamRestrictionPage />
+                  </Suspense>
+                )
+              },              
+            ]
+            
           }
         ]
       }

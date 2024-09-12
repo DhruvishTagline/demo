@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux"
-import { handleAns, handleError, handleOptions, handleQuestion, handleSubject, initiateAnsIndex, initiateExam, initiateQuestions } from "../redux-toolkit/slices/teacher";
+import { handleAns, handleError, handleOptions, handleQuestion, handleSubject, initiateAnsIndex, initiateExam } from "../redux-toolkit/slices/teacher";
 import { useState } from "react";
 import { fetchData } from "../redux-toolkit/slices/api";
 import { useNavigate } from "react-router";
@@ -197,7 +197,7 @@ export const useCreateExam = () => {
         currQuestion:currQuestion,
         opIndex:3,
         error:error,
-        required:true
+        
       }
     ]
 
@@ -221,22 +221,17 @@ export const useCreateExam = () => {
 
         const duplicates = checkForDuplicateQuestions(examQuestions);
         if (duplicates.length > 0) {  
-            toast.warn(`Duplicate Questions Detected Please Check`);
-            return;
-        }
-  
+          toast.warn(`Duplicate Questions Detected Please Check`);
+          return;
+        }  
         const error = validateField(validateExamData,validate);
-        
         if(Object.keys(error).length !== 0){
           dispatch(handleError(error));
-          toast.error('Please Check all Options and Select Right Answer');
+          toast.error('Please Check Subject name, all Options and Select Right Answer');
           return;
         }
-        if(Object.values(sameOptionError).some(element => element !== ''))
-        {
-            return;
-        }
-        
+        if(Object.values(sameOptionError).some(element => element !== '')) return;
+
         const createExam = async() => {   
           try{
             const config = {  
@@ -246,11 +241,9 @@ export const useCreateExam = () => {
               headers: { "access-token":getCurrUserData().token }
             }
             const res = await dispatch(fetchData(config));
-          
             setCurrQuestion(0);
- 
             if(res?.payload?.statusCode !== 200){
-              toast.error(res?.payload?.message)
+              toast.error(res?.payload?.message);
               navigate(VIEW_EXAM);  
             }
             toast.success(res?.payload?.message);

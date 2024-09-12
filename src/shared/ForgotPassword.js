@@ -1,10 +1,7 @@
-import React, { useEffect } from 'react'
-
-
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, useNavigate } from 'react-router';
 import { handleError, handleForgetPassword, initiateForgetPassword } from '../redux-toolkit/slices/user';
-
 import { validateField } from '../Validation/validation';
 import { fetchData } from '../redux-toolkit/slices/api';
 import { LOGIN_PAGE } from '../utils/constant';
@@ -28,6 +25,7 @@ const ForgotPassword = () => {
     const error= useSelector(state => state.user.error);
     const login = JSON.parse(localStorage.getItem('login'));
     const role = getCurrUserData().role;
+    
     const fieldData = {
       type:'email',
       id:'email',
