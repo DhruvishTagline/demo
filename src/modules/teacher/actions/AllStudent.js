@@ -8,6 +8,7 @@ import { removeItemLocal, setItemLocal } from '../../../utils/localStorageFuncti
 import FilterFeild from '../../../shared/FilterFeild';
 import { toast } from 'react-toastify';
 import { getCurrUserData } from '../../../utils/currentUser';
+import { TEACHER_DASHBOARD_END_POINT } from '../../../utils/constant';
 
 const AllStudent = () => {
   const dispatch = useDispatch();
@@ -23,7 +24,7 @@ const AllStudent = () => {
     const fetchAllStudentData = async () => {
       const config = {
         method: 'get',  
-        url: 'dashboard/Teachers',  
+        url: TEACHER_DASHBOARD_END_POINT,  
         headers: { "access-token": getCurrUserData().token }  
       }  
       

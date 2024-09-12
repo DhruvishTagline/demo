@@ -7,7 +7,7 @@ import { getItemLocal, removeItemLocal, setItemLocal } from '../../../utils/loca
 import { loadStudentProfile } from '../../../redux-toolkit/slices/student';
 import { handlePrevVisitedPage } from '../../../redux-toolkit/slices/user';
 import InputField from '../../../shared/InputField';
-import { LOGIN_PAGE } from '../../../utils/constant';
+import { LOGIN_PAGE, STUDENT_STUDENT_DETAILS_END_POINTS } from '../../../utils/constant';
 import { toast } from 'react-toastify';
 import { getCurrUserData } from '../../../utils/currentUser';
 
@@ -33,7 +33,7 @@ const StudentProfile = () => {
       try{
         const config = {
           method:'get',
-          url:'student/getStudentDetail',
+          url:STUDENT_STUDENT_DETAILS_END_POINTS,
           headers: { "access-token":getCurrUserData().token }
         }
         const res = await dispatch(fetchData(config));

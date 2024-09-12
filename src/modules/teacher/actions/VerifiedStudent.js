@@ -8,6 +8,7 @@ import { removeItemLocal, setItemLocal } from '../../../utils/localStorageFuncti
 import FilterFeild from '../../../shared/FilterFeild';
 import { toast } from 'react-toastify';
 import { getCurrUserData } from '../../../utils/currentUser';
+import { TEACHER_VERIFIED_STUDENT_END_POINT } from '../../../utils/constant';
 
 const VerifiedStudent = () => {
 
@@ -24,7 +25,7 @@ const VerifiedStudent = () => {
         const fetchAllStudentData = async() => {
             const config = {
                 method:'get',
-                url:'dashboard/Teachers/StudentForExam',
+                url:TEACHER_VERIFIED_STUDENT_END_POINT,
                 headers: { "access-token":getCurrUserData()?.token }
             }
             const res = await dispatch(fetchData(config));

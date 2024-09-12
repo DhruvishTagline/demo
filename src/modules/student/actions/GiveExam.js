@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getCurrUserData } from '../../../utils/currentUser';
 import { fetchData } from '../../../redux-toolkit/slices/api';
 import { getItemLocal, removeItemLocal, setItemLocal } from '../../../utils/localStorageFunction';
-import { EXAM_RESTRICTION_PAGE, LOGIN_PAGE } from '../../../utils/constant';
+import { EXAM_RESTRICTION_PAGE, LOGIN_PAGE, STUDENT_EXAM_PAPER_END_POINT } from '../../../utils/constant';
 import { loadExamPaper } from '../../../redux-toolkit/slices/student';
 import { initiateAnsIndex } from '../../../redux-toolkit/slices/teacher';
 import ShowExam from '../../../shared/ShowExam';
@@ -38,7 +38,7 @@ const GiveExam = () => {
       
       const config = {
         method:'get',
-        url:'student/examPaper',
+        url:STUDENT_EXAM_PAPER_END_POINT,
         headers:{ 'access-token':getCurrUserData().token },
         params:{id}
       }

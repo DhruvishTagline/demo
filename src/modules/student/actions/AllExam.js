@@ -9,6 +9,7 @@ import { updateFilteredData } from '../../../redux-toolkit/slices/teacher';
 import FilterFeild from '../../../shared/FilterFeild';
 import { toast } from 'react-toastify';
 import { getCurrUserData } from '../../../utils/currentUser';
+import { STUDENT_STUDENT_EXAM_END_POINT } from '../../../utils/constant';
 
 const AllExam = () => {
 
@@ -24,7 +25,7 @@ const AllExam = () => {
     const fetchAllExam = async()=>{
       const config ={
         method:'get',
-        url:'student/studentExam',
+        url:STUDENT_STUDENT_EXAM_END_POINT,
         headers:{ 'access-token':getCurrUserData().token }
       }
       const res = await dispatch(fetchData(config));

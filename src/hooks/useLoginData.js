@@ -6,6 +6,7 @@ import { useNavigate } from "react-router";
 import { setItemLocal } from "../utils/localStorageFunction";
 import { validateField } from "../Validation/validation";
 import { toast } from "react-toastify";
+import { EMAIL_REGEX, USERS_LOGIN_END_POINT } from "../utils/constant";
 
 export const useLoginData = () => {
     const dispatch = useDispatch();
@@ -44,7 +45,7 @@ export const useLoginData = () => {
             message:'Please Enter Email'
           },
           {
-            pattern:/^[a-zA-Z0-9]+@[a-zA-Z_]+\.[a-zA-Z]{2,3}$/,
+            pattern:EMAIL_REGEX,
             message:'Enter Valid Email'
           }
         ],
@@ -71,7 +72,7 @@ export const useLoginData = () => {
           setDisable(true);
           const config = {
             method:'post',
-            url:'users/Login',
+            url:USERS_LOGIN_END_POINT,
             data:loginData 
           }
           const res = await dispatch(fetchData(config));

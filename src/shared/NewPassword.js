@@ -7,7 +7,7 @@ import { getItemLocal } from '../utils/localStorageFunction';
 import { handleError, handleNewPassword } from '../redux-toolkit/slices/user';
 import { validateField } from '../Validation/validation';
 import { fetchData } from '../redux-toolkit/slices/api';
-import { LOGIN_PAGE } from '../utils/constant';
+import { LOGIN_PAGE, PASSWORD_REGEX, USER_FORGOT_PASSWORD_VERIFY_END_POINT } from '../utils/constant';
 import InputField from './InputField';
 import { toast } from 'react-toastify';
 import { getCurrUserData } from '../utils/currentUser';
@@ -55,7 +55,7 @@ const NewPassword = () => {
           message:'Password length must be greater than 6'
         },
         {
-          pattern:/[a-zA-Z0-9]{6,30}/,
+          pattern:PASSWORD_REGEX,
           message:'Password contains only UpperCase,lowerCase and Digit'
         }
       ],
@@ -85,7 +85,7 @@ const NewPassword = () => {
         }
         const config={
           method:'post',
-          url:'users/ForgotPassword/Verify',
+          url:USER_FORGOT_PASSWORD_VERIFY_END_POINT,
           data:newPassword,
           params:{token} 
         }

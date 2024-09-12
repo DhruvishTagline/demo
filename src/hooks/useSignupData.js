@@ -4,8 +4,9 @@ import { handleError, handleSignupData, initiateSignupData } from "../redux-tool
 import { validateField } from "../Validation/validation";
 import { fetchData } from "../redux-toolkit/slices/api";
 import { useNavigate } from "react-router";
-import { LOGIN_PAGE } from "../utils/constant";
+import { EMAIL_REGEX, LOGIN_PAGE, NAME_REGEX, PASSWORD_REGEX, USERS_SIGN_UP_END_POINT } from "../utils/constant";
 import { toast } from "react-toastify";
+
 
 export const useSignupData = () => {
 
@@ -55,7 +56,7 @@ export const useSignupData = () => {
             message:'Please Enter Name'
           },
           {
-            pattern:/^([a-zA-Z0-9]+\s?)*\S$/,
+            pattern:NAME_REGEX,
             message:'Plaese, Enter Valid Name'
           }
         ],
@@ -65,7 +66,7 @@ export const useSignupData = () => {
             message:'Please Enter Email'
           },
           {
-            pattern:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+            pattern:EMAIL_REGEX,
             message:'Please, Enter Valid Email'
           }
         ],
@@ -79,7 +80,7 @@ export const useSignupData = () => {
             message:'Password Must be contain atleast 6 char'
           },
           {
-            pattern:/[a-zA-Z0-9]{6,30}/,
+            pattern:PASSWORD_REGEX,
             message:'Password contains only UpperCase,lowerCase and Digit'
           }
           
@@ -102,7 +103,7 @@ export const useSignupData = () => {
           
           const config = {
             method:'post',
-            url:'users/SignUp',
+            url:USERS_SIGN_UP_END_POINT,
             data:signupData
           }
           setDisable(true);

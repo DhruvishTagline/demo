@@ -5,7 +5,7 @@ import { handleAns, handleEdited, handleError, handleOptions, handleQuestion, ha
 import { validateField } from '../Validation/validation';
 
 import { fetchData } from '../redux-toolkit/slices/api';
-import { VIEW_EXAM } from '../utils/constant';
+import { TEACHER_DELETE_EXAM_END_POINT, TEACHER_EDIT_EXAM_END_POINT, VIEW_EXAM } from '../utils/constant';
 import { toast } from 'react-toastify';
 import { getCurrUserData } from '../utils/currentUser';
 
@@ -247,7 +247,7 @@ const useEditExam = (id,subjectName) => {
           
           const config ={
             method:'put',
-            url:'dashboard/Teachers/editExam',
+            url:TEACHER_EDIT_EXAM_END_POINT,
             data:data,
             headers:{"access-token":getCurrUserData().token},
             params:{id}
@@ -277,7 +277,7 @@ const useEditExam = (id,subjectName) => {
           const deleteExam =async()=>{
             const config={
               method:'delete',
-              url:'dashboard/Teachers/deleteExam',
+              url:TEACHER_DELETE_EXAM_END_POINT,
               headers:{"access-token":getCurrUserData().token},
               params:{id}
             }

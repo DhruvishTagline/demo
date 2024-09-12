@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchData } from '../../../redux-toolkit/slices/api';
 import { loadCurrStudentDetail } from '../../../redux-toolkit/slices/teacher';
 import CurrStudentDetail from '../../../shared/CurrStudentDetail';
-import { ALL_STUDENT } from '../../../utils/constant';
+import { ALL_STUDENT, TEACHER_VIEW_STUDENT_DETAIL_END_POINT } from '../../../utils/constant';
 import { removeItemLocal, setItemLocal } from '../../../utils/localStorageFunction';
 import { toast } from 'react-toastify';
 import { getCurrUserData } from '../../../utils/currentUser';
@@ -23,7 +23,7 @@ const ViewStudentDetail = () => {
             const fetchStudentDetail = async() => {
                 const config = {
                     method:'get',
-                    url:`dashboard/Teachers/viewStudentDetail`,
+                    url:TEACHER_VIEW_STUDENT_DETAIL_END_POINT,
                     headers: { "access-token":getCurrUserData().token },
                     params:{id}
                 }

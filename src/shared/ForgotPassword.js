@@ -4,7 +4,7 @@ import { Navigate, useNavigate } from 'react-router';
 import { handleError, handleForgetPassword, initiateForgetPassword } from '../redux-toolkit/slices/user';
 import { validateField } from '../Validation/validation';
 import { fetchData } from '../redux-toolkit/slices/api';
-import { LOGIN_PAGE } from '../utils/constant';
+import { EMAIL_REGEX, LOGIN_PAGE, USER_FORGOT_PASSWORD_END_POINT } from '../utils/constant';
 import InputField from './InputField'
 import { toast } from 'react-toastify';
 import { getCurrUserData } from '../utils/currentUser';
@@ -43,7 +43,7 @@ const ForgotPassword = () => {
           message:'Please Enter Email'
         },
         {
-          pattern:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+          pattern:EMAIL_REGEX,
           message:'enter Valid email.'
         }
       ]
@@ -58,7 +58,7 @@ const ForgotPassword = () => {
         }
         const config={
           method:'post',
-          url:'users/ForgotPassword',
+          url:USER_FORGOT_PASSWORD_END_POINT,
           data:forgetPassword
         }
         const res =await dispatch(fetchData(config));

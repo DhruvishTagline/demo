@@ -8,6 +8,7 @@ import { validateField } from '../Validation/validation';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { getCurrUserData } from '../utils/currentUser';
+import { PASSWORD_REGEX, USER_RESET_PASSWORD_END_POINT } from '../utils/constant';
 
 const ResetPassword = () => {
 
@@ -69,7 +70,7 @@ const ResetPassword = () => {
                 message: 'Password Must be contain at least 6 characters'
             },
             {
-                pattern: /[a-zA-Z0-9]{6,30}/,
+                pattern: PASSWORD_REGEX,
                 message: 'Enter Valid Password'
             }
         ],
@@ -83,7 +84,7 @@ const ResetPassword = () => {
                 message: 'Password Must be contain at least 6 characters'
             },
             {
-                pattern: /[a-zA-Z0-9]{6,30}/,
+                pattern: PASSWORD_REGEX,
                 message: 'Password contains only UpperCase, lowerCase, and Digit'
             },
             {
@@ -119,7 +120,7 @@ const ResetPassword = () => {
             }
             const config = {
                 method: 'post',
-                url: 'users/ResetPassword',
+                url: USER_RESET_PASSWORD_END_POINT,
                 data: resetPassword,
                 headers: { "access-token": `${token}` }
             };

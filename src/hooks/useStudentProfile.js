@@ -7,6 +7,7 @@ import { fetchData } from '../redux-toolkit/slices/api';
 
 import { toast } from 'react-toastify';
 import { getCurrUserData } from '../utils/currentUser';
+import { STUDENT_STUDENT_PROFILE_END_POINT } from '../utils/constant';
 
 const useStudentProfile = () => {
     const dispatch =useDispatch();
@@ -72,7 +73,7 @@ const useStudentProfile = () => {
             }
             const config = {
                 method:'put',
-                url:'student/studentProfile',
+                url:STUDENT_STUDENT_PROFILE_END_POINT,
                 data:updatedData,
                 headers: { "access-token":getCurrUserData().token }
             }

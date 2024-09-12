@@ -7,7 +7,7 @@ import {  handleQuestions, setAnsIndex } from '../../../redux-toolkit/slices/tea
 import ShowExam from '../../../shared/ShowExam';
 import useEditExam from '../../../hooks/useEditExam';
 import { toast } from 'react-toastify';
-import { VIEW_EXAM } from '../../../utils/constant';
+import { TEACHER_GET_EXAM_DETAIL, VIEW_EXAM } from '../../../utils/constant';
 import { getCurrUserData } from '../../../utils/currentUser';
 
 
@@ -39,7 +39,7 @@ const EditExam = (props) => {
       
       const config ={
         method:'get',
-        url:'dashboard/Teachers/examDetail',
+        url:TEACHER_GET_EXAM_DETAIL,
         headers:{"access-token":getCurrUserData().token},
         params:{id}
       }

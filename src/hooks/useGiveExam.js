@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router';
 import { cancelExam, handleStudentAns, loadAllExamData } from '../redux-toolkit/slices/student';
 import { fetchData } from '../redux-toolkit/slices/api';
-import { ALL_EXAM } from '../utils/constant';
+import { ALL_EXAM, STUDENT_GIVE_EXAM_END_POINT } from '../utils/constant';
 import { initiateAnsIndex } from '../redux-toolkit/slices/teacher';
 import { removeItemLocal } from '../utils/localStorageFunction';
 import { toast } from 'react-toastify';
@@ -178,7 +178,7 @@ export const useGiveExam = (id) => {
                 try{
                     const config = {
                         method:'post',
-                        url:'student/giveExam',
+                        url:STUDENT_GIVE_EXAM_END_POINT,
                         data:ansArr,
                         headers: { 'access-token':getCurrUserData().token},
                         params:{id}

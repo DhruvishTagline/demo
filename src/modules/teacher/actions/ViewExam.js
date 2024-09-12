@@ -6,7 +6,7 @@ import Pagination from '../../../shared/Pagination';
 import { useNavigate } from 'react-router';
 import { handlePrevVisitedPage } from '../../../redux-toolkit/slices/user';
 import { removeItemLocal, setItemLocal } from '../../../utils/localStorageFunction';
-import { LOGIN_PAGE, VIEW_EXAM } from '../../../utils/constant';
+import { LOGIN_PAGE, TEACHER_DELETE_EXAM_END_POINT, TEACHER_VIEW_EXAM_END_POINT, VIEW_EXAM } from '../../../utils/constant';
 import FilterFeild from '../../../shared/FilterFeild';
 import { toast } from 'react-toastify';
 import { getCurrUserData } from '../../../utils/currentUser';
@@ -28,7 +28,7 @@ const ViewExam = () => {
     try{
       const config = {
         method:'get',
-        url:'dashboard/Teachers/viewExam',
+        url:TEACHER_VIEW_EXAM_END_POINT,
         headers: { "access-token":getCurrUserData().token }
       }
       const res = await dispatch(fetchData(config));
@@ -53,7 +53,7 @@ const ViewExam = () => {
       const deleteExam =async()=>{
         const config={
           method:'delete',
-          url:'dashboard/Teachers/deleteExam',
+          url:TEACHER_DELETE_EXAM_END_POINT,
           headers:{"access-token":getCurrUserData().token},
           params:{id}
         }
@@ -74,26 +74,6 @@ const ViewExam = () => {
 
   useEffect(() => {
     dispatch(updateSearchQuery(''))  
-    // const fetchViewExamData = async() => {
-    //   try{
-    //     const config = {
-    //       method:'get',
-    //       url:'dashboard/Teachers/viewExam',
-    //       headers: { "access-token":getCurrUserData().token }
-    //     }
-    //     const res = await dispatch(fetchData(config));
-    //     if(res?.payload?.statusCode !== 200){
-    //       toast.error(res?.payload?.message);
-    //       removeItemLocal('userData');
-    //       setItemLocal('login',false);
-    //       navigate(LOGIN_PAGE);
-    //       return;
-    //     }     
-    //     dispatch(loadViewExamData(res.payload.data));
-    //   }catch(error){
-    //     toast('error', error)
-    //   }
-    // }
     
       fetchViewExamData();
     

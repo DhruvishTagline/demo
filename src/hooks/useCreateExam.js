@@ -5,7 +5,7 @@ import { fetchData } from "../redux-toolkit/slices/api";
 import { useNavigate } from "react-router";
 import { validateField } from "../Validation/validation";
 import { removeItemLocal } from "../utils/localStorageFunction";
-import { VIEW_EXAM } from "../utils/constant";
+import { TEACHER_CREATE_EXAM_END_POINT, VIEW_EXAM } from "../utils/constant";
 import { toast } from "react-toastify";
 import { getCurrUserData } from "../utils/currentUser";
 import { checkForDuplicateQuestions } from "../utils/functions";
@@ -236,7 +236,7 @@ export const useCreateExam = () => {
           try{
             const config = {  
               method:'post',  
-              url:'dashboard/Teachers/Exam',
+              url:TEACHER_CREATE_EXAM_END_POINT,
               data:examData,
               headers: { "access-token":getCurrUserData().token }
             }
