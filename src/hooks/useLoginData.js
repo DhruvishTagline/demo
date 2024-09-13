@@ -6,7 +6,7 @@ import { useNavigate } from "react-router";
 import { setItemLocal } from "../utils/localStorageFunction";
 import { validateField } from "../Validation/validation";
 import { toast } from "react-toastify";
-import { DASHBOARD, EMAIL_REGEX, USERS_LOGIN_END_POINT } from "../utils/constant";
+import { EMAIL_REGEX, USERS_LOGIN_END_POINT } from "../utils/constant";
 import { currUserRole } from "../utils/currentUser";
 
 export const useLoginData = () => {

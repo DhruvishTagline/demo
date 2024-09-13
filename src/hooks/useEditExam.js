@@ -72,7 +72,6 @@ const useEditExam = (id,subjectName) => {
 
       const optionArr= examData?.questions?.[currQuestion]?.options;
      
-
       const createExamFields = [
       {
         type:'text',
@@ -203,7 +202,6 @@ const useEditExam = (id,subjectName) => {
       }
 
       const handleEditExam = async()=>{
-
         // const checkForDuplicateQuestions = (questions) => {
         //   const questionTexts = questions.map(q => q.question);
         //   const duplicateQuestions = questionTexts.filter((item, index) => 
@@ -211,42 +209,34 @@ const useEditExam = (id,subjectName) => {
         //   );         
         //   return [...new Set(duplicateQuestions)]; 
         // };
-
-        const duplicates = checkForDuplicateQuestions(Questions);
         
+        const duplicates = checkForDuplicateQuestions(Questions);
         if (duplicates.length > 0) {  
             toast.warn(`Duplicate Questions Detected Please Check`);
             return; 
         }
-
         const error = validateField(validateExamData,validate);
         if(Object.keys(error).length !== 0){
           dispatch(handleError(error));
           return;
         }
         if(Object.values(sameOptionError).some(element => element !== '')) return;
-
         try{
           if(!edited){
             navigate(VIEW_EXAM);
             return;
           }
           const error =validateField(validateExamData,validate);
-          if(Object.keys(error).length !== 0)
-          {           
+          if(Object.keys(error).length !== 0){           
             dispatch(handleError(error));
             return;
           }
-        
           var data = {...examData}
-          
           data.subjectName=subjectName;
-          
           const config ={
             method:'put',
             url:TEACHER_EDIT_EXAM_END_POINT,
             data:data,
-            // headers:{"access-token":getCurrUserData().token},
             params:{id}
           }
           dispatch(loadViewExamData([]));
@@ -275,7 +265,6 @@ const useEditExam = (id,subjectName) => {
             const config={
               method:'delete',
               url:TEACHER_DELETE_EXAM_END_POINT,
-              // headers:{"access-token":getCurrUserData().token},
               params:{id}
             }
             const res =await dispatch(fetchData(config));
@@ -309,7 +298,6 @@ const useEditExam = (id,subjectName) => {
           ],
           notes:['test note'],
         }
-        
         dispatch(initiateExam(initiateConfig));
         navigate(VIEW_EXAM);
       }

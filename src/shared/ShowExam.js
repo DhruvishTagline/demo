@@ -29,9 +29,11 @@ const ShowExam = ({
   const handleNextQuestion = () => {
   
     const validationErrors = validateField(validateExamData, validate);
+    console.log('validationErrors :>> ', validationErrors);
     dispatch(handleError(validationErrors));
 
     const e = Object.values(error).some(element => element !== '');
+    console.log('e :>> ', e);
     const hasErrors =  Object.values(validationErrors).length > 0 || e ;
     
     if (hasErrors) {

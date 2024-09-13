@@ -1,11 +1,8 @@
 import React, { useEffect } from 'react'
-
 import { useDispatch } from 'react-redux'
-
 import { useLocation } from 'react-router';
 import { capitalizeFirstChar } from '../utils/functions';
 import { handlePrevVisitedPage } from '../redux-toolkit/slices/user';
-
 
 const Dashboard = () => {
 

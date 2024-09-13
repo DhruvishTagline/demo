@@ -12,7 +12,6 @@ export const NEW_PASSWORD = '/newPassword*'
 export const TEACHER = '/teacher'
 
 export const TEACHER_DASHBOARD = '/teacher/dashboard'
-// export const DASHBOARD = '/:role/teacher/dashboard'
 
 export const ALL_STUDENT = '/teacher/allstudent'
 

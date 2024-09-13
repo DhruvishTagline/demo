@@ -52,6 +52,8 @@ const EditExam = (props) => {
       }
 
       dispatch(handleQuestions(res?.payload?.data?.questions));
+      console.log('res.payload :>> ', res?.payload);
+      console.log('res?.payload?.data?.questions[currQuestion].answer,currQuestion :>> ', res?.payload?.data?.questions[currQuestion].answer,currQuestion);
       dispatch(setAnsIndex(res?.payload?.data?.questions[currQuestion].answer,currQuestion))
     }
     getExamDetails();
