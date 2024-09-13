@@ -40,7 +40,7 @@ const EditExam = (props) => {
       const config ={
         method:'get',
         url:TEACHER_GET_EXAM_DETAIL,
-        headers:{"access-token":getCurrUserData().token},
+        // headers:{"access-token":getCurrUserData().token},
         params:{id}
       }
       const res =await dispatch(fetchData(config));

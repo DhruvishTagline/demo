@@ -54,7 +54,7 @@ const ViewExam = () => {
         const config={
           method:'delete',
           url:TEACHER_DELETE_EXAM_END_POINT,
-          headers:{"access-token":getCurrUserData().token},
+          // headers:{"access-token":getCurrUserData().token},
           params:{id}
         }
         const res =await dispatch(fetchData(config));

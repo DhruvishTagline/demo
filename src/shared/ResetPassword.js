@@ -121,7 +121,7 @@ const ResetPassword = () => {
                 method: 'post',
                 url: USER_RESET_PASSWORD_END_POINT,
                 data: resetPassword,
-                headers: { "access-token": `${token}` }
+                // headers: { "access-token": `${token}` }
             };
             const res = await dispatch(fetchData(config));
             if (res.payload.statusCode !== 200) {

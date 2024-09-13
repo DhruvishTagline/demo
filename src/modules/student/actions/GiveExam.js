@@ -39,7 +39,7 @@ const GiveExam = () => {
       const config = {
         method:'get',
         url:STUDENT_EXAM_PAPER_END_POINT,
-        headers:{ 'access-token':getCurrUserData().token },
+        // headers:{ 'access-token':getCurrUserData().token },
         params:{id}
       }
       
@@ -70,32 +70,39 @@ const GiveExam = () => {
     if(examPaper){
       dispatch(loadExamPaper(getItemLocal('examPaper')));
       const ansIndexLocal = getItemLocal('ansIndex');
+      if(ansIndexLocal && ansIndex.length === 0){
+        dispatch(initiateAnsIndex([]))
+      }
       dispatch(initiateAnsIndex(JSON.parse(ansIndexLocal)));
     }
     else{
       fetchExamPaper();
     }  
-  },[]);
 
-  useEffect(()=>{
-
-    const handleStorageChange = ()=>{
-      const examPaper = getItemLocal('examPaper');
-      console.log('examPaper :>> ', examPaper);
-      if(examPaper){
-        
-        dispatch(loadExamPaper(examPaper));
-        const ansIndexLocal =getItemLocal(ansIndex);
-        if(ansIndexLocal && ansIndex.length === 0){
-          dispatch(initiateAnsIndex([]))
-        }
-      }
-    }
-    handleStorageChange();
     return () => {
     
     }
-  },[])
+  },[]);
+
+  // useEffect(()=>{
+
+  //   const handleStorageChange = ()=>{
+  //     const examPaper = getItemLocal('examPaper');
+  //     console.log('examPaper :>> ', examPaper);
+  //     if(examPaper){
+        
+  //       dispatch(loadExamPaper(examPaper));
+  //       const ansIndexLocal =getItemLocal(ansIndex);
+  //       if(ansIndexLocal && ansIndex.length === 0){
+  //         dispatch(initiateAnsIndex([]))
+  //       }
+  //     }
+  //   }
+  //   handleStorageChange();
+  //   return () => {
+    
+  //   }
+  // },[])
 
   
   return (

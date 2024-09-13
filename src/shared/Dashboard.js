@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react'
 
 import { useDispatch } from 'react-redux'
-import { handlePrevVisitedPage } from '../../../redux-toolkit/slices/user'
-import { useLocation } from 'react-router';
-import { capitalizeFirstChar } from '../../../utils/functions';
 
-const TeacherDashbord = () => {
+import { useLocation } from 'react-router';
+import { capitalizeFirstChar } from '../utils/functions';
+import { handlePrevVisitedPage } from '../redux-toolkit/slices/user';
+
+
+const Dashboard = () => {
 
   const dispatch = useDispatch();
   const location = useLocation();
@@ -20,4 +22,6 @@ const TeacherDashbord = () => {
   )
 }
 
-export default TeacherDashbord
+export default Dashboard
+
+

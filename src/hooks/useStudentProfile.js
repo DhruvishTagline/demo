@@ -9,11 +9,11 @@ import { getCurrUserData } from '../utils/currentUser';
 import { STUDENT_STUDENT_PROFILE_END_POINT } from '../utils/constant';
 
 const useStudentProfile = () => {
+  
     const dispatch =useDispatch();
 
     const [disable,setDisable]=useState(true);
     const studentProfile = useSelector(state=>state.student.studentProfile);
-    
     const error = useSelector(state=>state.student.error);
 
     const createStudentFields = [

@@ -37,7 +37,6 @@ export const useCreateExam = () => {
             required:true,
             message:'Please Enter Subject'
           },
-          
         ],
         question:[
           {
@@ -221,7 +220,7 @@ export const useCreateExam = () => {
 
         const duplicates = checkForDuplicateQuestions(examQuestions);
         if (duplicates.length > 0) {  
-          toast.warn(`Duplicate Questions Detected Please Check`);
+          toast.error(`Duplicate Questions Detected Please Check`);
           return;
         }  
         const error = validateField(validateExamData,validate);

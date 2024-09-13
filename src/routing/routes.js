@@ -24,14 +24,13 @@ import {
   VIEW_EXAM 
 } from '../utils/constant';
 
-
 const App = lazy(() => import("../App"));
 const Home = lazy(() => import("../shared/Home"));
 const Teacher = lazy(() => import("../modules/teacher/Teacher"));
 const AllStudent = lazy(() => import("../modules/teacher/actions/AllStudent"));
 const CreateExam = lazy(() => import("../modules/teacher/actions/CreateExam"));
 const EditExam = lazy(() => import("../modules/teacher/actions/EditExam"));
-const TeacherDashboard = lazy(() => import("../modules/teacher/actions/TeacherDashbord"));
+// const TeacherDashboard = lazy(() => import("../modules/teacher/actions/TeacherDashbord"));
 const VerifiedStudent = lazy(() => import("../modules/teacher/actions/VerifiedStudent"));
 const ViewExam = lazy(() => import("../modules/teacher/actions/ViewExam"));
 const ViewStudentDetail = lazy(() => import("../modules/teacher/actions/ViewStudentDetail"));
@@ -41,12 +40,13 @@ const ResetPassword = lazy(() => import("../shared/ResetPassword"));
 const ForgotPassword = lazy(() => import("../shared/ForgotPassword"));
 const NewPassword = lazy(() => import("../shared/NewPassword"));
 const Student = lazy(() => import("../modules/student/Student"));
-const StudentDashboard = lazy(() => import("../modules/student/actions/StudentDashboard"));
+// const StudentDashboard = lazy(() => import("../modules/student/actions/StudentDashboard"));
 const AllExam = lazy(() => import("../modules/student/actions/AllExam"));
 const GiveExam = lazy(() => import("../modules/student/actions/GiveExam"));
 const StudentProfile = lazy(() => import("../modules/student/actions/StudentProfile"));
 const ExamRestrictionPage = lazy(()=>import("../shared/ExamRestrictionPage"));
-const ErrorPage = lazy(()=>import("../shared/ErrorPage"))
+const ErrorPage = lazy(()=>import("../shared/ErrorPage"));
+const Dashboard = lazy(()=>import("../shared/Dashboard"));
 
 export const routes = [
   {
@@ -117,7 +117,7 @@ export const routes = [
                 path: TEACHER_DASHBOARD,
                 element: (
                   <Suspense fallback={<Loader />}> 
-                    <TeacherDashboard />
+                    <Dashboard />
                   </Suspense>
                 )
               },
@@ -201,7 +201,7 @@ export const routes = [
                 path: STUDENT_DASHBOARD,
                 element: (
                   <Suspense fallback={<Loader />}>
-                    <StudentDashboard />
+                    <Dashboard />
                   </Suspense>
                 )
               },

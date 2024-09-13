@@ -6,7 +6,8 @@ import { useNavigate } from "react-router";
 import { setItemLocal } from "../utils/localStorageFunction";
 import { validateField } from "../Validation/validation";
 import { toast } from "react-toastify";
-import { EMAIL_REGEX, USERS_LOGIN_END_POINT } from "../utils/constant";
+import { DASHBOARD, EMAIL_REGEX, USERS_LOGIN_END_POINT } from "../utils/constant";
+import { currUserRole } from "../utils/currentUser";
 
 export const useLoginData = () => {
     const dispatch = useDispatch();
@@ -56,7 +57,7 @@ export const useLoginData = () => {
           },
           {
             length:6,
-            message:'Password Must be contain atleast 6 char'
+            message:'Password Must be contain at-least 6 char'
           },
           
         ],
@@ -96,7 +97,7 @@ export const useLoginData = () => {
           dispatch(handleLogin(true));    
           dispatch(initiateLoginData());       
 
-          navigate(`/${res.payload.data.role}/dashboard`,{replace:true});
+          navigate(`/${currUserRole}/dashboard`,{replace:true});
           
         }catch(error){
           setDisable(false);

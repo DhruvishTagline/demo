@@ -4,9 +4,9 @@ import {  Outlet, useLocation } from 'react-router-dom'
 import { RiDashboardHorizontalFill } from "react-icons/ri"
 import { useSelector } from 'react-redux';
 import { ALL_EXAM, STUDENT_DASHBOARD, STUDENT_PROFILE } from '../../utils/constant';
-import StudentDashboard from './actions/StudentDashboard';
 import { PiExamFill } from 'react-icons/pi';
 import { CgProfile } from "react-icons/cg";
+import Dashboard from '../../shared/Dashboard';
 
 
 const Student = () => {
@@ -39,7 +39,7 @@ const Student = () => {
       </div>
       <div className='w-full mb-[20px]'>
         {
-          location.pathname === '/student' || location.pathname === '/student/' ? <StudentDashboard /> : <Outlet />
+          location.pathname === '/student' || location.pathname === '/student/' ? <Dashboard/> : <Outlet />
         }
       </div>
     </div>

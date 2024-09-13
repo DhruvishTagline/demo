@@ -8,6 +8,7 @@ import { fetchData } from '../redux-toolkit/slices/api';
 import { TEACHER_DELETE_EXAM_END_POINT, TEACHER_EDIT_EXAM_END_POINT, VIEW_EXAM } from '../utils/constant';
 import { toast } from 'react-toastify';
 import { getCurrUserData } from '../utils/currentUser';
+import { checkForDuplicateQuestions } from '../utils/functions';
 
 
 const useEditExam = (id,subjectName) => {
@@ -31,7 +32,6 @@ const useEditExam = (id,subjectName) => {
       }
 
       const validate = {
-        
         question:[
           {
             required:true,
@@ -204,13 +204,13 @@ const useEditExam = (id,subjectName) => {
 
       const handleEditExam = async()=>{
 
-        const checkForDuplicateQuestions = (questions) => {
-          const questionTexts = questions.map(q => q.question);
-          const duplicateQuestions = questionTexts.filter((item, index) => 
-              questionTexts.indexOf(item) !== index
-          );         
-          return [...new Set(duplicateQuestions)]; 
-        };
+        // const checkForDuplicateQuestions = (questions) => {
+        //   const questionTexts = questions.map(q => q.question);
+        //   const duplicateQuestions = questionTexts.filter((item, index) => 
+        //       questionTexts.indexOf(item) !== index
+        //   );         
+        //   return [...new Set(duplicateQuestions)]; 
+        // };
 
         const duplicates = checkForDuplicateQuestions(Questions);
         
@@ -224,11 +224,8 @@ const useEditExam = (id,subjectName) => {
           dispatch(handleError(error));
           return;
         }
-        if(Object.values(sameOptionError).some(element => element !== ''))
-        {
-            return;
-        }
-        
+        if(Object.values(sameOptionError).some(element => element !== '')) return;
+
         try{
           if(!edited){
             navigate(VIEW_EXAM);
@@ -249,7 +246,7 @@ const useEditExam = (id,subjectName) => {
             method:'put',
             url:TEACHER_EDIT_EXAM_END_POINT,
             data:data,
-            headers:{"access-token":getCurrUserData().token},
+            // headers:{"access-token":getCurrUserData().token},
             params:{id}
           }
           dispatch(loadViewExamData([]));
@@ -270,7 +267,7 @@ const useEditExam = (id,subjectName) => {
 
       const handleDeleteExam=()=>{
         try{
-          const bool = window.confirm('are you sure you want to delete exam ?');
+          const bool = window.confirm('Are you sure you want to delete exam ?');
           if(bool === false){
             return
           }
@@ -278,7 +275,7 @@ const useEditExam = (id,subjectName) => {
             const config={
               method:'delete',
               url:TEACHER_DELETE_EXAM_END_POINT,
-              headers:{"access-token":getCurrUserData().token},
+              // headers:{"access-token":getCurrUserData().token},
               params:{id}
             }
             const res =await dispatch(fetchData(config));

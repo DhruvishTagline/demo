@@ -160,12 +160,10 @@ export const useGiveExam = (id) => {
       ]
 
     const ansArr =examData?.questions?.reduce((acc,curr)=>{
-       
         const obj ={
             question:curr._id,
             answer:curr.answer
         }
-     
         if(curr.answer !== undefined){
             acc.push(obj)
         }
@@ -180,7 +178,7 @@ export const useGiveExam = (id) => {
                         method:'post',
                         url:STUDENT_GIVE_EXAM_END_POINT,
                         data:ansArr,
-                        headers: { 'access-token':getCurrUserData().token},
+                        // headers: { 'access-token':getCurrUserData().token},
                         params:{id}
                     }
                     dispatch(loadAllExamData([]));

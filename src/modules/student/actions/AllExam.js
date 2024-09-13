@@ -26,7 +26,7 @@ const AllExam = () => {
       const config ={
         method:'get',
         url:STUDENT_STUDENT_EXAM_END_POINT,
-        headers:{ 'access-token':getCurrUserData().token }
+        // headers:{ 'access-token':getCurrUserData().token }
       }
       const res = await dispatch(fetchData(config));
       if(res?.payload?.statusCode !== 200){
@@ -49,7 +49,7 @@ const AllExam = () => {
     dispatch(updateFilteredData(filtered));
   }, [searchQuery, allExamData, dispatch]);
 
-  const btn ={
+  const btn = {
     giveExamBtn : '/student/give-exam',
     ShowResultBtn: '/student/show-result'
   }
