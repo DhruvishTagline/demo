@@ -9,7 +9,7 @@ import { updateFilteredData } from '../../../redux-toolkit/slices/teacher';
 import FilterFeild from '../../../shared/FilterFeild';
 import { toast } from 'react-toastify';
 import { getCurrUserData } from '../../../utils/currentUser';
-import { STUDENT_STUDENT_EXAM_END_POINT } from '../../../utils/constant';
+import { LOGIN_PAGE, STUDENT_STUDENT_EXAM_END_POINT } from '../../../utils/constant';
 
 const AllExam = () => {
 
@@ -33,7 +33,7 @@ const AllExam = () => {
         toast.error(res?.payload?.message)
         removeItemLocal('userData');
         setItemLocal('login',false);
-        navigate('/login');
+        navigate(LOGIN_PAGE);
         return;
       }
       dispatch(loadAllExamData(res?.payload?.data))
@@ -49,10 +49,11 @@ const AllExam = () => {
     dispatch(updateFilteredData(filtered));
   }, [searchQuery, allExamData, dispatch]);
 
-  const btn = {
-    giveExamBtn : '/student/give-exam',
-    ShowResultBtn: '/student/show-result'
-  }
+  // const btn = {
+  //   giveExamBtn : '/student/give-exam',
+  //   ShowResultBtn: '/student/show-result'
+  // }
+  const btn =['giveExam'];
     return (
       <div className='flex items-center flex-col mt-4'>
         <div className='w-full max-w-6xl max-h-[90%] p-6 bg-white rounded-lg'>
@@ -65,7 +66,7 @@ const AllExam = () => {
                 <Pagination 
                   data={filteredData} 
                   studentBtn={btn}  
-                  lastVisitedPage={lastVisitedPage}
+                  // lastVisitedPage={lastVisitedPage}
                   viewPath='All-Exam'
                 />
               </div>                     

@@ -54,7 +54,7 @@ const StudentProfile = () => {
     }else{
       dispatch(loadStudentProfile(student))
     }
-    dispatch(handlePrevVisitedPage(1));
+    // dispatch(handlePrevVisitedPage(1));
   },[dispatch,navigate]);
 
    const handleCancel = () => {

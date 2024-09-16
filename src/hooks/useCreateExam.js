@@ -184,7 +184,6 @@ export const useCreateExam = () => {
         ans:examData?.questions?.[currQuestion]?.answer,
         opIndex:3,
         error:error,
-       
       },
       {
         type:'text',

@@ -18,7 +18,7 @@ const VerifiedStudent = () => {
     const verifiedStudentData = useSelector(state => state.teacher.verifiedStudentData);
     const filteredData = useSelector(state => state.teacher.filteredData);
     const searchQuery = useSelector(state => state.teacher.searchQuery);
-    const lastVisitedPage = useSelector(state => state.user.prevVisitedPage);
+    // const lastVisitedPage = useSelector(state => state.user.prevVisitedPage);
 
     useEffect(() => {
         dispatch(updateSearchQuery('')) 
@@ -66,7 +66,7 @@ const VerifiedStudent = () => {
                     <Pagination 
                         data={filteredData} 
                         viewPath={`/teacher/view-student-detail`} 
-                        lastVisitedPage={lastVisitedPage}
+                        // lastVisitedPage={lastVisitedPage}
                     />
                 </div>         
             }     

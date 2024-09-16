@@ -77,7 +77,7 @@ const ViewExam = () => {
     
       fetchViewExamData();
     
-    dispatch(handlePrevVisitedPage(1));
+    // dispatch(handlePrevVisitedPage(1));
   },[dispatch,navigate]);
 
   useEffect(()=>{

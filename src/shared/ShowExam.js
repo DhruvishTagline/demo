@@ -29,11 +29,8 @@ const ShowExam = ({
   const handleNextQuestion = () => {
   
     const validationErrors = validateField(validateExamData, validate);
-    console.log('validationErrors :>> ', validationErrors);
     dispatch(handleError(validationErrors));
-
     const e = Object.values(error).some(element => element !== '');
-    console.log('e :>> ', e);
     const hasErrors =  Object.values(validationErrors).length > 0 || e ;
     
     if (hasErrors) {
@@ -42,7 +39,7 @@ const ShowExam = ({
       return;
     };
 
-    if (currQuestion < totalQuestion - 1) { 
+    if(currQuestion < totalQuestion - 1) { 
       const newQuestion = {
         question: '',
         answer: '',
@@ -62,7 +59,7 @@ const ShowExam = ({
         <div>     
           {
             createExamFields.map((field, i) => (
-              <InputField fieldData={field} subjectName={subjectName} er={error} key={i} Options={Options} currQuestion={currQuestion}/>
+              <InputField fieldData={field} subjectName={subjectName} er={error} Options={Options} currQuestion={currQuestion}/>
             ))
           }
           {error?.answer && <span className='text-red-500 text-sm'>{error.answer}</span>}
@@ -76,7 +73,6 @@ const ShowExam = ({
             >
               Prev
             </button>
-
             <button
               onClick={handleNextQuestion}
               disabled={currQuestion === totalQuestion - 1}
@@ -92,5 +88,3 @@ const ShowExam = ({
 };
 
 export default ShowExam;
-
-// i want to center this 2 button in given div using tailwind css classname rewrite div code

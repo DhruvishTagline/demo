@@ -59,7 +59,6 @@ export const teacherSlice = createSlice({
         handleOptions:(state, action) => {
             state.edited = true;
             const {queIndex, opIndex, value} = action.payload;
-            console.log('value :>> ', value);
             state.error = {...state.error,answer:''};
             state.createExam.questions[queIndex].options[opIndex] = value;
             state.createExam.questions[queIndex].answer = "";
@@ -115,10 +114,10 @@ export const teacherSlice = createSlice({
             state.error={};
             state.createExam.questions.push(action.payload);
         },
-        setAnsIndex:(state, action) => {
-            // state.ansIndex = [];
-            // state.ansIndex.splice();
-        }
+        // setAnsIndex:(state, action) => {
+        //     // state.ansIndex = [];
+        //     // state.ansIndex.splice();
+        // }
     }
 })
 
@@ -138,7 +137,7 @@ export const {
     handleOptions,
     handleAnsIndexes,
     handleEdited,
-    setAnsIndex,
+    // setAnsIndex,
     updateSearchQuery,
     updateFilteredData
 } = teacherSlice.actions;

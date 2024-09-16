@@ -12,7 +12,7 @@ const TeacherDashbord = () => {
   const accessRole = location.pathname.split('/')[1];
 
   useEffect(() => {
-    dispatch(handlePrevVisitedPage(1));
+    // dispatch(handlePrevVisitedPage(1));
   },[dispatch])
 
   return (

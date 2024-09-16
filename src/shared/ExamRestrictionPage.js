@@ -6,6 +6,7 @@ const ExamRestrictionPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const message = location.state?.message || 'An unknown error occurred';
+  console.log('message :>> ', message);
 
   const handleBack = () => {
     navigate(ALL_EXAM);
@@ -13,7 +14,6 @@ const ExamRestrictionPage = () => {
 
   return (
     <div className="flex flex-col items-center justify-center h-screen">
-     
       <p className="text-3xl mb-8">{message}</p>
       <button
         onClick={handleBack}

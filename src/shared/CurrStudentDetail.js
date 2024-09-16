@@ -3,11 +3,9 @@ import Pagination from './Pagination'
 import { useNavigate } from 'react-router';
 
 const CurrStudentDetail = ({currStudentDetail}) => {
-
-
   const navigate = useNavigate();
   const goBack = () => {
-    navigate('/teacher/allstudent');
+    navigate(-1);
   }
 
   return (
@@ -21,8 +19,7 @@ const CurrStudentDetail = ({currStudentDetail}) => {
             <button
               onClick={goBack}
               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            >
-              Back
+            > Back
             </button>
           </div>
           {

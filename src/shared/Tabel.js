@@ -63,7 +63,6 @@ export default function BasicTable(props) {
                         Delete
                       </button>
                     </td>
-                    
                   )
                 }
                 {

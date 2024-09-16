@@ -22,7 +22,7 @@ const ResetPassword = () => {
 
     useEffect(() => {
         dispatch(initiateResetPassword({}));
-        dispatch(handlePrevVisitedPage(1));
+        // dispatch(handlePrevVisitedPage(1));
 
         return () => {
             dispatch(initiateResetPassword({}));

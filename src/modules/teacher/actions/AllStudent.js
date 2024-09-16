@@ -8,14 +8,14 @@ import { removeItemLocal, setItemLocal } from '../../../utils/localStorageFuncti
 import FilterFeild from '../../../shared/FilterFeild';
 import { toast } from 'react-toastify';
 import { getCurrUserData } from '../../../utils/currentUser';
-import { TEACHER_DASHBOARD_END_POINT } from '../../../utils/constant';
+import { LOGIN_PAGE, TEACHER_DASHBOARD_END_POINT } from '../../../utils/constant';
 
 const AllStudent = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const status = useSelector(state => state.api.status);
   const allStudentData = useSelector(state => state.teacher.allStudentData);
-  const lastVisitedPage = useSelector(state => state.user.prevVisitedPage);
+  // const lastVisitedPage = useSelector(state => state.user.prevVisitedPage);
   const filteredData = useSelector(state => state.teacher.filteredData);
   const searchQuery = useSelector(state => state.teacher.searchQuery);
 
@@ -33,7 +33,7 @@ const AllStudent = () => {
         toast.error(res?.payload?.message);
         removeItemLocal('userData');  
         setItemLocal('login', false);  
-        navigate('/login');  
+        navigate(LOGIN_PAGE);  
         return;  
       }
       
@@ -62,7 +62,7 @@ const AllStudent = () => {
               <Pagination
                 data={filteredData}
                 viewPath={`/teacher/view-student-detail`}
-                lastVisitedPage={lastVisitedPage}
+                // lastVisitedPage={lastVisitedPage}
               />
             </div>
         }

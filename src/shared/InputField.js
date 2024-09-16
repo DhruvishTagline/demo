@@ -2,8 +2,7 @@ import { TextField, IconButton } from '@mui/material';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { handleError, handleSubject } from '../redux-toolkit/slices/teacher';
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import {Visibility,VisibilityOff} from '@mui/icons-material';
 import RadioBtn from './RadioBtn';
 
 const InputField = ({ fieldData, ansIndex, subjectName, Options,flag }) => {
@@ -26,12 +25,12 @@ const InputField = ({ fieldData, ansIndex, subjectName, Options,flag }) => {
     <div className='flex flex-col gap-2 mt-[10px]'>
       <TextField
         label={fieldData?.label}
-        type={flag ?'text':inputType}
+        type={inputType}  //{flag ?'text':inputType}
         id={fieldData?.id}
         name={fieldData?.name}
         value={fieldData?.name === 'subjectName' ? subjectName : fieldData?.data?.[fieldData?.name]}
         disabled={fieldData?.disable}
-        variant={flag?"standard":"outlined"}
+        variant={'outlined'}
         placeholder={fieldData?.label}
         InputLabelProps={{ shrink: true }}
         style={{ width: '20rem', fontSize: '1.3rem' }} 
@@ -55,7 +54,7 @@ const InputField = ({ fieldData, ansIndex, subjectName, Options,flag }) => {
             let errorObj = {};
             const inputValue = e?.target?.value;
 
-            if (Options) {
+            if(Options) {
               opts = Object.values(Options);
             }
 
@@ -67,7 +66,7 @@ const InputField = ({ fieldData, ansIndex, subjectName, Options,flag }) => {
               arr.forEach((val, ind) => {
                 if (ind === i) {
                   return;
-                } else if (val !== "" && opt === val) {
+                } else if (val !== "" && opt === val){
                   isDuplicate = true;
                 }
               });

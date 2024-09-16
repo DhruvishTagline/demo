@@ -9,6 +9,7 @@ import { loadExamPaper } from '../../../redux-toolkit/slices/student';
 import { initiateAnsIndex } from '../../../redux-toolkit/slices/teacher';
 import ShowExam from '../../../shared/ShowExam';
 import { useGiveExam } from '../../../hooks/useGiveExam';
+import { toast } from 'react-toastify';
 
 const GiveExam = () => {
 
@@ -47,6 +48,7 @@ const GiveExam = () => {
       if(res?.payload?.statusCode===401){
         removeItemLocal('userData');
         setItemLocal('login',false);
+        toast.error(res?.payload?.message);
         navigate(LOGIN_PAGE);
         return;
       }
@@ -54,6 +56,13 @@ const GiveExam = () => {
       if (res?.payload?.statusCode === 500) {
         const message = res?.payload?.message;
         navigate(EXAM_RESTRICTION_PAGE, { state: { message } });
+        return;
+      }
+      if(res?.payload?.statusCode !== 200){
+        removeItemLocal('userData');
+        setItemLocal('login',false);
+        toast.error(res?.payload?.message);
+        navigate(LOGIN_PAGE);
         return;
       }
       

@@ -11,8 +11,12 @@ import { getCurrUserData } from '../utils/currentUser';
 
 const ForgotPassword = () => {
 
-    const dispatch=useDispatch();
-    const navigate=useNavigate();
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const forgetPassword =useSelector(state =>state.user.forgetPassword);
+    const error= useSelector(state => state.user.error);
+    const login = JSON.parse(localStorage.getItem('login'));
+    const role = getCurrUserData().role;
 
     useEffect(()=>{
       dispatch(handleError);
@@ -20,11 +24,6 @@ const ForgotPassword = () => {
         dispatch(initiateForgetPassword({}))
       }
     },[dispatch])
-
-    const forgetPassword =useSelector(state =>state.user.forgetPassword)
-    const error= useSelector(state => state.user.error);
-    const login = JSON.parse(localStorage.getItem('login'));
-    const role = getCurrUserData().role;
     
     const fieldData = {
       type:'email',
